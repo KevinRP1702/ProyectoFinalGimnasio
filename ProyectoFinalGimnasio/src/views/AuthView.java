@@ -162,7 +162,7 @@ public class AuthView {
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(0, 0, 542, 660);
-		ImageIcon imageIcon = new ImageIcon("src/login.jpg"); 
+		ImageIcon imageIcon = new ImageIcon("img/login.jpg"); 
         lblNewLabel.setIcon(imageIcon);
 		panel.add(lblNewLabel);
 		
