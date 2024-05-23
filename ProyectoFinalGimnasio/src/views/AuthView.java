@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -290,11 +293,22 @@ public class AuthView {
 		lblLinea.setBounds(71, 53, 420, 1);
 		panelLogincontenedor.add(lblLinea);
 		
-		JLabel lblNewLabel = new JLabel("¿Ya tienes una cuenta?");
-		lblNewLabel.setFont(new Font("Calibri", Font.PLAIN, 18));
-		lblNewLabel.setForeground(Color.decode("#3588F4"));
-		lblNewLabel.setBounds(203, 337, 239, 36);
-		panelLogincontenedor.add(lblNewLabel);
+		JLabel lblRegresar = new JLabel("¿Ya tienes una cuenta?");
+		lblRegresar.setFont(new Font("Calibri", Font.PLAIN, 18));
+		lblRegresar.setForeground(Color.decode("#3588F4"));
+		lblRegresar.setBounds(203, 337, 239, 36);
+		lblRegresar.addMouseListener((MouseListener) new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // Acción al hacer clic en el JLabel
+                Auth Controller = new Auth();
+                frame.dispose();
+                Controller.login();
+            }
+
+           
+        });
+		panelLogincontenedor.add(lblRegresar);
 		
 		JLabel lblLogintitulo = new JLabel("Gym-World");
 		lblLogintitulo.setBounds(293, 70, 533, 99);

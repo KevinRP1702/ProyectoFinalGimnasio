@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import controllers.CheckController;
+import controllers.ClassController;
 import controllers.ClientController;
 import controllers.CloseSessionController;
 import controllers.FeeController;
@@ -118,7 +119,7 @@ public class ClassView {
 
 		JLabel lblLogo = new JLabel("");
 		lblLogo.setBounds(0, 0, 192, 67);
-		ImageIcon imageIcon = new ImageIcon("src/logo.png"); 
+		ImageIcon imageIcon = new ImageIcon("img/logo.png"); 
 		lblLogo.setIcon(imageIcon);
 
 		panelCabecera.add(lblLogo);
@@ -169,18 +170,16 @@ public class ClassView {
 
 		btnInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				HomeController controller = new HomeController();
-				frame.dispose();
-				controller.inicio();
+				
 			}
 		});
 		JLabel lblInicio = new JLabel();
 		lblInicio.setBounds(10, 30, 40, 40);
-		ImageIcon imageIcon_Inicio = new ImageIcon("src/menu_inicio.png");
+		ImageIcon imageIcon_Inicio = new ImageIcon("img/menu_inicio.png");
 		lblInicio.setIcon(imageIcon_Inicio);
 		panel_1.add(lblInicio);
-
-
+		
+		
 		//Clintes
 
 		JPanel panel_2 = new JPanel();
@@ -209,22 +208,21 @@ public class ClassView {
 				panel_2.setBackground(Color.decode("#214177"));
 			}
 		});
-
+		
 		btnClientes.addActionListener(new ActionListener() {
-
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				ClientController controller = new ClientController();
-				frame.dispose();
-				controller.cliente();
+	        	frame.dispose();
+	        	controller.cliente();
 			}
 		});
-
-
+		
 		JLabel lblClientes = new JLabel();
 		lblClientes.setBounds(10, 10, 40, 40);
-		ImageIcon imageIcon_Clientes = new ImageIcon("src/menu_cliente.png");
+		ImageIcon imageIcon_Clientes = new ImageIcon("img/menu_cliente.png");
 		lblClientes.setIcon(imageIcon_Clientes);
 		panel_2.add(lblClientes);
 
@@ -259,14 +257,14 @@ public class ClassView {
 			public void actionPerformed(ActionEvent e) {
 				// Acción al hacer clic en el botón
 				FeeController controller = new FeeController();
-				frame.dispose();
-				controller.tarifa();
+	        	frame.dispose();
+	        	controller.tarifa();
 			}
 		});
-
+		
 		JLabel lblTarifas = new JLabel();
 		lblTarifas.setBounds(10, 10, 40, 40);
-		ImageIcon imageIcon_Tarifas = new ImageIcon("src/menu_tarifa.png");
+		ImageIcon imageIcon_Tarifas = new ImageIcon("img/menu_tarifa.png");
 		lblTarifas.setIcon(imageIcon_Tarifas);
 		panel_3.add(lblTarifas);
 
@@ -306,13 +304,13 @@ public class ClassView {
 				controller.instructor();
 			}
 		});
-
+		
 		JLabel lblInstructores = new JLabel();
 		lblInstructores.setBounds(10, 10, 40, 40);
-		ImageIcon imageIcon_Intructores = new ImageIcon("src/menu_instructor.png");
+		ImageIcon imageIcon_Intructores = new ImageIcon("img/menu_instructor.png");
 		lblInstructores.setIcon(imageIcon_Intructores);
 		panel_4.add(lblInstructores);
-
+		
 		//Clases
 		JPanel panel_5 = new JPanel();
 		panel_5.setBackground(new Color(33, 65, 119));
@@ -341,9 +339,18 @@ public class ClassView {
 		});
 		JLabel lblClases = new JLabel();
 		lblClases.setBounds(10, 10, 40, 40);
-		ImageIcon imageIcon_Clases = new ImageIcon("src/menu_rutina.png");
+		ImageIcon imageIcon_Clases = new ImageIcon("img/menu_rutina.png");
 		lblClases.setIcon(imageIcon_Clases);
 		panel_5.add(lblClases);
+
+		btnClases.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Acción al hacer clic en el botón
+				ClassController controller = new ClassController();
+				frame.dispose();
+				controller.clase();
+			}
+		});
 
 		//Checador
 		JPanel panel_6 = new JPanel();
@@ -381,10 +388,10 @@ public class ClassView {
 				controller.checador();
 			}
 		});
-
+		
 		JLabel lblChecador = new JLabel();
 		lblChecador.setBounds(10, 10, 40, 40);
-		ImageIcon imageIcon_Checador = new ImageIcon("src/menu_Checador.png");
+		ImageIcon imageIcon_Checador = new ImageIcon("img/menu_Checador.png");
 		lblChecador.setIcon(imageIcon_Checador);
 		panel_6.add(lblChecador);
 
@@ -424,13 +431,13 @@ public class ClassView {
 				// Acción al hacer clic en el botón
 			}
 		});
-
+		
 		JLabel lblCerrarSesion = new JLabel();
 		lblCerrarSesion.setBounds(10, 10, 40, 40);
-		ImageIcon imageIcon_CerrarSesion = new ImageIcon("src/menu_cerrar_sesion.png");
+		ImageIcon imageIcon_CerrarSesion = new ImageIcon("img/menu_cerrar_sesion.png");
 		lblCerrarSesion.setIcon(imageIcon_CerrarSesion);
 		panel_7.add(lblCerrarSesion);
-
+		
 		frame.add(panel);
 		frame.setVisible(true);
 		frame.repaint();
@@ -498,7 +505,7 @@ public class ClassView {
 
 		JLabel lblLogo = new JLabel("");
 		lblLogo.setBounds(0, 0, 192, 67);
-		ImageIcon imageIcon = new ImageIcon("src/logo.png"); // Asegúrate de que esta ruta es correcta
+		ImageIcon imageIcon = new ImageIcon("img/logo.png"); 
 		lblLogo.setIcon(imageIcon);
 
 		panelCabecera.add(lblLogo);
@@ -549,18 +556,16 @@ public class ClassView {
 
 		btnInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				HomeController controller = new HomeController();
-				frame.dispose();
-				controller.inicio();
+				
 			}
 		});
 		JLabel lblInicio = new JLabel();
 		lblInicio.setBounds(10, 30, 40, 40);
-		ImageIcon imageIcon_Inicio = new ImageIcon("src/menu_inicio.png");
+		ImageIcon imageIcon_Inicio = new ImageIcon("img/menu_inicio.png");
 		lblInicio.setIcon(imageIcon_Inicio);
 		panel_1.add(lblInicio);
-
-
+		
+		
 		//Clintes
 
 		JPanel panel_2 = new JPanel();
@@ -589,22 +594,21 @@ public class ClassView {
 				panel_2.setBackground(Color.decode("#214177"));
 			}
 		});
-
+		
 		btnClientes.addActionListener(new ActionListener() {
-
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				ClientController controller = new ClientController();
-				frame.dispose();
-				controller.cliente();
+	        	frame.dispose();
+	        	controller.cliente();
 			}
 		});
-
-
+		
 		JLabel lblClientes = new JLabel();
 		lblClientes.setBounds(10, 10, 40, 40);
-		ImageIcon imageIcon_Clientes = new ImageIcon("src/menu_cliente.png");
+		ImageIcon imageIcon_Clientes = new ImageIcon("img/menu_cliente.png");
 		lblClientes.setIcon(imageIcon_Clientes);
 		panel_2.add(lblClientes);
 
@@ -639,14 +643,14 @@ public class ClassView {
 			public void actionPerformed(ActionEvent e) {
 				// Acción al hacer clic en el botón
 				FeeController controller = new FeeController();
-				frame.dispose();
-				controller.tarifa();
+	        	frame.dispose();
+	        	controller.tarifa();
 			}
 		});
-
+		
 		JLabel lblTarifas = new JLabel();
 		lblTarifas.setBounds(10, 10, 40, 40);
-		ImageIcon imageIcon_Tarifas = new ImageIcon("src/menu_tarifa.png");
+		ImageIcon imageIcon_Tarifas = new ImageIcon("img/menu_tarifa.png");
 		lblTarifas.setIcon(imageIcon_Tarifas);
 		panel_3.add(lblTarifas);
 
@@ -686,13 +690,13 @@ public class ClassView {
 				controller.instructor();
 			}
 		});
-
+		
 		JLabel lblInstructores = new JLabel();
 		lblInstructores.setBounds(10, 10, 40, 40);
-		ImageIcon imageIcon_Intructores = new ImageIcon("src/menu_instructor.png");
+		ImageIcon imageIcon_Intructores = new ImageIcon("img/menu_instructor.png");
 		lblInstructores.setIcon(imageIcon_Intructores);
 		panel_4.add(lblInstructores);
-
+		
 		//Clases
 		JPanel panel_5 = new JPanel();
 		panel_5.setBackground(new Color(33, 65, 119));
@@ -721,9 +725,18 @@ public class ClassView {
 		});
 		JLabel lblClases = new JLabel();
 		lblClases.setBounds(10, 10, 40, 40);
-		ImageIcon imageIcon_Clases = new ImageIcon("src/menu_rutina.png");
+		ImageIcon imageIcon_Clases = new ImageIcon("img/menu_rutina.png");
 		lblClases.setIcon(imageIcon_Clases);
 		panel_5.add(lblClases);
+
+		btnClases.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Acción al hacer clic en el botón
+				ClassController controller = new ClassController();
+				frame.dispose();
+				controller.clase();
+			}
+		});
 
 		//Checador
 		JPanel panel_6 = new JPanel();
@@ -761,10 +774,10 @@ public class ClassView {
 				controller.checador();
 			}
 		});
-
+		
 		JLabel lblChecador = new JLabel();
 		lblChecador.setBounds(10, 10, 40, 40);
-		ImageIcon imageIcon_Checador = new ImageIcon("src/menu_Checador.png");
+		ImageIcon imageIcon_Checador = new ImageIcon("img/menu_Checador.png");
 		lblChecador.setIcon(imageIcon_Checador);
 		panel_6.add(lblChecador);
 
@@ -804,9 +817,10 @@ public class ClassView {
 				// Acción al hacer clic en el botón
 			}
 		});
+		
 		JLabel lblCerrarSesion = new JLabel();
 		lblCerrarSesion.setBounds(10, 10, 40, 40);
-		ImageIcon imageIcon_CerrarSesion = new ImageIcon("src/menu_cerrar_sesion.png");
+		ImageIcon imageIcon_CerrarSesion = new ImageIcon("img/menu_cerrar_sesion.png");
 		lblCerrarSesion.setIcon(imageIcon_CerrarSesion);
 		panel_7.add(lblCerrarSesion);
 		
@@ -879,7 +893,7 @@ public class ClassView {
 
 		JLabel lblLogo = new JLabel("");
 		lblLogo.setBounds(0, 0, 192, 67);
-		ImageIcon imageIcon = new ImageIcon("src/logo.png"); // Asegúrate de que esta ruta es correcta
+		ImageIcon imageIcon = new ImageIcon("img/logo.png"); 
 		lblLogo.setIcon(imageIcon);
 
 		panelCabecera.add(lblLogo);
@@ -930,18 +944,16 @@ public class ClassView {
 
 		btnInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				HomeController controller = new HomeController();
-				frame.dispose();
-				controller.inicio();
+				
 			}
 		});
 		JLabel lblInicio = new JLabel();
 		lblInicio.setBounds(10, 30, 40, 40);
-		ImageIcon imageIcon_Inicio = new ImageIcon("src/menu_inicio.png");
+		ImageIcon imageIcon_Inicio = new ImageIcon("img/menu_inicio.png");
 		lblInicio.setIcon(imageIcon_Inicio);
 		panel_1.add(lblInicio);
-
-
+		
+		
 		//Clintes
 
 		JPanel panel_2 = new JPanel();
@@ -970,22 +982,21 @@ public class ClassView {
 				panel_2.setBackground(Color.decode("#214177"));
 			}
 		});
-
+		
 		btnClientes.addActionListener(new ActionListener() {
-
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				ClientController controller = new ClientController();
-				frame.dispose();
-				controller.cliente();
+	        	frame.dispose();
+	        	controller.cliente();
 			}
 		});
-
-
+		
 		JLabel lblClientes = new JLabel();
 		lblClientes.setBounds(10, 10, 40, 40);
-		ImageIcon imageIcon_Clientes = new ImageIcon("src/menu_cliente.png");
+		ImageIcon imageIcon_Clientes = new ImageIcon("img/menu_cliente.png");
 		lblClientes.setIcon(imageIcon_Clientes);
 		panel_2.add(lblClientes);
 
@@ -1020,14 +1031,14 @@ public class ClassView {
 			public void actionPerformed(ActionEvent e) {
 				// Acción al hacer clic en el botón
 				FeeController controller = new FeeController();
-				frame.dispose();
-				controller.tarifa();
+	        	frame.dispose();
+	        	controller.tarifa();
 			}
 		});
-
+		
 		JLabel lblTarifas = new JLabel();
 		lblTarifas.setBounds(10, 10, 40, 40);
-		ImageIcon imageIcon_Tarifas = new ImageIcon("src/menu_tarifa.png");
+		ImageIcon imageIcon_Tarifas = new ImageIcon("img/menu_tarifa.png");
 		lblTarifas.setIcon(imageIcon_Tarifas);
 		panel_3.add(lblTarifas);
 
@@ -1067,13 +1078,13 @@ public class ClassView {
 				controller.instructor();
 			}
 		});
-
+		
 		JLabel lblInstructores = new JLabel();
 		lblInstructores.setBounds(10, 10, 40, 40);
-		ImageIcon imageIcon_Intructores = new ImageIcon("src/menu_instructor.png");
+		ImageIcon imageIcon_Intructores = new ImageIcon("img/menu_instructor.png");
 		lblInstructores.setIcon(imageIcon_Intructores);
 		panel_4.add(lblInstructores);
-
+		
 		//Clases
 		JPanel panel_5 = new JPanel();
 		panel_5.setBackground(new Color(33, 65, 119));
@@ -1102,9 +1113,18 @@ public class ClassView {
 		});
 		JLabel lblClases = new JLabel();
 		lblClases.setBounds(10, 10, 40, 40);
-		ImageIcon imageIcon_Clases = new ImageIcon("src/menu_rutina.png");
+		ImageIcon imageIcon_Clases = new ImageIcon("img/menu_rutina.png");
 		lblClases.setIcon(imageIcon_Clases);
 		panel_5.add(lblClases);
+
+		btnClases.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Acción al hacer clic en el botón
+				ClassController controller = new ClassController();
+				frame.dispose();
+				controller.clase();
+			}
+		});
 
 		//Checador
 		JPanel panel_6 = new JPanel();
@@ -1142,10 +1162,10 @@ public class ClassView {
 				controller.checador();
 			}
 		});
-
+		
 		JLabel lblChecador = new JLabel();
 		lblChecador.setBounds(10, 10, 40, 40);
-		ImageIcon imageIcon_Checador = new ImageIcon("src/menu_Checador.png");
+		ImageIcon imageIcon_Checador = new ImageIcon("img/menu_Checador.png");
 		lblChecador.setIcon(imageIcon_Checador);
 		panel_6.add(lblChecador);
 
@@ -1185,9 +1205,10 @@ public class ClassView {
 				// Acción al hacer clic en el botón
 			}
 		});
+		
 		JLabel lblCerrarSesion = new JLabel();
 		lblCerrarSesion.setBounds(10, 10, 40, 40);
-		ImageIcon imageIcon_CerrarSesion = new ImageIcon("src/menu_cerrar_sesion.png");
+		ImageIcon imageIcon_CerrarSesion = new ImageIcon("img/menu_cerrar_sesion.png");
 		lblCerrarSesion.setIcon(imageIcon_CerrarSesion);
 		panel_7.add(lblCerrarSesion);
 		
