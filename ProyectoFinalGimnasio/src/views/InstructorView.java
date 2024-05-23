@@ -15,6 +15,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import controllers.Auth;
+import controllers.CheckController;
+import controllers.ClassController;
+import controllers.ClientController;
+import controllers.CloseSessionController;
+import controllers.FeeController;
+import controllers.HomeController;
+import controllers.InstructorController;
+
 
 
 public class InstructorView {
@@ -60,9 +69,9 @@ public class InstructorView {
 		panelcontenedor.add(btnRegistrarCliente);
 		btnRegistrarCliente.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {	
-						CloseSessionController controller = new CloseSessionController();
-						frame.dispose();
-						controller.cerrar();
+				InstructorView controller = new InstructorView();
+				frame.dispose();
+				controller.crearInstructor();
 						// Acción al hacer clic en el botón
 					
 			}
@@ -465,9 +474,9 @@ public class InstructorView {
 		btnRegistrarInstructor.setBounds(333, 252, 225, 30);
 		btnRegistrarInstructor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CloseSessionController controller = new CloseSessionController();
+				InstructorView controller = new InstructorView();
 				frame.dispose();
-				controller.cerrar();
+				controller.crearInstructorAvatar();;
 				// Acción al hacer clic en el botón
 			}
 		});
@@ -837,9 +846,9 @@ public class InstructorView {
 		btnRegistrarCliente.setBorderPainted(false);
 		btnRegistrarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CloseSessionController controller = new CloseSessionController();
+				HomeController controller = new HomeController();
 				frame.dispose();
-				controller.cerrar();
+				controller.inicio();
 				// Acción al hacer clic en el botón
 			}
 		});
@@ -1047,7 +1056,7 @@ public class InstructorView {
 				// Acción al hacer clic en el botón
 				InstructorController controller = new InstructorController();
 				frame.dispose();
-				controller.instructor();
+				controller.AvatarInstructor();
 			}
 		});
 

@@ -15,6 +15,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import controllers.CheckController;
+import controllers.ClassController;
+import controllers.ClientController;
+import controllers.CloseSessionController;
+import controllers.FeeController;
+import controllers.HomeController;
+import controllers.InstructorController;
+
 
 
 public class HomeView {
@@ -116,9 +124,7 @@ public class HomeView {
 
 		btnInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				HomeController controller = new HomeController();
-	        	frame.dispose();
-	        	controller.inicio();
+				
 			}
 		});
 		JLabel lblInicio = new JLabel();

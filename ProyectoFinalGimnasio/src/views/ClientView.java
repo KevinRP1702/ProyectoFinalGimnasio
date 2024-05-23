@@ -15,6 +15,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import controllers.CheckController;
+import controllers.ClassController;
+import controllers.ClientController;
+import controllers.CloseSessionController;
+import controllers.FeeController;
+import controllers.HomeController;
+import controllers.InstructorController;
+
 
 
 public class ClientView {
@@ -67,9 +75,9 @@ public class ClientView {
 		btnCrearCliente.setBounds(581, 5, 127, 30);
 		btnCrearCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CloseSessionController controller = new CloseSessionController();
+				ClientController controller = new ClientController();
 				frame.dispose();
-				controller.cerrar();
+				controller.crearCliente();
 				// Acción al hacer clic en el botón
 			}
 		});
@@ -85,9 +93,9 @@ public class ClientView {
 		btnConsultarCliente.setBounds(728, 5, 127, 30);
 		btnConsultarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CloseSessionController controller = new CloseSessionController();
+				ClientController controller = new ClientController();
 				frame.dispose();
-				controller.cerrar();
+				controller.consultar();
 				// Acción al hacer clic en el botón
 			}
 		});
@@ -436,7 +444,7 @@ public class ClientView {
 		frame.repaint();
 		frame.revalidate();
 	}
-	public void crearClientes() {
+	public void crearClientesFoto() {
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 1092, 660);
 		panel.setBackground(Color.decode("#F2F2F2"));
@@ -808,7 +816,7 @@ public class ClientView {
 		frame.repaint();
 		frame.revalidate();
 	}
-	public void crearClientesfoto() {
+	public void crearClientes() {
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 1092, 660);
 		panel.setBackground(Color.decode("#F2F2F2"));
@@ -817,58 +825,38 @@ public class ClientView {
 
 		//Contenido
 		JPanel panelcontenedor = new JPanel();
-		panelcontenedor.setBackground(Color.decode("#FFFFFF"));
-		panelcontenedor.setBounds(200, 76, 882, 573);
-		panel.add(panelcontenedor);
-		panelcontenedor.setLayout(null);
-		
-		JPanel panelCabeceraContenido = new JPanel();
-		panelCabeceraContenido.setLayout(null);
-		panelCabeceraContenido.setBackground(new Color(188, 218, 242));
-		panelCabeceraContenido.setBounds(0, 0, 882, 40);
-		panelcontenedor.add(panelCabeceraContenido);
-		
-		JLabel lblLaDisciplinaEs = new JLabel("Clientes");
-		lblLaDisciplinaEs.setFont(new Font("Calibri", Font.PLAIN, 26));
-		lblLaDisciplinaEs.setBounds(10, 11, 160, 29);
-		panelCabeceraContenido.add(lblLaDisciplinaEs);
-		
-		JButton btnCrearCliente = new JButton("Crear");
-		btnCrearCliente.setVerticalAlignment(SwingConstants.TOP);
-		btnCrearCliente.setForeground(Color.WHITE);
-		btnCrearCliente.setFont(new Font("Calibri", Font.BOLD, 20));
-		btnCrearCliente.setFocusPainted(false);
-		btnCrearCliente.setBorderPainted(false);
-		btnCrearCliente.setBackground(Color.decode("#3768A7"));
-		btnCrearCliente.setBounds(581, 5, 127, 30);
-		btnCrearCliente.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CloseSessionController controller = new CloseSessionController();
-				frame.dispose();
-				controller.cerrar();
-				// Acción al hacer clic en el botón
-			}
-		});
-		panelCabeceraContenido.add(btnCrearCliente);
-		
-		JButton btnConsultarCliente = new JButton("Consultar");
-		btnConsultarCliente.setVerticalAlignment(SwingConstants.TOP);
-		btnConsultarCliente.setForeground(Color.WHITE);
-		btnConsultarCliente.setFont(new Font("Calibri", Font.BOLD, 20));
-		btnConsultarCliente.setFocusPainted(false);
-		btnConsultarCliente.setBorderPainted(false);
-		btnConsultarCliente.setBackground(new Color(55, 104, 167));
-		btnConsultarCliente.setBounds(728, 5, 127, 30);
-		btnConsultarCliente.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CloseSessionController controller = new CloseSessionController();
-				frame.dispose();
-				controller.cerrar();
-				// Acción al hacer clic en el botón
-			}
-		});
+        panelcontenedor.setBackground(Color.decode("#FFFFFF"));
+        panelcontenedor.setBounds(200, 76, 882, 573);
+        panel.add(panelcontenedor);
+        panelcontenedor.setLayout(null);
 
-		panelCabeceraContenido.add(btnConsultarCliente);
+        JPanel panelCabeceraContenido = new JPanel();
+        panelCabeceraContenido.setLayout(null);
+        panelCabeceraContenido.setBackground(new Color(188, 218, 242));
+        panelCabeceraContenido.setBounds(0, 0, 882, 40);
+        panelcontenedor.add(panelCabeceraContenido);
+
+        JLabel lblTituloContenido = new JLabel("Crear clientes");
+        lblTituloContenido.setFont(new Font("Calibri", Font.PLAIN, 26));
+        lblTituloContenido.setBounds(10, 11, 160, 29);
+        panelCabeceraContenido.add(lblTituloContenido);
+
+        JButton btnRegistrarCliente = new JButton("Registrar cliente");
+        btnRegistrarCliente.setForeground(Color.WHITE);
+        btnRegistrarCliente.setFont(new Font("Calibri", Font.BOLD, 20));
+        btnRegistrarCliente.setFocusPainted(false);
+        btnRegistrarCliente.setBorderPainted(false);
+        btnRegistrarCliente.setBackground(new Color(33, 65, 119));
+        btnRegistrarCliente.setBounds(352, 169, 190, 58);
+        btnRegistrarCliente.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                ClientController controller = new ClientController();
+                frame.dispose();
+                controller.crearClienteFoto();
+                // Acción al hacer clic en el botón
+            }
+        });
+        panelcontenedor.add(btnRegistrarCliente);
 
 		//Cabecera
 

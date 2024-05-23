@@ -15,6 +15,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import controllers.CheckController;
+import controllers.ClientController;
+import controllers.CloseSessionController;
+import controllers.FeeController;
+import controllers.HomeController;
+import controllers.InstructorController;
+
 
 
 public class ClassView {
@@ -68,9 +75,9 @@ public class ClassView {
 		btnConsultarClase.setBounds(682, 5, 190, 30);
 		btnConsultarClase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CloseSessionController controller = new CloseSessionController();
+				ClassView controller = new ClassView();
 				frame.dispose();
-				controller.cerrar();
+				controller.consultarClase();
 				// Acción al hacer clic en el botón
 			}
 		});
@@ -86,9 +93,9 @@ public class ClassView {
 		btnCrearClases.setBounds(482, 5, 190, 30);
 		btnCrearClases.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CloseSessionController controller = new CloseSessionController();
+				ClassView controller = new ClassView();
 				frame.dispose();
-				controller.cerrar();
+				controller.clasesCrear();
 				// Acción al hacer clic en el botón
 			}
 		});
@@ -432,14 +439,7 @@ public class ClassView {
 	}
 
 
-	private void clasesCrear() {
-
-
-		frame = new JFrame();
-		frame.setBounds(100, 100, 1108, 700);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-
+	public void clasesCrear() {
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 1092, 660);
 		panel.setBackground(Color.decode("#F2F2F2"));
@@ -473,9 +473,9 @@ public class ClassView {
 		btnCrearClases.setBorderPainted(false);
 		btnCrearClases.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CloseSessionController controller = new CloseSessionController();
+				HomeController controller = new HomeController();
 				frame.dispose();
-				controller.cerrar();
+				controller.inicio();
 				// Acción al hacer clic en el botón
 			}
 		});
@@ -809,18 +809,14 @@ public class ClassView {
 		ImageIcon imageIcon_CerrarSesion = new ImageIcon("src/menu_cerrar_sesion.png");
 		lblCerrarSesion.setIcon(imageIcon_CerrarSesion);
 		panel_7.add(lblCerrarSesion);
-
+		
+		frame.add(panel);
+		frame.setVisible(true);
+		frame.repaint();
+		frame.revalidate();
 	}
 
-
-	private void consultarClase() {
-
-
-		frame = new JFrame();
-		frame.setBounds(100, 100, 1108, 700);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-
+	public void consultarClase() {
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 1092, 660);
 		panel.setBackground(Color.decode("#F2F2F2"));
@@ -1194,7 +1190,11 @@ public class ClassView {
 		ImageIcon imageIcon_CerrarSesion = new ImageIcon("src/menu_cerrar_sesion.png");
 		lblCerrarSesion.setIcon(imageIcon_CerrarSesion);
 		panel_7.add(lblCerrarSesion);
-
+		
+		frame.add(panel);
+		frame.setVisible(true);
+		frame.repaint();
+		frame.revalidate();
 	}
 
 

@@ -16,6 +16,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import controllers.Auth;
+import controllers.CheckController;
+import controllers.ClassController;
+import controllers.ClientController;
+import controllers.FeeController;
+import controllers.HomeController;
+import controllers.InstructorController;
+
 
 
 public class CloseSessionView {

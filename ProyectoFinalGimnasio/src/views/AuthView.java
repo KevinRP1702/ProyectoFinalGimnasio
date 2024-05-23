@@ -20,12 +20,14 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-
+import controllers.Auth;
+import models.AuthModel;
 
 public class AuthView {
 
 	private JFrame frame;
-	
+	private Auth controller;
+	private AuthModel auth;
 	private boolean autorizar;
 	
 	public AuthView() {
@@ -36,7 +38,7 @@ public class AuthView {
 		frame.setVisible(false);
 		frame.setLocationRelativeTo(null);
 		
-		
+		auth = new AuthModel();
 	}
 	
 	public void login() {

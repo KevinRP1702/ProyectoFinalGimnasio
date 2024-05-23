@@ -15,6 +15,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import controllers.CheckController;
+import controllers.ClientController;
+import controllers.CloseSessionController;
+import controllers.FeeController;
+import controllers.HomeController;
+import controllers.InstructorController;
+
 
 
 public class FeeView {
@@ -60,9 +67,9 @@ public class FeeView {
 		JButton btnRegistrarCliente = new JButton("Pagar membresía");
 		btnRegistrarCliente.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					CloseSessionController controller = new CloseSessionController();
+					FeeController controller = new FeeController();
 					frame.dispose();
-					controller.cerrar();
+					controller.pagar();
 					// Acción al hacer clic en el botón
 				}
 			});
