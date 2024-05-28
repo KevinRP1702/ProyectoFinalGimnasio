@@ -37,6 +37,7 @@ public class CloseSessionView {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setVisible(false);
+		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 	}
 
@@ -53,6 +54,7 @@ public class CloseSessionView {
 		panelcontenedor.setBounds(200, 76, 882, 573);
 		panel.add(panelcontenedor);
 		panelcontenedor.setLayout(null);
+
 
 		JPanel panelCabeceraContenido = new JPanel();
 		panelCabeceraContenido.setLayout(null);
@@ -136,20 +138,11 @@ public class CloseSessionView {
 		btnInicio.setFocusPainted(false);
 		btnInicio.setBorderPainted(false);
 		btnInicio.setContentAreaFilled(false);
-
-		btnInicio.addFocusListener(new FocusListener() {
-			public void focusGained(FocusEvent e) {
-				panel_1.setBackground(Color.decode("#3768A7"));
-			}
-
-			public void focusLost(FocusEvent e) {
-				panel_1.setBackground(Color.decode("#214177"));
-			}
-		});
-
 		btnInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				HomeController controller = new HomeController();
+				frame.dispose();
+				controller.inicio();
 			}
 		});
 		JLabel lblInicio = new JLabel();
@@ -157,8 +150,8 @@ public class CloseSessionView {
 		ImageIcon imageIcon_Inicio = new ImageIcon("img/menu_inicio.png");
 		lblInicio.setIcon(imageIcon_Inicio);
 		panel_1.add(lblInicio);
-		
-		
+
+
 		//Clintes
 
 		JPanel panel_2 = new JPanel();
@@ -178,27 +171,17 @@ public class CloseSessionView {
 		btnClientes.setBorderPainted(false);
 		btnClientes.setBackground(new Color(33, 65, 119));
 		btnClientes.setContentAreaFilled(false);
-		btnClientes.addFocusListener(new FocusListener() {
-			public void focusGained(FocusEvent e) {
-				panel_2.setBackground(Color.decode("#3768A7"));
-			}
-
-			public void focusLost(FocusEvent e) {
-				panel_2.setBackground(Color.decode("#214177"));
-			}
-		});
-		
 		btnClientes.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				ClientController controller = new ClientController();
-	        	frame.dispose();
-	        	controller.cliente();
+				frame.dispose();
+				controller.cliente();
 			}
 		});
-		
+
 		JLabel lblClientes = new JLabel();
 		lblClientes.setBounds(10, 10, 40, 40);
 		ImageIcon imageIcon_Clientes = new ImageIcon("img/menu_cliente.png");
@@ -222,25 +205,15 @@ public class CloseSessionView {
 		btnTarifas.setBorderPainted(false);
 		btnTarifas.setContentAreaFilled(false);
 		btnTarifas.setBackground(new Color(33, 65, 119));
-		btnTarifas.addFocusListener(new FocusListener() {
-			public void focusGained(FocusEvent e) {
-				panel_3.setBackground(Color.decode("#3768A7"));
-			}
-
-			public void focusLost(FocusEvent e) {
-				panel_3.setBackground(Color.decode("#214177"));
-			}
-		});
-
 		btnTarifas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Acción al hacer clic en el botón
 				FeeController controller = new FeeController();
-	        	frame.dispose();
-	        	controller.tarifa();
+				frame.dispose();
+				controller.tarifa();
 			}
 		});
-		
+
 		JLabel lblTarifas = new JLabel();
 		lblTarifas.setBounds(10, 10, 40, 40);
 		ImageIcon imageIcon_Tarifas = new ImageIcon("img/menu_tarifa.png");
@@ -265,16 +238,6 @@ public class CloseSessionView {
 		btnInstructores.setBorderPainted(false);
 		btnInstructores.setContentAreaFilled(false);
 		btnInstructores.setBackground(new Color(33, 65, 119));
-		btnInstructores.addFocusListener(new FocusListener() {
-			public void focusGained(FocusEvent e) {
-				panel_4.setBackground(Color.decode("#3768A7"));
-			}
-
-			public void focusLost(FocusEvent e) {
-				panel_4.setBackground(Color.decode("#214177"));
-			}
-		});
-
 		btnInstructores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Acción al hacer clic en el botón
@@ -283,13 +246,13 @@ public class CloseSessionView {
 				controller.instructor();
 			}
 		});
-		
+
 		JLabel lblInstructores = new JLabel();
 		lblInstructores.setBounds(10, 10, 40, 40);
 		ImageIcon imageIcon_Intructores = new ImageIcon("img/menu_instructor.png");
 		lblInstructores.setIcon(imageIcon_Intructores);
 		panel_4.add(lblInstructores);
-		
+
 		//Clases
 		JPanel panel_5 = new JPanel();
 		panel_5.setBackground(new Color(33, 65, 119));
@@ -307,15 +270,7 @@ public class CloseSessionView {
 		btnClases.setBorderPainted(false);
 		btnClases.setContentAreaFilled(false);
 		btnClases.setBackground(new Color(33, 65, 119));
-		btnClases.addFocusListener(new FocusListener() {
-			public void focusGained(FocusEvent e) {
-				panel_5.setBackground(Color.decode("#3768A7"));
-			}
 
-			public void focusLost(FocusEvent e) {
-				panel_5.setBackground(Color.decode("#214177"));
-			}
-		});
 		JLabel lblClases = new JLabel();
 		lblClases.setBounds(10, 10, 40, 40);
 		ImageIcon imageIcon_Clases = new ImageIcon("img/menu_rutina.png");
@@ -349,16 +304,6 @@ public class CloseSessionView {
 		btnChecador.setBorderPainted(false);
 		btnChecador.setContentAreaFilled(false);
 		btnChecador.setBackground(new Color(33, 65, 119));
-		btnChecador.addFocusListener(new FocusListener() {
-			public void focusGained(FocusEvent e) {
-				panel_6.setBackground(Color.decode("#3768A7"));
-			}
-
-			public void focusLost(FocusEvent e) {
-				panel_6.setBackground(Color.decode("#214177"));
-			}
-		});
-
 		btnChecador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Acción al hacer clic en el botón
@@ -367,7 +312,7 @@ public class CloseSessionView {
 				controller.checador();
 			}
 		});
-		
+
 		JLabel lblChecador = new JLabel();
 		lblChecador.setBounds(10, 10, 40, 40);
 		ImageIcon imageIcon_Checador = new ImageIcon("img/menu_Checador.png");
@@ -378,6 +323,7 @@ public class CloseSessionView {
 		JPanel panel_7 = new JPanel();
 		panel_7.setBackground(new Color(33, 65, 119));
 		panel_7.setBounds(0, 396, 190, 58);
+		panel_7.setBackground(Color.decode("#3768A7"));
 		panel_7.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(207, 207, 207)));
 		panelOpciones.add(panel_7);
 		panel_7.setLayout(null);
@@ -392,16 +338,6 @@ public class CloseSessionView {
 		btnCerrarSesion.setBorderPainted(false);
 		btnCerrarSesion.setContentAreaFilled(false);
 		btnCerrarSesion.setBackground(new Color(33, 65, 119));
-		btnCerrarSesion.addFocusListener(new FocusListener() {
-			public void focusGained(FocusEvent e) {
-				panel_7.setBackground(Color.decode("#3768A7"));
-			}
-
-			public void focusLost(FocusEvent e) {
-				panel_7.setBackground(Color.decode("#214177"));
-			}
-		});
-
 		btnCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CloseSessionController controller = new CloseSessionController();
@@ -410,20 +346,21 @@ public class CloseSessionView {
 				// Acción al hacer clic en el botón
 			}
 		});
-		
+
 		JLabel lblCerrarSesion = new JLabel();
 		lblCerrarSesion.setBounds(10, 10, 40, 40);
 		ImageIcon imageIcon_CerrarSesion = new ImageIcon("img/menu_cerrar_sesion.png");
 		lblCerrarSesion.setIcon(imageIcon_CerrarSesion);
 		panel_7.add(lblCerrarSesion);
-		
+
 		frame.add(panel);
 		frame.setVisible(true);
 		frame.repaint();
 		frame.revalidate();
+
 	}
 
-	
+
 
 
 

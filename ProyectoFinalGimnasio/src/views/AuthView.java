@@ -40,7 +40,8 @@ public class AuthView {
 		frame.getContentPane().setLayout(null);
 		frame.setVisible(false);
 		frame.setLocationRelativeTo(null);
-		
+		frame.setResizable(false);
+		frame.setResizable(false);
 		auth = new AuthModel();
 	}
 	

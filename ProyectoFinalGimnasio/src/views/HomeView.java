@@ -25,6 +25,7 @@ import controllers.InstructorController;
 
 
 
+
 public class HomeView {
 
 	private JFrame frame;
@@ -35,6 +36,7 @@ public class HomeView {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setVisible(false);
+		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 	}
 	
@@ -111,16 +113,6 @@ public class HomeView {
 		btnInicio.setFocusPainted(false);
 		btnInicio.setBorderPainted(false);
 		btnInicio.setContentAreaFilled(false);
-
-		btnInicio.addFocusListener(new FocusListener() {
-			public void focusGained(FocusEvent e) {
-				panel_1.setBackground(Color.decode("#3768A7"));
-			}
-
-			public void focusLost(FocusEvent e) {
-				panel_1.setBackground(Color.decode("#214177"));
-			}
-		});
 
 		btnInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
