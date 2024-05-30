@@ -21,6 +21,7 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
@@ -87,7 +88,7 @@ public class ClassView {
 		    opcionesClases.add(clase);
 		}
 		
-		String[] opciones = opcionesClases.toArray(new String[0]);; // Cambia las opciones según sea necesario
+		String[] opciones = opcionesClases.toArray(new String[0]);; 
 		JComboBox<String> comboBox = new JComboBox<>(opciones);
 		comboBox.setForeground(Color.WHITE);
 		comboBox.setFont(new Font("Calibri", Font.BOLD, 20));
@@ -122,23 +123,21 @@ public class ClassView {
 		panelBotoncontenido_1.setLayout(null);
 		JLabel lblBotoncontenido = new JLabel();
 		lblBotoncontenido.setBounds(10, 0, 26, 26);
-		ImageIcon imageIcon_lblBotoncontenido = new ImageIcon("pop/clase_crear.png");
+		ImageIcon imageIcon_lblBotoncontenido = new ImageIcon("img/clase_crear.png");
 		lblBotoncontenido.setIcon(imageIcon_lblBotoncontenido);
 		panelBotoncontenido_1.add(lblBotoncontenido);
-
-
-		JButton btnCrearClases = new JButton("Crear clases");
-		btnCrearClases.setBounds(0, 0, 190, 30);
-		panelBotoncontenido_1.add(btnCrearClases);
-		btnCrearClases.setContentAreaFilled(true);
-		btnCrearClases.setForeground(Color.WHITE);
-		btnCrearClases.setFont(new Font("Calibri", Font.BOLD, 20));
-		btnCrearClases.setFocusPainted(false);
-		btnCrearClases.setBorderPainted(false);
-		btnCrearClases.setBackground(new Color(55, 104, 167));
-
 		
-		btnCrearClases.addActionListener(new ActionListener() {
+		
+		JButton btnAgregarCliente = new JButton("    Agregar cliente");
+		btnAgregarCliente.setBounds(0, 0, 190, 30);
+		panelBotoncontenido_1.add(btnAgregarCliente);
+		btnAgregarCliente.setContentAreaFilled(false);
+		btnAgregarCliente.setForeground(Color.WHITE);
+		btnAgregarCliente.setFont(new Font("Calibri", Font.BOLD, 20));
+		btnAgregarCliente.setFocusPainted(false);
+		btnAgregarCliente.setBorderPainted(false);
+		btnAgregarCliente.setBackground(new Color(55, 104, 167));
+		btnAgregarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Acción al hacer clic en el botón Crear clases
 				ClassController controller = new ClassController();
@@ -146,6 +145,21 @@ public class ClassView {
 				controller.CrearClase();
 			}
 		});
+		
+		JPanel panelBotoncontenido_2 = new JPanel();
+		panelBotoncontenido_2.setLayout(null);
+		panelBotoncontenido_2.setBackground(new Color(55, 104, 167));
+		panelBotoncontenido_2.setBounds(682, 5, 190, 30);
+		panelCabeceraContenido.add(panelBotoncontenido_2);
+
+		JLabel lblBotoncontenido_2 = new JLabel();
+		lblBotoncontenido_2.setBounds(5, 3, 26, 26);
+		ImageIcon imageIcon_lblBotoncontenido_2 = new ImageIcon("img/clase_descarga.png");
+		lblBotoncontenido_2.setIcon(imageIcon_lblBotoncontenido_2);
+		panelBotoncontenido_2.add(lblBotoncontenido_2);
+
+
+		
 
 
 
@@ -178,6 +192,9 @@ public class ClassView {
 				return getPreferredSize().width < getParent().getWidth();
 			}
 		};
+		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        table.setDefaultRenderer(Object.class, centerRenderer);
 
 		// Personalizar encabezado de la tabla
 		JTableHeader header = table.getTableHeader();
@@ -188,7 +205,7 @@ public class ClassView {
 		// Personalizar celdas
 		table.setFont(new Font("Calibri", Font.PLAIN, 16));
 		table.setRowHeight(30);
-		table.getTableHeader().setReorderingAllowed(false); // Deshabilitar reordenamiento de columnas
+		table.getTableHeader().setReorderingAllowed(false);
 
 		// Configurar que la tabla no sea editable
 		table.setDefaultEditor(Object.class, null);
@@ -197,8 +214,7 @@ public class ClassView {
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(10, 50, 862, 513);
 
-
-		panelcontenedor.setLayout(null); // Usar un layout nulo para establecer las posiciones manualmente
+		panelcontenedor.setLayout(null); 
 		panelcontenedor.add(scrollPane);
 
 
@@ -829,6 +845,7 @@ public class ClassView {
 		btnCerrarSesion.setBackground(new Color(33, 65, 119));
 		btnCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(frame,"Su cuenta ha sido cerrada.","Alerta de Cuenta Cerrada",JOptionPane.WARNING_MESSAGE);
 				Auth controller = new Auth();
 				frame.dispose();
 				controller.cerrar();
@@ -871,7 +888,7 @@ public class ClassView {
 		panelCabeceraContenido.setBounds(0, 0, 882, 40);
 		panelcontenedor.add(panelCabeceraContenido);
 
-		JLabel lblTituloContenido = new JLabel("Clases");
+		JLabel lblTituloContenido = new JLabel("Clase");
 		lblTituloContenido.setFont(new Font("Calibri", Font.PLAIN, 26));
 		lblTituloContenido.setBounds(10, 11, 160, 29);
 		panelCabeceraContenido.add(lblTituloContenido);
@@ -887,7 +904,7 @@ public class ClassView {
 
 		JLabel lblBotoncontenido_1 = new JLabel();
 		lblBotoncontenido_1.setBounds(10, 0, 26, 26);
-		ImageIcon imageIcon_lblBotoncontenido_1 = new ImageIcon("pop/clase_crear.png");
+		ImageIcon imageIcon_lblBotoncontenido_1 = new ImageIcon("img/clase_crear.png");
 		lblBotoncontenido_1.setIcon(imageIcon_lblBotoncontenido_1);
 		panelBotoncontenido_1.add(lblBotoncontenido_1);
 
@@ -929,11 +946,12 @@ public class ClassView {
 		panelCabeceraContenido.add(panelBotoncontenido_2);
 
 		JLabel lblBotoncontenido_2 = new JLabel();
-		lblBotoncontenido_2.setBounds(10, 0, 26, 26);
-		ImageIcon imageIcon_lblBotoncontenido_2 = new ImageIcon("pop/descarga.png");
+		lblBotoncontenido_2.setBounds(5, 3, 26, 26);
+		ImageIcon imageIcon_lblBotoncontenido_2 = new ImageIcon("img/clase_descarga.png");
 		lblBotoncontenido_2.setIcon(imageIcon_lblBotoncontenido_2);
 		panelBotoncontenido_2.add(lblBotoncontenido_2);
 
+		
 		JButton btnDescargarCliente = new JButton("Descargar");
 		btnDescargarCliente.setForeground(Color.WHITE);
 		btnDescargarCliente.setFont(new Font("Calibri", Font.BOLD, 20));
@@ -956,6 +974,17 @@ public class ClassView {
 
 
 		//Contenido inferior
+		
+		
+	
+		JLabel lblInstructor = new JLabel("Instructor de la clase:");
+		lblInstructor.setFont(new Font("Calibri", Font.PLAIN, 26));
+		lblInstructor.setBounds(10, 62, 582, 29);
+		panelcontenedor.add(lblInstructor);
+		
+		
+		
+		
 		ClassModel datos = new ClassModel();
 		datos.clientesClases(claseSeleccionada);
 		String[] columnNames = {"Nombre(s)", "Apellido(s)", "Cliente ID"};
@@ -974,16 +1003,20 @@ public class ClassView {
 		DefaultTableModel model = new DefaultTableModel(data, columnNames) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
-				return false; // Hacer todas las celdas no editables
+				return false; 
 			}
 		};
-
+		 
 		JTable table = new JTable(model) {
 			@Override
 			public boolean getScrollableTracksViewportWidth() {
 				return getPreferredSize().width < getParent().getWidth();
 			}
 		};
+		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        table.setDefaultRenderer(Object.class, centerRenderer);
+
 
 		// Personalizar encabezado de la tabla
 		JTableHeader header = table.getTableHeader();
@@ -994,17 +1027,13 @@ public class ClassView {
 		// Personalizar celdas
 		table.setFont(new Font("Calibri", Font.PLAIN, 16));
 		table.setRowHeight(30);
-		table.getTableHeader().setReorderingAllowed(false); // Deshabilitar reordenamiento de columnas
-
-		// Configurar que la tabla no sea editable
+		table.getTableHeader().setReorderingAllowed(false); 
 		table.setDefaultEditor(Object.class, null);
 
-		// Mostrar la tabla en un JScrollPane
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(10, 50, 862, 513);
+		scrollPane.setBounds(10, 102, 862, 461);
 
-
-		panelcontenedor.setLayout(null); // Usar un layout nulo para establecer las posiciones manualmente
+		panelcontenedor.setLayout(null); 
 		panelcontenedor.add(scrollPane);
 
 
@@ -1264,6 +1293,7 @@ public class ClassView {
 		btnCerrarSesion.setBackground(new Color(33, 65, 119));
 		btnCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(frame,"Su cuenta ha sido cerrada.","Alerta de Cuenta Cerrada",JOptionPane.WARNING_MESSAGE);
 				Auth controller = new Auth();
 				frame.dispose();
 				controller.cerrar();

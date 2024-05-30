@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
@@ -356,6 +357,7 @@ public class ClientView {
 		btnCerrarSesion.setBackground(new Color(33, 65, 119));
 		btnCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(frame,"Su cuenta ha sido cerrada.","Alerta de Cuenta Cerrada",JOptionPane.WARNING_MESSAGE);
 				Auth controller = new Auth();
 				frame.dispose();
 				controller.cerrar();
@@ -659,6 +661,7 @@ public class ClientView {
 		btnCerrarSesion.setBackground(new Color(33, 65, 119));
 		btnCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(frame,"Su cuenta ha sido cerrada.","Alerta de Cuenta Cerrada",JOptionPane.WARNING_MESSAGE);
 				Auth controller = new Auth();
 				frame.dispose();
 				controller.cerrar();
@@ -974,6 +977,7 @@ public class ClientView {
 		btnCerrarSesion.setBackground(new Color(33, 65, 119));
 		btnCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(frame,"Su cuenta ha sido cerrada.","Alerta de Cuenta Cerrada",JOptionPane.WARNING_MESSAGE);
 				Auth controller = new Auth();
 				frame.dispose();
 				controller.cerrar();
@@ -1290,6 +1294,7 @@ public class ClientView {
 		btnCerrarSesion.setBackground(new Color(33, 65, 119));
 		btnCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(frame,"Su cuenta ha sido cerrada.","Alerta de Cuenta Cerrada",JOptionPane.WARNING_MESSAGE);
 				Auth controller = new Auth();
 				frame.dispose();
 				controller.cerrar();
