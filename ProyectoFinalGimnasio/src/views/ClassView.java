@@ -920,7 +920,7 @@ public class ClassView {
 				boolean ingresarClase = datos.entrarClase(Integer.valueOf(idCliente), claseSeleccionada);
 				
 				if(ingresarClase == true) {
-					JOptionPane.showMessageDialog(frame, "El cliente ya se encuentra registrado en la clase", "Error al ingresar", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(frame, "El cliente ya se encuentra registrado en la clase o no existe en la base de datos", "Error al ingresar", JOptionPane.WARNING_MESSAGE);
 				}else {
 					JOptionPane.showMessageDialog(frame, "El cliente ha sido registrado con éxito", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
 					ClassController controller = new ClassController();
