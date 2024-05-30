@@ -243,4 +243,70 @@ public class ClassModel {
 			e.printStackTrace();
 		}
 	}
+	
+	public String nombreEntrenador(String clase) {
+		int idClase = 0;
+		String nombre = "";
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+				Connection con=DriverManager.getConnection("jdbc:mysql://sql.freedb.tech:3306/freedb_data_base_gym","freedb_data_base_master","DdkJubsw3X%ZW2t");
+				
+				Statement stmt=con.createStatement();  
+				ResultSet rs=stmt.executeQuery("SELECT * FROM `Clases` WHERE clase = '"+clase+"';");  
+				if (rs.next()) {
+		             idClase = Integer.valueOf(rs.getString(1));
+				}
+				
+				Statement stmt3=con.createStatement();  
+				ResultSet rs3=stmt3.executeQuery("SELECT * FROM `Clases` WHERE idClase = '"+idClase+"';");  
+			            if(rs3.next()) {
+			            	nombre = rs3.getString(3);
+			            }
+			    
+			   
+				con.close();  
+				return nombre;
+				
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}  
+		return null;
+	}
+	
+	public void eliminar(String clase) {
+		int idClase = 0;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+				Connection con=DriverManager.getConnection("jdbc:mysql://sql.freedb.tech:3306/freedb_data_base_gym","freedb_data_base_master","DdkJubsw3X%ZW2t");
+				
+				Statement stmt = con.createStatement();
+				ResultSet rs=stmt.executeQuery("SELECT * FROM `Clases` WHERE clase = '"+clase+"';");  
+	            if (rs.next()) {
+	            	idClase = Integer.valueOf(rs.getString(1));
+	            }
+
+	         
+	            String deleteInscripciones = "DELETE FROM `Inscripciones` WHERE clase_id = ?";
+	            PreparedStatement stmtDeleteInscripciones = con.prepareStatement(deleteInscripciones);
+	            stmtDeleteInscripciones.setInt(1, idClase);
+	            stmtDeleteInscripciones.executeUpdate();
+
+	        
+	            String deleteClase = "DELETE FROM `Clases` WHERE idClase = ?";
+	            PreparedStatement stmtDeleteClase = con.prepareStatement(deleteClase);
+	            stmtDeleteClase.setInt(1, idClase);
+	            stmtDeleteClase.executeUpdate();
+
+	            
+			    con.close();  
+						
+		} catch (ClassNotFoundException |SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+	}
 }

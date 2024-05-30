@@ -888,11 +888,6 @@ public class ClassView {
 		panelCabeceraContenido.setBounds(0, 0, 882, 40);
 		panelcontenedor.add(panelCabeceraContenido);
 
-		JLabel lblTituloContenido = new JLabel("Clase");
-		lblTituloContenido.setFont(new Font("Calibri", Font.PLAIN, 26));
-		lblTituloContenido.setBounds(10, 11, 160, 29);
-		panelCabeceraContenido.add(lblTituloContenido);
-
 
 
 		//Boton agregar cliente
@@ -974,18 +969,35 @@ public class ClassView {
 
 
 		//Contenido inferior
-		
-		
-	
-		JLabel lblInstructor = new JLabel("Instructor de la clase:");
-		lblInstructor.setFont(new Font("Calibri", Font.PLAIN, 26));
-		lblInstructor.setBounds(10, 62, 582, 29);
-		panelcontenedor.add(lblInstructor);
-		
-		
-		
-		
 		ClassModel datos = new ClassModel();
+		JButton btnEliminarClase = new JButton("Eliminar clase");
+		btnEliminarClase.setFocusPainted(false);
+
+		btnEliminarClase.setForeground(new Color(255, 255, 255));
+		btnEliminarClase.setBackground(Color.decode("#A73737"));
+        btnEliminarClase.setFont(new Font("Calibri", Font.BOLD, 20));
+        btnEliminarClase.setBounds(713, 51, 138, 40);
+        btnEliminarClase.setBorder(null);
+        panelcontenedor.add(btnEliminarClase);
+        btnEliminarClase.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               
+                int confirmResult = JOptionPane.showConfirmDialog(frame,
+                        "¿Está seguro de que desea eliminar la clase?","Confirmar eliminación",JOptionPane.YES_NO_OPTION);
+
+            
+                if (confirmResult == JOptionPane.YES_OPTION) {
+                	datos.eliminar(claseSeleccionada);
+                    JOptionPane.showMessageDialog(frame, "Clase eliminada exitosamente");
+                    ClassController controller = new ClassController();
+    				frame.dispose();
+    				controller.clase();;
+                }
+            }
+        });
+	
+		
 		datos.clientesClases(claseSeleccionada);
 		String[] columnNames = {"Nombre(s)", "Apellido(s)", "Cliente ID"};
 		Object[][] data = new Object[clientesClases.size()][3];
@@ -999,6 +1011,16 @@ public class ClassView {
 			data[i][1] = apellidos;
 			data[i][2] = correo;
 		}
+		
+		JLabel lblTituloContenido = new JLabel("Clase de: " + claseSeleccionada);
+		lblTituloContenido.setFont(new Font("Calibri", Font.PLAIN, 26));
+		lblTituloContenido.setBounds(10, 11, 250, 29);
+		panelCabeceraContenido.add(lblTituloContenido);
+		
+		JLabel lblInstructor = new JLabel("Instructor de la clase:" + datos.nombreEntrenador(claseSeleccionada));
+		lblInstructor.setFont(new Font("Calibri", Font.PLAIN, 26));
+		lblInstructor.setBounds(10, 62, 582, 29);
+		panelcontenedor.add(lblInstructor);
 
 		DefaultTableModel model = new DefaultTableModel(data, columnNames) {
 			@Override

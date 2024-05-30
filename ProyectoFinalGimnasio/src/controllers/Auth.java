@@ -1,15 +1,17 @@
 package controllers;
 
 import views.AuthView;
+import views.CloseSessionView;
 
 public class Auth {
 
 	public AuthView vista;
+	public CloseSessionView vista2;
 	
 	public Auth() {
 		
 		vista = new AuthView();
-		
+		vista2 = new CloseSessionView();
 	}
 	
 	public void login() {
@@ -26,7 +28,7 @@ public class Auth {
 	
 	public void cerrar() {
 		
-		vista.login();
+		vista2.Cerrar();
 		
 	}
 }
