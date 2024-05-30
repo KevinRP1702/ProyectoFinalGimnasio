@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -24,20 +24,21 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
+import controllers.Auth;
 import controllers.CheckController;
 import controllers.ClassController;
 import controllers.ClientController;
-import controllers.CloseSessionController;
 import controllers.FeeController;
 import controllers.HomeController;
 import controllers.InstructorController;
+import models.ClassModel;
 
 
 
 public class ClassView {
 
 	private JFrame frame;
-
+	String claseSeleccionada;
 
 	public ClassView() {
 		frame = new JFrame();
@@ -50,7 +51,7 @@ public class ClassView {
 	}
 
 
-	public void clase() {
+	public void clase(List<List<Object>> clases) {
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 1092, 660);
 		panel.setBackground(Color.decode("#F2F2F2"));
@@ -77,8 +78,16 @@ public class ClassView {
 		lblTituloContenido.setBounds(10, 11, 160, 29);
 		panelCabeceraContenido.add(lblTituloContenido);
 
+		
 		// Crear un JComboBox en lugar de un JButton
-		String[] opciones = {"Opción 1", "Opción 2", "Opción 3"}; // Cambia las opciones según sea necesario
+		List<String> opcionesClases = new ArrayList<>();
+		opcionesClases.add("Consultar");
+		for (int i = 0; i < clases.size(); i++) {
+		    String clase = clases.get(i).get(0).toString().replaceAll("[\\[\\]]", "");
+		    opcionesClases.add(clase);
+		}
+		
+		String[] opciones = opcionesClases.toArray(new String[0]);; // Cambia las opciones según sea necesario
 		JComboBox<String> comboBox = new JComboBox<>(opciones);
 		comboBox.setForeground(Color.WHITE);
 		comboBox.setFont(new Font("Calibri", Font.BOLD, 20));
@@ -86,13 +95,19 @@ public class ClassView {
 		comboBox.setBorder(BorderFactory.createLineBorder(Color.decode("#3768A7")));
 		comboBox.setBackground(Color.decode("#3768A7"));
 		comboBox.setBounds(682, 5, 190, 30);
-
+	
 		// Acción al seleccionar una opción en el JComboBox
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String seleccion = (String) comboBox.getSelectedItem();
+				if(comboBox.getSelectedIndex() == 0) {
+					
+				}else {
+				claseSeleccionada = (String) comboBox.getSelectedItem();
 				// Acción al seleccionar una opción
-				System.out.println("Opción seleccionada: " + seleccion);
+					ClassController controller = new ClassController();
+					frame.dispose();
+					controller.consultarClase(claseSeleccionada);
+				}
 			}
 		});
 
@@ -115,40 +130,48 @@ public class ClassView {
 		JButton btnCrearClases = new JButton("Crear clases");
 		btnCrearClases.setBounds(0, 0, 190, 30);
 		panelBotoncontenido_1.add(btnCrearClases);
-		btnCrearClases.setContentAreaFilled(false);
+		btnCrearClases.setContentAreaFilled(true);
 		btnCrearClases.setForeground(Color.WHITE);
 		btnCrearClases.setFont(new Font("Calibri", Font.BOLD, 20));
 		btnCrearClases.setFocusPainted(false);
 		btnCrearClases.setBorderPainted(false);
 		btnCrearClases.setBackground(new Color(55, 104, 167));
 
-
-
-
+		
 		btnCrearClases.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Acción al hacer clic en el botón Crear clases
+				ClassController controller = new ClassController();
+				frame.dispose();
+				controller.CrearClase();
 			}
 		});
 
 
 
 		//Contenido inferior
+		ClassModel datas = new ClassModel();
+		List<List<Object>> datos = datas.get();
 		String[] columnNames = {"Clase", "Instructor", "Integrantes"};
-		Object[][] data = {
-				{"Yoga", "Ana", "10"},
-				{"Pilates", "Carlos", "12"},
-				{"Spinning", "Laura", "15"},
-				{"Zumba", "Luis", "20"}
-		};
+		Object[][] data = new Object[clases.size()][3];
 
+		for(int i = 0; i < datos.size(); i++) {
+			String clase = datos.get(i).get(0).toString().replaceAll("[\\[\\]]", "");
+			String instructor = datos.get(i).get(1).toString().replaceAll("[\\[\\]]", "");
+			String integrantes = datos.get(i).get(2).toString().replaceAll("[\\[\\]]", "");
+			data[i][0] = clase;
+			data[i][1] = instructor;
+			data[i][2] = integrantes;
+		}
+		
+		
 		DefaultTableModel model = new DefaultTableModel(data, columnNames) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false; // Hacer todas las celdas no editables
 			}
 		};
-
+		
 		JTable table = new JTable(model) {
 			@Override
 			public boolean getScrollableTracksViewportWidth() {
@@ -213,7 +236,6 @@ public class ClassView {
 		lblMarca.setForeground(Color.WHITE);
 		lblMarca.setFont(new Font("Calibri", Font.BOLD, 38));
 		panelOpciones.add(lblMarca);
-
 
 
 		//Inicio
@@ -436,7 +458,7 @@ public class ClassView {
 		btnCerrarSesion.setBackground(new Color(33, 65, 119));
 		btnCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CloseSessionController controller = new CloseSessionController();
+				Auth controller = new Auth();
 				frame.dispose();
 				controller.cerrar();
 				// Acción al hacer clic en el botón
@@ -531,7 +553,17 @@ public class ClassView {
 
 					JOptionPane.showMessageDialog(frame, "Por favor, complete todos los campos.", "Campos Vacíos", JOptionPane.WARNING_MESSAGE);
 				} else {
-					//del kevin
+					
+					ClassModel registro = new ClassModel();
+					Boolean checar = registro.registroClase(nombreClase, nombreInstructor);
+					if(checar == false) {
+						JOptionPane.showMessageDialog(frame, "La clase se ha registrado con éxito.", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+						ClassController controller = new ClassController();
+						frame.dispose();
+						controller.clase();
+					}else {
+						JOptionPane.showMessageDialog(frame, "La clase ya se encuentra registrada.", "Registro erroneo", JOptionPane.WARNING_MESSAGE);
+					}
 				}
 			}
 		});
@@ -797,7 +829,7 @@ public class ClassView {
 		btnCerrarSesion.setBackground(new Color(33, 65, 119));
 		btnCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CloseSessionController controller = new CloseSessionController();
+				Auth controller = new Auth();
 				frame.dispose();
 				controller.cerrar();
 				// Acción al hacer clic en el botón
@@ -817,7 +849,7 @@ public class ClassView {
 
 	}
 
-	public void consultarClase() {
+	public void consultarClase(String claseSeleccionada, List<List> clientesClases) {
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 1092, 660);
 		panel.setBackground(Color.decode("#F2F2F2"));
@@ -870,7 +902,19 @@ public class ClassView {
 		btnAgregarCliente.setBackground(new Color(55, 104, 167));
 		btnAgregarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// Acción al hacer clic en el botón Crear clases
+				ClassModel datos = new ClassModel();
+				String idCliente = JOptionPane.showInputDialog("Ingrese el ID del cliente");
+				
+				boolean ingresarClase = datos.entrarClase(Integer.valueOf(idCliente), claseSeleccionada);
+				
+				if(ingresarClase == true) {
+					JOptionPane.showMessageDialog(frame, "El cliente ya se encuentra registrado en la clase", "Error al ingresar", JOptionPane.WARNING_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(frame, "El cliente ha sido registrado con éxito", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+					ClassController controller = new ClassController();
+					frame.dispose();
+					controller.clase();
+				}
 			}
 		});
 
@@ -899,21 +943,33 @@ public class ClassView {
 		btnDescargarCliente.setBackground(new Color(55, 104, 167));
 		btnDescargarCliente.setBounds(0, 0, 190, 30);
 		panelBotoncontenido_2.add(btnDescargarCliente);
-		btnAgregarCliente.addActionListener(new ActionListener() {
+		btnDescargarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// Acción al hacer clic en el botón Crear clases
+				ClassModel modelo = new ClassModel();
+				modelo.pdf(claseSeleccionada);
+				JOptionPane.showMessageDialog(frame, "El pdf ha sido descargado correctamente.", "Descarga exitosa", JOptionPane.INFORMATION_MESSAGE);
+				ClassController controller = new ClassController();
+				frame.dispose();
+				controller.clase();
 			}
 		});
 
 
 		//Contenido inferior
-		String[] columnNames = {"Clase", "Instructor", "Integrantes"};
-		Object[][] data = {
-				{"Yoga", "Ana", "10"},
-				{"Pilates", "Carlos", "12"},
-				{"Spinning", "Laura", "15"},
-				{"Zumba", "Luis", "20"}
-		};
+		ClassModel datos = new ClassModel();
+		datos.clientesClases(claseSeleccionada);
+		String[] columnNames = {"Nombre(s)", "Apellido(s)", "Cliente ID"};
+		Object[][] data = new Object[clientesClases.size()][3];
+		
+		
+		for(int i = 0; i < clientesClases.size(); i++) {
+			String nombres = clientesClases.get(i).get(0).toString().replaceAll("[\\[\\]]", "");
+			String apellidos = clientesClases.get(i).get(1).toString().replaceAll("[\\[\\]]", "");
+			String correo = clientesClases.get(i).get(2).toString().replaceAll("[\\[\\]]", "");
+			data[i][0] = nombres;
+			data[i][1] = apellidos;
+			data[i][2] = correo;
+		}
 
 		DefaultTableModel model = new DefaultTableModel(data, columnNames) {
 			@Override
@@ -1208,7 +1264,7 @@ public class ClassView {
 		btnCerrarSesion.setBackground(new Color(33, 65, 119));
 		btnCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CloseSessionController controller = new CloseSessionController();
+				Auth controller = new Auth();
 				frame.dispose();
 				controller.cerrar();
 				// Acción al hacer clic en el botón

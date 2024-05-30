@@ -1,21 +1,27 @@
 package controllers;
 
+import java.util.List;
+
+import models.ClassModel;
 import views.ClassView;
 
 public class ClassController {
 
 	public ClassView vista;
+	private ClassModel data;
 	
 	public ClassController() {
 		
+		data = new ClassModel();
 		vista = new ClassView();
 		
 	}
 	
 	public void clase() {
 		
-		vista.clase();
-		
+		List<List<Object>> clases = data.get();
+		vista.clase(clases);
+
 	}
 	
 	public void CrearClase() {
@@ -24,9 +30,10 @@ public class ClassController {
 		
 	}
 	
-	public void consultarClase() {
+	public void consultarClase(String claseSeleccionada) {
 		
-		vista.consultarClase();
+		List<List> clientesClases = data.clientesClases(claseSeleccionada);
+		vista.consultarClase(claseSeleccionada, clientesClases);
 		
 	}
 }

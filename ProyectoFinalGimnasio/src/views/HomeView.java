@@ -15,10 +15,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import controllers.Auth;
 import controllers.CheckController;
 import controllers.ClassController;
 import controllers.ClientController;
-import controllers.CloseSessionController;
 import controllers.FeeController;
 import controllers.HomeController;
 import controllers.InstructorController;
@@ -371,7 +371,7 @@ public class HomeView {
 
 		btnCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CloseSessionController controller = new CloseSessionController();
+				Auth controller = new Auth();
 				frame.dispose();
 				controller.cerrar();
 				// Acción al hacer clic en el botón

@@ -23,4 +23,10 @@ public class Auth {
 		vista.registro();
 		
 	}
+	
+	public void cerrar() {
+		
+		vista.login();
+		
+	}
 }
