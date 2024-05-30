@@ -12,6 +12,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -189,9 +193,19 @@ public class ClassModel {
 		List<List> clientes = clientesClases(clase); // Almacena los datos obtenidos del método clientesClases
 	    
 	    Document document = new Document(PageSize.A4.rotate());
-	    String destino = "Información intregrantes.pdf";
+	    JFileChooser chooser = new JFileChooser();
+		chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		chooser.setAcceptAllFileFilterUsed(false);
+		FileNameExtensionFilter pdfs = new FileNameExtensionFilter("Documentos PDF", "pdf");
+		chooser.addChoosableFileFilter(pdfs);
+		chooser.setFileFilter(pdfs);
+		
+		if (JFileChooser.CANCEL_OPTION == chooser.showDialog(null, "Generar PDF")) {
+			JOptionPane.showMessageDialog(null, "No se genero el PDF.");
+			return;
+		}
 	    try {
-	        PdfWriter.getInstance(document, new FileOutputStream(destino));
+	        PdfWriter.getInstance(document, new FileOutputStream(chooser.getSelectedFile()));
 	        document.open();
 
 	        // Agrega contenido al documento
