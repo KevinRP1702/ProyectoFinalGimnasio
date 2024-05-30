@@ -128,7 +128,7 @@ public class ClassView {
 		panelBotoncontenido_1.add(lblBotoncontenido);
 		
 		
-		JButton btnAgregarCliente = new JButton("    Agregar cliente");
+		JButton btnAgregarCliente = new JButton("    Agregar clase");
 		btnAgregarCliente.setBounds(0, 0, 190, 30);
 		panelBotoncontenido_1.add(btnAgregarCliente);
 		btnAgregarCliente.setContentAreaFilled(false);
@@ -207,6 +207,7 @@ public class ClassView {
 		table.setRowHeight(30);
 		table.getTableHeader().setReorderingAllowed(false);
 
+	
 		// Configurar que la tabla no sea editable
 		table.setDefaultEditor(Object.class, null);
 
