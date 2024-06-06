@@ -356,7 +356,6 @@ public class InstructorView {
 		panel_Instructor_4.add(txt_Experiencia_4);
 
 
-
 		//Botones
 
 		if (lbl_Instructor_1.getText().equals("")) {

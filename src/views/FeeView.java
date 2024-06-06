@@ -26,6 +26,7 @@ import controllers.InstructorController;
 public class FeeView {
 
 	private JFrame frame;
+	private JFrame panel;
 
 
 	public FeeView() {
@@ -82,6 +83,42 @@ public class FeeView {
 		btnRegistrarCliente.setBounds(682, 5, 190, 30);
 
 		panelCabeceraContenido.add(btnRegistrarCliente);
+
+		
+	}
+	public void tarifaPago() {
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 1092, 660);
+		panel.setBackground(Color.decode("#F2F2F2"));
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+
+		//Contenido
+		JPanel panelcontenedor =new JPanel();
+		panelcontenedor.setBackground(Color.decode("#FFFFFF"));
+		panelcontenedor.setBounds(200, 76, 882, 573);
+		panel.add(panelcontenedor);
+		panelcontenedor.setLayout(null);
+
+		JPanel panelCabeceraContenido = new JPanel();
+		panelCabeceraContenido.setLayout(null);
+		panelCabeceraContenido.setBackground(new Color(188, 218, 242));
+		panelCabeceraContenido.setBounds(0, 0, 882, 40);
+		panelcontenedor.add(panelCabeceraContenido);
+
+		JLabel lblTituloContenido = new JLabel("Tarifas pago");
+		lblTituloContenido.setFont(new Font("Calibri", Font.PLAIN, 26));
+		lblTituloContenido.setBounds(10, 11, 160, 29);
+		panelCabeceraContenido.add(lblTituloContenido);
+
+		JButton btnPagar = new JButton("Pagar membresía");
+		btnPagar.setForeground(Color.WHITE);
+		btnPagar.setFont(new Font("Calibri", Font.BOLD, 20));
+		btnPagar.setFocusPainted(false);
+		btnPagar.setBorderPainted(false);
+		btnPagar.setBackground(new Color(55, 104, 167));
+		btnPagar.setBounds(536, 107, 190, 30);
+		panelcontenedor.add(btnPagar);
 
 		//Cabecera
 
@@ -357,40 +394,9 @@ public class FeeView {
 		frame.repaint();
 		frame.revalidate();
 	}
-	public void tarifaPago() {
-		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 1092, 660);
-		panel.setBackground(Color.decode("#F2F2F2"));
-		frame.getContentPane().add(panel);
-		panel.setLayout(null);
-
-		//Contenido
-		JPanel panelcontenedor =new JPanel();
-		panelcontenedor.setBackground(Color.decode("#FFFFFF"));
-		panelcontenedor.setBounds(200, 76, 882, 573);
-		panel.add(panelcontenedor);
-		panelcontenedor.setLayout(null);
-
-		JPanel panelCabeceraContenido = new JPanel();
-		panelCabeceraContenido.setLayout(null);
-		panelCabeceraContenido.setBackground(new Color(188, 218, 242));
-		panelCabeceraContenido.setBounds(0, 0, 882, 40);
-		panelcontenedor.add(panelCabeceraContenido);
-
-		JLabel lblTituloContenido = new JLabel("Tarifas pago");
-		lblTituloContenido.setFont(new Font("Calibri", Font.PLAIN, 26));
-		lblTituloContenido.setBounds(10, 11, 160, 29);
-		panelCabeceraContenido.add(lblTituloContenido);
-
-		JButton btnPagar = new JButton("Pagar membresía");
-		btnPagar.setForeground(Color.WHITE);
-		btnPagar.setFont(new Font("Calibri", Font.BOLD, 20));
-		btnPagar.setFocusPainted(false);
-		btnPagar.setBorderPainted(false);
-		btnPagar.setBackground(new Color(55, 104, 167));
-		btnPagar.setBounds(536, 107, 190, 30);
-		panelcontenedor.add(btnPagar);
-
+	
+	
+	public void vistaComun() {
 		//Cabecera
 
 		JPanel panelCabecera = new JPanel();
