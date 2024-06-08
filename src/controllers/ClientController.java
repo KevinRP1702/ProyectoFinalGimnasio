@@ -24,13 +24,17 @@ public class ClientController {
 			
 		}
 		
-		public void crearClienteFoto() {
-			
-			vista.crearClientesFoto();
-			
+//		public void crearClienteFoto() {
+//			
+//			vista.crearClientesFoto();
+//			
+//		}
+		
+		public void consultar(int idUsuario) {
+			vista.informacionClientes(idUsuario);
 		}
 		
-		public void consultar() {
-			vista.informacionClientes();
+		public void editar(int idUsuario) {
+			vista.clienteEditar(idUsuario);
 		}
 }

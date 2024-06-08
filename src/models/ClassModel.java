@@ -79,7 +79,6 @@ public class ClassModel {
 		                claseData.add(nombreClase);
 		                claseData.add(instructor);
 
-		                // Obtener el conteo de inscritos para la clase actual
 		                Statement stmt2 = con.createStatement();
 		                ResultSet rs2 = stmt2.executeQuery("SELECT COUNT(*) FROM Inscripciones WHERE clase_id = " + rs.getString("idClase"));
 
@@ -190,7 +189,7 @@ public class ClassModel {
 	}
 	
 	public void pdf(String clase) {
-		List<List> clientes = clientesClases(clase); // Almacena los datos obtenidos del método clientesClases
+		List<List> clientes = clientesClases(clase); 
 	    
 	    Document document = new Document(PageSize.A4.rotate());
 	    JFileChooser chooser = new JFileChooser();

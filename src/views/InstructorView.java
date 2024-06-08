@@ -40,6 +40,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
+
+
 public class InstructorView {
 
 	private JFrame frame;
@@ -1004,7 +1006,7 @@ public class InstructorView {
 
 						InstructorController controller= new InstructorController();
 						frame.dispose();
-						controller.AvatarInstructor();
+						controller.instructor();
 					}
 				}
 			}
@@ -1015,78 +1017,78 @@ public class InstructorView {
 
 	}
 	//Avatar del instructor
-	public void crearInstructorAvatar() {
-		panel = new JPanel();
-		panel.setBounds(0, 0, 1092, 660);
-		panel.setBackground(Color.decode("#F2F2F2"));
-		frame.getContentPane().add(panel);
-		panel.setLayout(null);
-
-		//Contenido
-		JPanel panelcontenedor =new JPanel();
-		panelcontenedor.setBackground(Color.decode("#FFFFFF"));
-		panelcontenedor.setBounds(200, 75, 882, 573);
-		panel.add(panelcontenedor);
-		panelcontenedor.setLayout(null);
-
-		JPanel panelCabeceraContenido = new JPanel();
-		panelCabeceraContenido.setLayout(null);
-		panelCabeceraContenido.setBackground(new Color(188, 218, 242));
-		panelCabeceraContenido.setBounds(0, 0, 882, 40);
-		panelcontenedor.add(panelCabeceraContenido);
-
-		JLabel lblTituloContenido = new JLabel("Crear instructor");
-		lblTituloContenido.setFont(new Font("Calibri", Font.PLAIN, 26));
-		lblTituloContenido.setBounds(10, 11, 438, 29);
-		panelCabeceraContenido.add(lblTituloContenido);
-
-		JLabel lblIngreseLosDatos = new JLabel("Selecciona un avatar");
-		lblIngreseLosDatos.setHorizontalAlignment(SwingConstants.CENTER);
-		lblIngreseLosDatos.setFont(new Font("Calibri", Font.PLAIN, 26));
-		lblIngreseLosDatos.setBounds(237, 73, 414, 29);
-		panelcontenedor.add(lblIngreseLosDatos);
-
-		JLabel lblAvatar1 = new JLabel("");
-		lblAvatar1.setOpaque(true);
-		lblAvatar1.setBackground(new Color(0, 64, 128));
-		lblAvatar1.setFont(new Font("Calibri", Font.PLAIN, 16));
-		lblAvatar1.setBounds(235, 140, 160, 160);
-		ImageIcon imageIcon_lblAvatar1 = new ImageIcon("img/hombreCrearpfp.png");
-		lblAvatar1.setIcon(imageIcon_lblAvatar1);
-		lblAvatar1.addMouseListener(new MouseAdapter() {
-
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// Acción al hacer clic en el label
-				InstructorController controller= new InstructorController();
-				frame.dispose();
-				controller.instructor();
-
-			}
-		});
-		panelcontenedor.add(lblAvatar1);
-
-		JLabel lblAvatar2 = new JLabel("");
-		lblAvatar2.setOpaque(true);
-		lblAvatar2.setFont(new Font("Calibri", Font.PLAIN, 16));
-		lblAvatar2.setBackground(new Color(0, 64, 128));
-		lblAvatar2.setBounds(510, 140, 160, 160);
-		ImageIcon imageIcon_lblAvatar2 = new ImageIcon("img/imgEntrenador1.png");
-		lblAvatar2.setIcon(imageIcon_lblAvatar2);
-		lblAvatar2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				ImageIcon nuevaImagen = new ImageIcon("img/imgEntrenador1.png");
-				lblImg_Instructor_1.setIcon(nuevaImagen);
-				InstructorController controller= new InstructorController();
-				frame.dispose();
-				controller.instructor();
-			}
-		});
-		panelcontenedor.add(lblAvatar2);
-		vistaComun();
-	}
+//	public void crearInstructorAvatar() {
+//		panel = new JPanel();
+//		panel.setBounds(0, 0, 1092, 660);
+//		panel.setBackground(Color.decode("#F2F2F2"));
+//		frame.getContentPane().add(panel);
+//		panel.setLayout(null);
+//
+//		//Contenido
+//		JPanel panelcontenedor =new JPanel();
+//		panelcontenedor.setBackground(Color.decode("#FFFFFF"));
+//		panelcontenedor.setBounds(200, 75, 882, 573);
+//		panel.add(panelcontenedor);
+//		panelcontenedor.setLayout(null);
+//
+//		JPanel panelCabeceraContenido = new JPanel();
+//		panelCabeceraContenido.setLayout(null);
+//		panelCabeceraContenido.setBackground(new Color(188, 218, 242));
+//		panelCabeceraContenido.setBounds(0, 0, 882, 40);
+//		panelcontenedor.add(panelCabeceraContenido);
+//
+//		JLabel lblTituloContenido = new JLabel("Crear instructor");
+//		lblTituloContenido.setFont(new Font("Calibri", Font.PLAIN, 26));
+//		lblTituloContenido.setBounds(10, 11, 438, 29);
+//		panelCabeceraContenido.add(lblTituloContenido);
+//
+//		JLabel lblIngreseLosDatos = new JLabel("Selecciona un avatar");
+//		lblIngreseLosDatos.setHorizontalAlignment(SwingConstants.CENTER);
+//		lblIngreseLosDatos.setFont(new Font("Calibri", Font.PLAIN, 26));
+//		lblIngreseLosDatos.setBounds(237, 73, 414, 29);
+//		panelcontenedor.add(lblIngreseLosDatos);
+//
+//		JLabel lblAvatar1 = new JLabel("");
+//		lblAvatar1.setOpaque(true);
+//		lblAvatar1.setBackground(new Color(0, 64, 128));
+//		lblAvatar1.setFont(new Font("Calibri", Font.PLAIN, 16));
+//		lblAvatar1.setBounds(235, 140, 160, 160);
+//		ImageIcon imageIcon_lblAvatar1 = new ImageIcon("img/hombreCrearpfp.png");
+//		lblAvatar1.setIcon(imageIcon_lblAvatar1);
+//		lblAvatar1.addMouseListener(new MouseAdapter() {
+//
+//
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				// Acción al hacer clic en el label
+//				InstructorController controller= new InstructorController();
+//				frame.dispose();
+//				controller.instructor();
+//
+//			}
+//		});
+//		panelcontenedor.add(lblAvatar1);
+//
+//		JLabel lblAvatar2 = new JLabel("");
+//		lblAvatar2.setOpaque(true);
+//		lblAvatar2.setFont(new Font("Calibri", Font.PLAIN, 16));
+//		lblAvatar2.setBackground(new Color(0, 64, 128));
+//		lblAvatar2.setBounds(510, 140, 160, 160);
+//		ImageIcon imageIcon_lblAvatar2 = new ImageIcon("img/imgEntrenador1.png");
+//		lblAvatar2.setIcon(imageIcon_lblAvatar2);
+//		lblAvatar2.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				ImageIcon nuevaImagen = new ImageIcon("img/imgEntrenador1.png");
+//				lblImg_Instructor_1.setIcon(nuevaImagen);
+//				InstructorController controller= new InstructorController();
+//				frame.dispose();
+//				controller.instructor();
+//			}
+//		});
+//		panelcontenedor.add(lblAvatar2);
+//		vistaComun();
+//	}
 	//editar instructor
 	public void editarInstructor() {
 

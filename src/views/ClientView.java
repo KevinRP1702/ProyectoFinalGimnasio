@@ -15,10 +15,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import controllers.Auth;
 import controllers.CheckController;
@@ -27,6 +32,9 @@ import controllers.ClientController;
 import controllers.FeeController;
 import controllers.HomeController;
 import controllers.InstructorController;
+import models.ClassModel;
+import models.ClientModel;
+import models.FeeModel;
 
 
 
@@ -34,6 +42,7 @@ public class ClientView {
 
 	private JFrame frame;
 	private JPanel panel;
+	String userID;
 
 
 	public ClientView(){
@@ -80,12 +89,12 @@ public class ClientView {
 		// Crear un JComboBox en lugar de un JButton
 		List<String> opcionesClases = new ArrayList<>();
 		opcionesClases.add("Consultar");
-		
+		/*
 		for (int i = 0; i < clases.size(); i++) {
 		    String clase = clases.get(i).get(0).toString().replaceAll("[\\[\\]]", "");
 		    opcionesClases.add(clase);
 		}
-		 
+		 */
 
 		String[] opciones = opcionesClases.toArray(new String[0]);;
 		ImageIcon imageIcon_lblBotoncontenido = new ImageIcon("img/clase_crear.png");
@@ -112,7 +121,29 @@ public class ClientView {
 		btnConsultar.setFocusPainted(false);
 		btnConsultar.setBorderPainted(false);
 		btnConsultar.setBackground(new Color(55, 104, 167));
+		btnConsultar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 userID = JOptionPane.showInputDialog(null, "Ingrese el ID del usuario:", "Solicitud de ID", JOptionPane.QUESTION_MESSAGE);
 
+				// Mostrar el ID ingresado (para confirmar que se ha capturado correctamente)
+				if (userID != null && !userID.trim().isEmpty()) {
+					ClientModel model = new ClientModel();
+					
+					if(model.datosClientes(Integer.parseInt(userID)) == null) {
+						JOptionPane.showMessageDialog(null, "No se encontró el ID del cliente.", "Error", JOptionPane.ERROR_MESSAGE);
+					}else {
+						ClientController controller = new ClientController();
+						frame.dispose();
+						
+						controller.consultar(Integer.parseInt(userID));
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "No se ingresó ningún ID.", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+
+			}
+		});
+		
 		JPanel panelBotoncontenido_1 = new JPanel();
 		panelBotoncontenido_1.setLayout(null);
 		panelBotoncontenido_1.setBackground(new Color(55, 104, 167));
@@ -126,10 +157,6 @@ public class ClientView {
 		panelBotoncontenido_1.add(lblBotoncontenido_1);
 
 		JButton btnCrearCliente = new JButton("Crear");
-		btnCrearCliente.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnCrearCliente.setForeground(Color.WHITE);
 		btnCrearCliente.setFont(new Font("Calibri", Font.BOLD, 18));
 		btnCrearCliente.setFocusPainted(false);
@@ -138,23 +165,68 @@ public class ClientView {
 		btnCrearCliente.setBackground(new Color(55, 104, 167));
 		btnCrearCliente.setBounds(0, -1, 203, 30);
 		panelBotoncontenido_1.add(btnCrearCliente);
-		btnConsultar.addActionListener(new ActionListener() {
+		btnCrearCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				/*
-				// Acción al hacer clic en el botón Crear clases
-				ClassController controller = new ClassController();
+				ClientController controller = new ClientController();
 				frame.dispose();
-				controller.CrearClase();
-				 */
+				controller.crearCliente();
 			}
 		});
 
+		//Contenido inferior
+		ClientModel datas = new ClientModel();
+		ArrayList<String[]> datosClientes = datas.obtenerDatosClientes();
+		String[] columnNames = {"Cliente ID", "Nombre(s)", "Apellidos", "Correo"};
+		Object[][] data = new Object[datosClientes.size()][4];
 
+		for (int i = 0; i < datosClientes.size(); i++) {
+			String[] datos = datosClientes.get(i);
+		    data[i][0] = datos[0];
+		    data[i][1] = datos[1];
+		    data[i][2] = datos[2];
+		    data[i][3] = datos[3];
+		}
 
+		DefaultTableModel model = new DefaultTableModel(data, columnNames) {
+		    @Override
+		    public boolean isCellEditable(int row, int column) {
+		        return false; // Hacer todas las celdas no editables
+		    }
+		};
 
+		JTable table = new JTable(model) {
+		    @Override
+		    public boolean getScrollableTracksViewportWidth() {
+		        return getPreferredSize().width < getParent().getWidth();
+		    }
+		};
 
-		
+		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+		table.setDefaultRenderer(Object.class, centerRenderer);
+
+		// Personalizar encabezado de la tabla
+		JTableHeader header = table.getTableHeader();
+		header.setFont(new Font("Calibri", Font.PLAIN, 18));
+		header.setBackground(Color.decode("#214177"));
+		header.setForeground(Color.WHITE);
+
+		// Personalizar celdas
+		table.setFont(new Font("Calibri", Font.PLAIN, 16));
+		table.setRowHeight(30);
+		table.getTableHeader().setReorderingAllowed(false);
+
+		// Configurar que la tabla no sea editable
+		table.setDefaultEditor(Object.class, null);
+
+		// Mostrar la tabla en un JScrollPane
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setBounds(10, 50, 862, 513);
+
+		panelcontenedor.setLayout(null);
+		panelcontenedor.add(scrollPane);
+
+		/*
 		//Contenido inferior
 		ClassModel datas = new ClassModel();
 		List<List<Object>> datos = datas.get();
@@ -209,7 +281,7 @@ public class ClientView {
 
 		panelcontenedor.setLayout(null); 
 		panelcontenedor.add(scrollPane);
-		 
+		 */
 		vistaComun();
 
 
@@ -333,6 +405,7 @@ public class ClientView {
 				"2020", "2021", "2022", "2023", "2024"
 		};
 
+		
 		// Crear y configurar los ComboBox para día, mes y año
 
 		JComboBox<String> diaComboBox = new JComboBox<>(dias);
@@ -355,6 +428,8 @@ public class ClientView {
 		añoComboBox.setBackground(Color.decode("#F5F5F5"));
 		añoComboBox.setBounds(541, 277, 150, 40);
 		panelcontenedor.add(añoComboBox);
+		
+		String fecha = (String) añoComboBox.getSelectedItem() + "-" + (String) mesComboBox.getSelectedItem() + "-" + (String) diaComboBox.getSelectedItem();
 
 		JTextArea textNumeroCliente = new JTextArea();
 		textNumeroCliente.setFont(new Font("Calibri", Font.PLAIN, 18));
@@ -395,7 +470,7 @@ public class ClientView {
 
 
 
-		JButton btnCrearClases = new JButton("Registrar clase");
+		JButton btnCrearClases = new JButton("Registrar cliente");
 		btnCrearClases.setBounds(0, 0, 502, 40);
 		panel_1.add(btnCrearClases);
 		btnCrearClases.setForeground(Color.WHITE);
@@ -405,14 +480,21 @@ public class ClientView {
 		btnCrearClases.setBackground(Color.decode("#214177"));
 		btnCrearClases.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-
+				ClientModel modelo = new ClientModel();
+				if(modelo.registrarCliente(textClienteNombre.getText(), textClienteApellidos.getText(),fecha, Integer.parseInt(textNumeroCliente.getText()), textCorreoCliente.getText()) == false) {
+					JOptionPane.showMessageDialog(null, "El cliente ya se encuentra en la base", "Error", JOptionPane.ERROR_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(null, "El cliente se creó correctamente", "Cliente creado", JOptionPane.INFORMATION_MESSAGE);
+					ClientController controller = new ClientController();
+					frame.dispose();
+					controller.cliente();
+				}
 			}
 		});
 
 		vistaComun();
 	}
-	public void informacionClientes() {
+	public void informacionClientes(int idUsuario) {
 		panel = new JPanel();
 		panel.setBounds(0, 0, 1092, 660);
 		panel.setBackground(Color.decode("#F2F2F2"));
@@ -455,10 +537,15 @@ public class ClientView {
 		btnEditarCliente.setBackground(new Color(55, 104, 167));
 		btnEditarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				ClientController controller = new ClientController();
+				frame.dispose();
+				
+				controller.editar(idUsuario);
 			}
 		});
 
+		ClientModel modelo = new ClientModel();
+		ArrayList<String> datosCliente = modelo.datosClientes(idUsuario);
 
 		JLabel lblNombreCliente = new JLabel("Nombre(s):");
 		lblNombreCliente.setFont(new Font("Calibri", Font.BOLD, 18));
@@ -470,7 +557,7 @@ public class ClientView {
 		lblApellidosCliente.setBounds(10, 135, 114, 23);
 		panelcontenedor1.add(lblApellidosCliente);
 
-		JLabel lblCorreoCliente = new JLabel("Correo electrónico(s)");
+		JLabel lblCorreoCliente = new JLabel("Correo electrónico:");
 		lblCorreoCliente.setFont(new Font("Calibri", Font.BOLD, 18));
 		lblCorreoCliente.setBounds(10, 330, 212, 23);
 		panelcontenedor1.add(lblCorreoCliente);
@@ -490,32 +577,32 @@ public class ClientView {
 		lblEstadoMembresia.setBounds(10, 265, 189, 23);
 		panelcontenedor1.add(lblEstadoMembresia);
 
-		JLabel lblNombreClienteCambia = new JLabel("Nombre(s):");
+		JLabel lblNombreClienteCambia = new JLabel(datosCliente.get(0));
 		lblNombreClienteCambia.setFont(new Font("Calibri", Font.PLAIN, 18));
 		lblNombreClienteCambia.setBounds(218, 70, 114, 23);
 		panelcontenedor1.add(lblNombreClienteCambia);
 
-		JLabel lblApellidosClienteCambia = new JLabel("Apellido(s)");
+		JLabel lblApellidosClienteCambia = new JLabel(datosCliente.get(1));
 		lblApellidosClienteCambia.setFont(new Font("Calibri", Font.PLAIN, 18));
 		lblApellidosClienteCambia.setBounds(218, 135, 114, 23);
 		panelcontenedor1.add(lblApellidosClienteCambia);
 
-		JLabel lblClienteIdCambia = new JLabel("Cliente id");
+		JLabel lblClienteIdCambia = new JLabel(datosCliente.get(4));
 		lblClienteIdCambia.setFont(new Font("Calibri", Font.PLAIN, 18));
 		lblClienteIdCambia.setBounds(218, 395, 120, 23);
 		panelcontenedor1.add(lblClienteIdCambia);
 
-		JLabel lblInicioMembresiaCambia = new JLabel("Inicio de membresía");
-		lblInicioMembresiaCambia.setFont(new Font("Calibri", Font.PLAIN, 18));
-		lblInicioMembresiaCambia.setBounds(218, 330, 212, 23);
-		panelcontenedor1.add(lblInicioMembresiaCambia);
+		JLabel lblcorreoCambia = new JLabel(datosCliente.get(3));
+		lblcorreoCambia.setFont(new Font("Calibri", Font.PLAIN, 18));
+		lblcorreoCambia.setBounds(218, 330, 212, 23);
+		panelcontenedor1.add(lblcorreoCambia);
 
-		JLabel lblFinalizacinMembresiaCambia = new JLabel("Fecha de nacimiento");
-		lblFinalizacinMembresiaCambia.setFont(new Font("Calibri", Font.PLAIN, 18));
-		lblFinalizacinMembresiaCambia.setBounds(218, 200, 244, 23);
-		panelcontenedor1.add(lblFinalizacinMembresiaCambia);
+		JLabel lblFecha_nacimiento = new JLabel(datosCliente.get(2));
+		lblFecha_nacimiento.setFont(new Font("Calibri", Font.PLAIN, 18));
+		lblFecha_nacimiento.setBounds(218, 200, 244, 23);
+		panelcontenedor1.add(lblFecha_nacimiento);
 
-		JLabel lblEstadoMembresiaCambio = new JLabel("Estado de membresía");
+		JLabel lblEstadoMembresiaCambio = new JLabel("Activo");
 		lblEstadoMembresiaCambio.setFont(new Font("Calibri", Font.PLAIN, 18));
 		lblEstadoMembresiaCambio.setBounds(217, 265, 189, 23);
 		panelcontenedor1.add(lblEstadoMembresiaCambio);
@@ -524,7 +611,7 @@ public class ClientView {
 		lblAvatarCliente.setOpaque(true);
 		lblAvatarCliente.setBackground(new Color(0, 0, 64));
 		lblAvatarCliente.setBounds(614, 138, 160, 160);
-		ImageIcon imageIcon = new ImageIcon("img/logo.png"); 
+		ImageIcon imageIcon = new ImageIcon("img/pfp1.png"); 
 		lblAvatarCliente.setIcon(imageIcon);
 
 		panelcontenedor1.add(lblAvatarCliente);
@@ -565,6 +652,14 @@ public class ClientView {
 		panelEliminarCuenta.add(btnEliminarCuenta);
 		btnEliminarCuenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(modelo.eliminarCliente(idUsuario) == false) {
+					JOptionPane.showMessageDialog(null, "El cliente no se encuentra en la base", "Error", JOptionPane.ERROR_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(null, "El cliente ha sido eliminado con éxito", "Eliminado con éxito", JOptionPane.INFORMATION_MESSAGE);
+					ClientController controller = new ClientController();
+					frame.dispose();
+					controller.cliente();
+				}
 			}
 		});
 		btnEliminarCuenta.setForeground(Color.WHITE);
@@ -577,6 +672,226 @@ public class ClientView {
 		vistaComun();
 
 
+	}
+	
+	public void clienteEditar(int idCliente) {
+		panel = new JPanel();
+		panel.setBounds(0, 0, 1092, 660);
+		panel.setBackground(Color.decode("#F2F2F2"));
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		//Contenido
+		
+				JPanel panelcontenedor1 = new JPanel();
+				panelcontenedor1.setBackground(Color.decode("#FFFFFF"));
+				panelcontenedor1.setBounds(210, 86, 882, 574);
+				panel.add(panelcontenedor1);
+				panelcontenedor1.setLayout(null);
+
+
+				JPanel panelCabeceraContenido = new JPanel();
+				panelCabeceraContenido.setLayout(null);
+				panelCabeceraContenido.setBackground(new Color(188, 218, 242));
+				panelCabeceraContenido.setBounds(0, 0, 882, 40);
+				panelcontenedor1.add(panelCabeceraContenido);
+
+				JLabel lblTituloContenido = new JLabel("Información del cliente");
+				lblTituloContenido.setFont(new Font("Calibri", Font.PLAIN, 26));
+				lblTituloContenido.setBounds(10, 11, 447, 29);
+				panelCabeceraContenido.add(lblTituloContenido);
+
+
+				JPanel panelBtnCancelar = new JPanel();
+				panelBtnCancelar.setLayout(null);
+				panelBtnCancelar.setBackground(Color.decode("#A73737"));
+				panelBtnCancelar.setBounds(470, 5, 190, 30);
+				panelCabeceraContenido.add(panelBtnCancelar);
+
+				//Boton para cancelar cambios
+				JButton btnCancelarCambios = new JButton("Cancelar cambios");
+
+				btnCancelarCambios.setVerticalTextPosition(SwingConstants.BOTTOM);
+				btnCancelarCambios.setBorderPainted(false);
+				btnCancelarCambios.setForeground(Color.WHITE);
+				btnCancelarCambios.setFont(new Font("Calibri", Font.BOLD, 20));
+				btnCancelarCambios.setFocusPainted(false);
+				btnCancelarCambios.setContentAreaFilled(false);
+				btnCancelarCambios.setBackground(new Color(55, 104, 167));
+				btnCancelarCambios.setBounds(0, 0, 190, 30);
+				panelBtnCancelar.add(btnCancelarCambios);
+				btnCancelarCambios.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						ClientController controller = new ClientController();
+						frame.dispose();
+						controller.cliente();
+					}
+				});
+
+				//Contenido del cliente
+				JLabel lblNombreCliente = new JLabel("Nombre(s):");
+				lblNombreCliente.setFont(new Font("Calibri", Font.BOLD, 18));
+				lblNombreCliente.setBounds(10, 70, 114, 23);
+				panelcontenedor1.add(lblNombreCliente);
+
+				JLabel lblApellidosCliente = new JLabel("Apellido(s)");
+				lblApellidosCliente.setFont(new Font("Calibri", Font.BOLD, 18));
+				lblApellidosCliente.setBounds(10, 135, 114, 23);
+				panelcontenedor1.add(lblApellidosCliente);
+
+				JLabel lblCorreoCliente = new JLabel("Correo electrónico(s)");
+				lblCorreoCliente.setFont(new Font("Calibri", Font.BOLD, 18));
+				lblCorreoCliente.setBounds(10, 330, 189, 23);
+				panelcontenedor1.add(lblCorreoCliente);
+
+				JLabel lblClienteId = new JLabel("Cliente id:");
+				lblClienteId.setFont(new Font("Calibri", Font.BOLD, 18));
+				lblClienteId.setBounds(10, 395, 120, 23);
+				panelcontenedor1.add(lblClienteId);
+
+				JLabel lblFinalizacinMembresia = new JLabel("Fecha de nacimiento");
+				lblFinalizacinMembresia.setFont(new Font("Calibri", Font.BOLD, 18));
+				lblFinalizacinMembresia.setBounds(10, 200, 175, 23);
+				panelcontenedor1.add(lblFinalizacinMembresia);
+
+				JLabel lblNumeroCliente = new JLabel("Número de teléfono");
+				lblNumeroCliente.setFont(new Font("Calibri", Font.BOLD, 18));
+				lblNumeroCliente.setBounds(10, 265, 189, 23);
+				panelcontenedor1.add(lblNumeroCliente);
+
+				JLabel lblAvatarCliente = new JLabel("");
+				lblAvatarCliente.setOpaque(true);
+				lblAvatarCliente.setBackground(new Color(0, 0, 64));
+				lblAvatarCliente.setBounds(614, 138, 160, 160);
+				ImageIcon imageIcon = new ImageIcon("img/logo.png"); 
+				lblAvatarCliente.setIcon(imageIcon);
+				panelcontenedor1.add(lblAvatarCliente);
+
+
+				JTextArea textNombreCliente = new JTextArea();
+				textNombreCliente.setFont(new Font("Calibri", Font.PLAIN, 18));
+				textNombreCliente.setBackground(Color.decode("#F5F5F5"));
+				textNombreCliente.setBorder(new LineBorder(Color.decode("#D4D4D4"), 1));
+				textNombreCliente.setBounds(192, 70, 320, 25);
+				textNombreCliente.setBorder(BorderFactory.createCompoundBorder(
+						new LineBorder(Color.decode("#D4D4D4"), 1),
+						new EmptyBorder(10, 10, 10, 10)  
+						));
+				panelcontenedor1.add(textNombreCliente);
+
+				JTextArea textApellidosCliente = new JTextArea();
+				textApellidosCliente.setFont(new Font("Calibri", Font.PLAIN, 18));
+				textApellidosCliente.setBorder(new LineBorder(Color.decode("#D4D4D4"), 1));
+				textApellidosCliente.setBackground(new Color(245, 245, 245));
+				textApellidosCliente.setBounds(192, 133, 320, 25);
+				panelcontenedor1.add(textApellidosCliente);
+
+
+				// Valores predefinidos para los ComboBox
+				String[] dias = {
+						"1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
+						"11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
+						"21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"
+				};
+
+				String[] meses = {
+						"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"
+				};
+
+				String[] años = {
+						"1964", "1965", "1966", "1967", "1968", "1969",
+						"1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979",
+						"1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989",
+						"1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999",
+						"2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009",
+						"2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019",
+						"2020", "2021", "2022", "2023", "2024"
+				};
+
+				// Crear y configurar los ComboBox para día, mes y año
+
+				JComboBox<String> diaComboBox = new JComboBox<>(dias);
+				diaComboBox.setFont(new Font("Calibri", Font.PLAIN, 18));
+				diaComboBox.setBorder(new LineBorder(Color.decode("#D4D4D4"), 1));
+				diaComboBox.setBackground(Color.decode("#F5F5F5"));
+				diaComboBox.setBounds(192, 198, 93, 25);
+				panelcontenedor1.add(diaComboBox);
+
+				JComboBox<String> mesComboBox = new JComboBox<>(meses);
+				mesComboBox.setFont(new Font("Calibri", Font.PLAIN, 18));
+				mesComboBox.setBorder(new LineBorder(Color.decode("#D4D4D4"), 1));
+				mesComboBox.setBackground(Color.decode("#F5F5F5"));
+				mesComboBox.setBounds(312, 198, 93, 25);
+				panelcontenedor1.add(mesComboBox);
+
+				JComboBox<String> añoComboBox = new JComboBox<>(años);
+				añoComboBox.setFont(new Font("Calibri", Font.PLAIN, 18));
+				añoComboBox.setBorder(new LineBorder(Color.decode("#D4D4D4"), 1));
+				añoComboBox.setBackground(Color.decode("#F5F5F5"));
+				añoComboBox.setBounds(419, 198, 93, 25);
+				panelcontenedor1.add(añoComboBox);
+
+				String fecha = (String) añoComboBox.getSelectedItem() + "-" + (String) mesComboBox.getSelectedItem() + "-" + (String) diaComboBox.getSelectedItem();
+				
+				JTextArea textNumeroCliente = new JTextArea();
+				textNumeroCliente.setFont(new Font("Calibri", Font.PLAIN, 18));
+				textNumeroCliente.setBorder(new LineBorder(Color.decode("#D4D4D4"), 1));
+				textNumeroCliente.setBackground(new Color(245, 245, 245));
+				textNumeroCliente.setBounds(192, 263, 320, 25);
+				panelcontenedor1.add(textNumeroCliente);
+
+				JTextArea textCorreoCliente = new JTextArea();
+				textCorreoCliente.setFont(new Font("Calibri", Font.PLAIN, 18));
+				textCorreoCliente.setBorder(new LineBorder(Color.decode("#D4D4D4"), 1));
+				textCorreoCliente.setBackground(new Color(245, 245, 245));
+				textCorreoCliente.setBounds(192, 328, 320, 25);
+				panelcontenedor1.add(textCorreoCliente);
+
+				JLabel lblClienteId_1 = new JLabel("Cliente id:" + idCliente);
+				lblClienteId_1.setFont(new Font("Calibri", Font.PLAIN, 18));
+				lblClienteId_1.setBounds(192, 398, 120, 23);
+				panelcontenedor1.add(lblClienteId_1);
+
+
+				JPanel panelBtnGuardar = new JPanel();
+				panelCabeceraContenido.add(panelBtnGuardar);
+				panelBtnGuardar.setBackground(new Color(55, 104, 167));
+				panelBtnGuardar.setBounds(682, 5, 190, 30);
+				panelBtnGuardar.setLayout(null);
+
+				//Boton para confirmar cambios
+				JButton btnGuardar = new JButton("Confirmar cambios");
+				btnGuardar.setBounds(0, 0, 190, 30);
+				panelBtnGuardar.add(btnGuardar);
+				btnGuardar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						if (textNombreCliente.getText().isEmpty() ||
+								textApellidosCliente.getText().isEmpty() ||
+								textNumeroCliente.getText().isEmpty() ||
+								textCorreoCliente.getText().isEmpty() ) {
+
+							JOptionPane.showMessageDialog(frame, "Todos los campos deben estar llenos.", "Error", JOptionPane.ERROR_MESSAGE);
+						} else {
+							ClientModel model = new ClientModel();
+							ClientController controller = new ClientController();
+							
+							model.editarCliente(idCliente, textNombreCliente.getText(), textApellidosCliente.getText(), fecha, textCorreoCliente.getText(), textNumeroCliente.getText());
+							JOptionPane.showMessageDialog(frame, "Cambios confirmados.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+							frame.dispose();
+							controller.cliente();
+							
+						}
+					}
+				});
+
+				btnGuardar.setContentAreaFilled(false);
+				btnGuardar.setForeground(Color.WHITE);
+				btnGuardar.setFont(new Font("Calibri", Font.BOLD, 18));
+				btnGuardar.setFocusPainted(false);
+				btnGuardar.setBorderPainted(false);
+				btnGuardar.setBackground(new Color(55, 104, 167));
+		vistaComun();
 	}
 
 	public void vistaComun(){
@@ -835,7 +1150,6 @@ public class ClientView {
 		btnCerrarSesion.setBackground(new Color(33, 65, 119));
 		btnCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(frame,"Su cuenta ha sido cerrada.","Alerta de Cuenta Cerrada",JOptionPane.WARNING_MESSAGE);
 				Auth controller = new Auth();
 				frame.dispose();
 				controller.cerrar();
@@ -855,9 +1169,4 @@ public class ClientView {
 		frame.revalidate();
 
 	}
-
-
-
-
-
 }

@@ -142,7 +142,7 @@ public class FeeView {
 		FeeModel datas = new FeeModel();
 		ArrayList<String[]> datos = datas.obtenerDatosPagos();
 
-		//Tabla para pagos
+		//Tabla para clientes
 		String[] columnNames = {"Nombres", "Apellido", "Pago", "ID Usuario"};
 		Object[][] data = new Object[datos.size()][4];
 
@@ -268,7 +268,6 @@ public class FeeView {
 		lblEstadoMembresia.setBounds(10, 460, 189, 23);
 		panelcontenedor1.add(lblEstadoMembresia);
 
-		//label de informacion que cambia
 		JLabel lblNombreClienteCambia = new JLabel(datosCliente.get(0));
 		lblNombreClienteCambia.setFont(new Font("Calibri", Font.PLAIN, 18));
 		lblNombreClienteCambia.setBounds(110, 70, 114, 23);
@@ -313,8 +312,7 @@ public class FeeView {
 		panelcontenedor2.setBounds(663, 75, 419, 300);
 		panel.add(panelcontenedor2);
 
-		
-		//Meses
+
 		String[] months = {"1", "2", "3", "4", "5", "6","7", "8", "9", "10", "11", "12"};
 
 

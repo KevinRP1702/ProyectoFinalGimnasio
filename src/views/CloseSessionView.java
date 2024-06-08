@@ -372,16 +372,4 @@ public class CloseSessionView {
 		frame.revalidate();
 
 	}
-
-
-
-
-
-
-
-
-
-
-
-
 }
