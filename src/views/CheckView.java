@@ -4,14 +4,18 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
 
 import controllers.Auth;
 import controllers.CheckController;
@@ -37,6 +41,7 @@ public class CheckView {
 		frame.setLocationRelativeTo(null);
 	}
 
+	//Ventana principal para el checador
 	public void checador() {
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 1092, 660);
@@ -48,7 +53,7 @@ public class CheckView {
 		//Contenido
 		JPanel panelcontenedor =new JPanel();
 		panelcontenedor.setBackground(Color.decode("#FFFFFF"));
-		panelcontenedor.setBounds(200, 76, 882, 573);
+		panelcontenedor.setBounds(200, 75, 882, 573);
 		panel.add(panelcontenedor);
 		panelcontenedor.setLayout(null);
 
@@ -60,22 +65,74 @@ public class CheckView {
 
 		JLabel lblTituloContenido = new JLabel("Checa para llevar un seguimiento en tus asistencias");
 		lblTituloContenido.setFont(new Font("Calibri", Font.PLAIN, 26));
-		lblTituloContenido.setBounds(10, 11, 574, 29);
+		lblTituloContenido.setBounds(10, 11, 745, 29);
 		panelCabeceraContenido.add(lblTituloContenido);
 
+		JLabel lblHora = new JLabel("");
+		lblHora.setForeground(new Color(0, 0, 0));
+		lblHora.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHora.setFont(new Font("Calibri", Font.BOLD, 80));
+		lblHora.setBounds(291, 114, 457, 160);
+		panelcontenedor.add(lblHora);
+
+		// Timer que actualiza la hora cada segundo
+		Timer timer = new Timer(1000, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Obtiene la hora actual 
+				SimpleDateFormat formatter = new SimpleDateFormat("hh:mm a");
+				String currentTime = formatter.format(new Date());
+			
+				lblHora.setText(currentTime);
+			}
+		});
+		timer.start();
+
+		JLabel lblHoraImg = new JLabel("");
+		lblHoraImg.setBackground(new Color(255, 255, 255));
+		lblHoraImg.setOpaque(true);
+
+		lblHoraImg.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblHoraImg.setBounds(148, 114, 160, 160);
+		ImageIcon imageIcon_lblHora = new ImageIcon("img/checador_reloj.png"); 
+		lblHoraImg.setIcon(imageIcon_lblHora);
+		panelcontenedor.add(lblHoraImg);
+		
+
+		JLabel lblFecha = new JLabel("boton");
+		lblFecha.setForeground(new Color(0, 0, 0));
+		lblFecha.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFecha.setFont(new Font("Calibri", Font.BOLD, 23));
+		lblFecha.setBounds(318, 249, 384, 55);
+		panelcontenedor.add(lblFecha);
+
+		//fecha actual
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("EEEE dd 'de' MMMM 'de' yyyy");
+		String currentDate = dateFormatter.format(new Date());
+		lblFecha.setText(currentDate);
+		JPanel panelBtnChecador = new JPanel();
+		panelBtnChecador.setBounds(318, 352, 307, 40);
+		panelcontenedor.add(panelBtnChecador);
+		panelBtnChecador.setLayout(null);
+		panelBtnChecador.setBackground(new Color(55, 104, 167));
+
+		//Boton para checar
 		JButton btnChecar = new JButton("Checar");
-		btnChecar.setBounds(349, 148, 190, 30);
-		panelcontenedor.add(btnChecar);
+		btnChecar.setBounds(0, 0, 307, 40);
+		panelBtnChecador.add(btnChecar);
 		btnChecar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "Se ha checado", "Información", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		btnChecar.setForeground(Color.WHITE);
-		btnChecar.setFont(new Font("Calibri", Font.BOLD, 20));
+		btnChecar.setFont(new Font("Calibri", Font.BOLD, 24));
 		btnChecar.setFocusPainted(false);
+		btnChecar.setContentAreaFilled(false);
 		btnChecar.setBorderPainted(false);
 		btnChecar.setBackground(new Color(55, 104, 167));
 
+		//Vista comun de botones
 		//Cabecera
 
 		JPanel panelCabecera = new JPanel();

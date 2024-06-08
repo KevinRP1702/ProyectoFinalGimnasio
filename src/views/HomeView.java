@@ -1,6 +1,7 @@
 package views;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +14,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 import controllers.Auth;
 import controllers.CheckController;
@@ -29,7 +35,7 @@ import controllers.InstructorController;
 public class HomeView {
 
 	private JFrame frame;
-	
+	private JPanel panel;
 	public HomeView(){
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1108, 700);
@@ -40,27 +46,73 @@ public class HomeView {
 		frame.setLocationRelativeTo(null);
 	}
 	
+	//Ventana de inicio
 	public void Inicio() {
-		JPanel panel = new JPanel();
+		 panel = new JPanel();
 		panel.setBounds(0, 0, 1092, 660);
 		panel.setBackground(Color.decode("#F2F2F2"));
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 
+
 		//Contenido
-		JPanel panelcontenedor = new JPanel();
+		JPanel panelcontenedor =new JPanel();
 		panelcontenedor.setBackground(Color.decode("#FFFFFF"));
-		panelcontenedor.setBounds(200, 76, 882, 573);
+		panelcontenedor.setBounds(200, 75, 882, 573);
 		panel.add(panelcontenedor);
 		panelcontenedor.setLayout(null);
 
-		JLabel lblPartedeVista = new JLabel("Inicio");
-		lblPartedeVista.setFont(new Font("Calibri", Font.BOLD, 65));
-		lblPartedeVista.setBounds(327, 22, 193, 109);
-		panelcontenedor.add(lblPartedeVista);
+		JPanel panelCabeceraContenido = new JPanel();
+		panelCabeceraContenido.setLayout(null);
+		panelCabeceraContenido.setBackground(new Color(188, 218, 242));
+		panelCabeceraContenido.setBounds(0, 0, 882, 40);
+		panelcontenedor.add(panelCabeceraContenido);
 
+		JLabel lblTituloContenido = new JLabel("Inicio");
+		lblTituloContenido.setFont(new Font("Calibri", Font.PLAIN, 26));
+		lblTituloContenido.setBounds(10, 11, 438, 29);
+		panelCabeceraContenido.add(lblTituloContenido);
+
+		JLabel lblIngreseLosDatos = new JLabel("¿Quienes somos?");
+		lblIngreseLosDatos.setHorizontalAlignment(SwingConstants.CENTER);
+		lblIngreseLosDatos.setFont(new Font("Calibri", Font.PLAIN, 26));
+		lblIngreseLosDatos.setBounds(237, 73, 414, 29);
+		panelcontenedor.add(lblIngreseLosDatos);
+
+		//Mensaje
+		JTextPane messagePane = new JTextPane();
+		messagePane.setText(
+				"En Gym World, creemos en el poder de la transformación personal a través del ejercicio.\n\n" +
+						"Únete a nuestra comunidad y descubre un lugar donde tus metas son nuestra prioridad.\n\n" +
+						"Ven y experimenta instalaciones de primera clase, entrenadores dedicados y un ambiente motivador.\n\n" +
+						"¡Te esperamos para comenzar juntos tu viaje hacia una vida más saludable y fuerte!"
+				);
+		messagePane.setFont(new Font("Calibri", Font.PLAIN, 18));
+		messagePane.setEditable(false);
+		messagePane.setBackground(Color.WHITE);
+
+
+		StyledDocument doc = messagePane.getStyledDocument();
+		SimpleAttributeSet center = new SimpleAttributeSet();
+		StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+		doc.setParagraphAttributes(0, doc.getLength(), center, false);
+		messagePane.setBorder(BorderFactory.createCompoundBorder(
+				BorderFactory.createLineBorder(Color.LIGHT_GRAY),
+				BorderFactory.createEmptyBorder(10, 10, 10, 10)
+				));
+
+		messagePane.setPreferredSize(new Dimension(800, 300));
+
+
+		JScrollPane scrollPane = new JScrollPane(messagePane);
+		scrollPane.setBounds(50, 150, 800, 200);
+		scrollPane.setBorder(null);
+		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setBackground(Color.WHITE);
+		panelcontenedor.add(scrollPane);
+		
+		//Parte de botones de ventanas principales y cabecera que se repite
 		//Cabecera
-
 		JPanel panelCabecera = new JPanel();
 		panelCabecera.setBackground(Color.decode("#BCDAF2"));
 		panelCabecera.setBounds(0, 0, 1092, 65);

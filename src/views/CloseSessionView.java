@@ -27,7 +27,9 @@ import controllers.InstructorController;
 public class CloseSessionView {
 
 	private JFrame frame;
+	private JPanel panel;
 
+	
 	public CloseSessionView() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1108, 700);
@@ -38,8 +40,9 @@ public class CloseSessionView {
 		frame.setLocationRelativeTo(null);
 	}
 
+	//Vista para cerrar sesion
 	public void Cerrar() {
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBounds(0, 0, 1092, 660);
 		panel.setBackground(Color.decode("#F2F2F2"));
 		frame.getContentPane().add(panel);
@@ -59,22 +62,35 @@ public class CloseSessionView {
 		panelCabeceraContenido.setBounds(0, 0, 882, 40);
 		panelcontenedor.add(panelCabeceraContenido);
 
-		JButton btnRegistrarCliente = new JButton("Cerrar sesion");
-		btnRegistrarCliente.setBounds(351, 231, 190, 30);
-		panelcontenedor.add(btnRegistrarCliente);
-		btnRegistrarCliente.addActionListener(new ActionListener() {
+
+		JPanel panelBtnCerrarSesion = new JPanel();
+		panelBtnCerrarSesion.setBounds(324, 252, 243, 40);
+		panelBtnCerrarSesion.setBackground(Color.decode("#A73737"));
+		panelcontenedor.add(panelBtnCerrarSesion);
+		panelBtnCerrarSesion.setLayout(null);
+
+		//Boton cerrar sesion
+		JButton btnCerrar = new JButton("Añadir instructor");
+		btnCerrar.setBounds(0, 0, 243, 40);
+		panelBtnCerrarSesion.add(btnCerrar);
+		btnCerrar.setForeground(Color.WHITE);
+		btnCerrar.setFont(new Font("Calibri", Font.BOLD, 19));
+		btnCerrar.setFocusPainted(false);
+		btnCerrar.setContentAreaFilled(false);
+		btnCerrar.setBorderPainted(false);
+		btnCerrar.setBackground(new Color(55, 104, 167));
+
+		btnCerrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(frame, "Su sesión ha sido cerrada con éxito", "Cerrar sesión", JOptionPane.INFORMATION_MESSAGE);
-				Auth controller = new Auth();
-				frame.dispose();
-				controller.login();
+					
+					Auth controller = new Auth();
+					frame.dispose();
+					controller.login();
+				 
 			}
 		});
-		btnRegistrarCliente.setForeground(Color.WHITE);
-		btnRegistrarCliente.setFont(new Font("Calibri", Font.BOLD, 20));
-		btnRegistrarCliente.setFocusPainted(false);
-		btnRegistrarCliente.setBorderPainted(false);
-		btnRegistrarCliente.setBackground(Color.decode("#A73737"));
+
 
 		JLabel lblTituloContenido = new JLabel("¿Desea cerrar sesión?");
 		lblTituloContenido.setBounds(324, 149, 310, 29);

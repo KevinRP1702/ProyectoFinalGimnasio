@@ -8,6 +8,10 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -24,11 +28,9 @@ import controllers.ClientController;
 import controllers.FeeController;
 import controllers.HomeController;
 import controllers.InstructorController;
-
+import models.InstructorModel;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import javax.swing.text.DocumentFilter;
 import javax.swing.text.PlainDocument;
 import javax.swing.text.AttributeSet;
@@ -38,12 +40,30 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-
-
 public class InstructorView {
 
 	private JFrame frame;
 	private JPanel panel;
+	JLabel lbl_Instructor_1 = new JLabel();
+	JLabel lbl_Instructor_2 = new JLabel();
+	JLabel lbl_Instructor_3 = new JLabel();
+	JLabel lbl_Instructor_4 = new JLabel();
+	JTextPane txt_Experiencia_1 = new JTextPane();
+	JTextPane txt_Experiencia_2 = new JTextPane();
+	JTextPane txt_Experiencia_3 = new JTextPane();
+	JTextPane txt_Experiencia_4 = new JTextPane();
+	JTextPane txt_Formacion_1 = new JTextPane();
+	JTextPane txt_Formacion_2 = new JTextPane();
+	JTextPane txt_Formacion_3 = new JTextPane();
+	JTextPane txt_Formacion_4 = new JTextPane();
+	JTextPane txt_Horario_1 = new JTextPane();
+	JTextPane txt_Horario_2 = new JTextPane();
+	JTextPane txt_Horario_3 = new JTextPane();
+	JTextPane txt_Horario_4 = new JTextPane();
+	JLabel lblImg_Instructor_1 = new JLabel("");
+	JLabel lblImg_Instructor_2 = new JLabel("");
+	JLabel lblImg_Instructor_3 = new JLabel("");
+	JLabel lblImg_Instructor_4 = new JLabel("");
 
 	public InstructorView(){
 		frame = new JFrame();
@@ -55,17 +75,29 @@ public class InstructorView {
 		frame.setLocationRelativeTo(null);
 	}
 
-	public void instructor() {
-
-
-		 panel = new JPanel();
+	//Primera vista de instructor
+	public void instructor(Object[][] instructores) {
+		panel = new JPanel();
 		panel.setBounds(0, 0, 1092, 660);
 		panel.setBackground(Color.decode("#F2F2F2"));
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 
 
+
 		//Contenido
+		InstructorModel instructorModel = new InstructorModel();
+
+
+		// Obtener los datos de los instructores
+		Object[][] instructoresa = new Object[4][];
+		Object[][] datosInstructores = instructorModel.get();
+
+		// Llenar los primeros 4 espacios del arreglo con los datos de los instructores obtenidos
+		for (int i = 0; i < datosInstructores.length && i < 4; i++) {
+			instructores[i] = datosInstructores[i];
+		}
+
 		JPanel panelcontenedor =new JPanel();
 		panelcontenedor.setBackground(Color.decode("#FFFFFF"));
 		panelcontenedor.setBounds(200, 76, 882, 573);
@@ -83,8 +115,6 @@ public class InstructorView {
 		lblTituloContenido.setBounds(10, 11, 249, 29);
 		panelCabeceraContenido.add(lblTituloContenido);
 
-
-		//----
 		JPanel panel_Instructor_1 = new JPanel();
 		panel_Instructor_1.setBounds(15, 55, 200, 415);
 		panel_Instructor_1.setBackground(new Color(255, 255, 255));
@@ -92,7 +122,7 @@ public class InstructorView {
 		panel_Instructor_1.setBorder(new LineBorder(Color.decode("#F0F0F0"), 2));
 		panel_Instructor_1.setLayout(null);
 
-		JLabel lblImg_Instructor_1 = new JLabel("");
+
 		lblImg_Instructor_1.setOpaque(true);
 		lblImg_Instructor_1.setBackground(new Color(0, 255, 255));
 		lblImg_Instructor_1.setBounds(50, 15, 100, 100);
@@ -100,14 +130,29 @@ public class InstructorView {
 		lblImg_Instructor_1.setIcon(imageIcon_lblImg_Instructor_1);
 		panel_Instructor_1.add(lblImg_Instructor_1);
 
-		JLabel lbl_Instructor_1 = new JLabel("Tilin");
+		if (instructores[0] != null) {
+			// Obtener el primer dato del primer arreglo
+			Object primerDato = instructores[0][0]; // Suponiendo que el primer dato es el nombre del instructor
+
+			// Asignar el primer dato al componente lbl_instructor1
+			lbl_Instructor_1.setText(primerDato.toString());
+		}else {
+			lbl_Instructor_1.setText("");
+		}
 		lbl_Instructor_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_Instructor_1.setFont(new Font("Calibri", Font.BOLD, 16));
 		lbl_Instructor_1.setBounds(10, 140, 180, 28);
 		panel_Instructor_1.add(lbl_Instructor_1);
 
-		JTextPane txt_Experiencia_1 = new JTextPane();
-		txt_Experiencia_1.setText("tilin tilin tilin tilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilin");
+		if (instructores[0] != null) {
+			// Obtener el primer dato del primer arreglo
+			Object segundoDato = instructores[0][1]; // Suponiendo que el primer dato es el nombre del instructor
+
+			// Asignar el primer dato al componente lbl_instructor1
+			txt_Experiencia_1.setText(segundoDato.toString());
+		}else {
+			txt_Experiencia_1.setText("");
+		}
 		txt_Experiencia_1.setFont(new Font("Calibri", Font.PLAIN, 15));
 		txt_Experiencia_1.setBackground(Color.WHITE);
 		txt_Experiencia_1.setBounds(10, 180, 180, 64);
@@ -121,8 +166,15 @@ public class InstructorView {
 
 		panel_Instructor_1.add(txt_Experiencia_1);
 
-		JTextPane txt_Formacion_1 = new JTextPane();
-		txt_Formacion_1.setText("tilin tilin tilin tilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilin");
+		if (instructores[0] != null) {
+			// Obtener el primer dato del primer arreglo
+			Object tercerDato = instructores[0][2]; // Suponiendo que el primer dato es el nombre del instructor
+
+			// Asignar el primer dato al componente lbl_instructor1
+			txt_Formacion_1.setText(tercerDato.toString());
+		}else {
+			txt_Formacion_1.setText("");
+		}
 		txt_Formacion_1.setFont(new Font("Calibri", Font.PLAIN, 15));
 		txt_Formacion_1.setEditable(false);
 		txt_Formacion_1.setBorder(new LineBorder(Color.WHITE));
@@ -136,8 +188,15 @@ public class InstructorView {
 
 		panel_Instructor_1.add(txt_Formacion_1);
 
-		JTextPane txt_Horario_1 = new JTextPane();
-		txt_Horario_1.setText("tilin tilin tilin tilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilin");
+		if (instructores[0] != null) {
+			// Obtener el primer dato del primer arreglo
+			Object cuartoDato = instructores[0][3]; // Suponiendo que el primer dato es el nombre del instructor
+
+			// Asignar el primer dato al componente lbl_instructor1
+			txt_Horario_1.setText(cuartoDato.toString());
+		}else {
+			txt_Horario_1.setText("");
+		}
 		txt_Horario_1.setFont(new Font("Calibri", Font.PLAIN, 15));
 		txt_Horario_1.setEditable(false);
 		txt_Horario_1.setBorder(new LineBorder(Color.WHITE));
@@ -151,7 +210,7 @@ public class InstructorView {
 
 		panel_Instructor_1.add(txt_Horario_1);
 
-		//----
+		//Segundo instructor
 		JPanel panel_Instructor_2 = new JPanel();
 		panel_Instructor_2.setBounds(232, 55, 200, 415);
 		panel_Instructor_2.setBackground(new Color(255, 255, 255));
@@ -159,7 +218,7 @@ public class InstructorView {
 		panel_Instructor_2.setBorder(new LineBorder(Color.decode("#F0F0F0"), 2));
 		panel_Instructor_2.setLayout(null);
 
-		JLabel lblImg_Instructor_2 = new JLabel("");
+
 		lblImg_Instructor_2.setOpaque(true);
 		lblImg_Instructor_2.setBackground(Color.CYAN);
 		lblImg_Instructor_2.setBounds(50, 15, 100, 100);
@@ -167,14 +226,29 @@ public class InstructorView {
 		lblImg_Instructor_2.setIcon(imageIcon_Instructor_2);
 		panel_Instructor_2.add(lblImg_Instructor_2);
 
-		JLabel lbl_Instructor_2 = new JLabel("Tilin");
+		if (instructores[1] != null) {
+			// Obtener el primer dato del primer arreglo
+			Object primerDato = instructores[1][0]; // Suponiendo que el primer dato es el nombre del instructor
+
+			// Asignar el primer dato al componente lbl_instructor1
+			lbl_Instructor_2.setText(primerDato.toString());
+		}else {
+			lbl_Instructor_2.setText("");
+		}
 		lbl_Instructor_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_Instructor_2.setFont(new Font("Calibri", Font.BOLD, 16));
 		lbl_Instructor_2.setBounds(10, 136, 180, 28);
 		panel_Instructor_2.add(lbl_Instructor_2);
 
-		JTextPane txt_Experiencia_2 = new JTextPane();
-		txt_Experiencia_2.setText("tilin tilin tilin tilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilin");
+		if (instructores[1] != null) {
+			// Obtener el primer dato del primer arreglo
+			Object segundoDato = instructores[1][1]; // Suponiendo que el primer dato es el nombre del instructor
+
+			// Asignar el primer dato al componente lbl_instructor1
+			txt_Experiencia_2.setText(segundoDato.toString());
+		}else {
+			txt_Experiencia_2.setText("");
+		}
 		txt_Experiencia_2.setFont(new Font("Calibri", Font.PLAIN, 15));
 		txt_Experiencia_2.setEditable(false);
 		txt_Experiencia_2.setBorder(new LineBorder(Color.WHITE));
@@ -187,8 +261,15 @@ public class InstructorView {
 		StyleConstants.setAlignment(center_4, StyleConstants.ALIGN_CENTER);
 		doc_4.setParagraphAttributes(0, doc_4.getLength(), center_4, false);
 
-		JTextPane txt_Formacion_2 = new JTextPane();
-		txt_Formacion_2.setText("tilin tilin tilin tilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilin");
+		if (instructores[1] != null) {
+			// Obtener el primer dato del primer arreglo
+			Object tercerDato = instructores[1][2]; // Suponiendo que el primer dato es el nombre del instructor
+
+			// Asignar el primer dato al componente lbl_instructor1
+			txt_Formacion_2.setText(tercerDato.toString());
+		}else {
+			txt_Formacion_2.setText("");
+		}
 		txt_Formacion_2.setFont(new Font("Calibri", Font.PLAIN, 15));
 		txt_Formacion_2.setEditable(false);
 		txt_Formacion_2.setBorder(new LineBorder(Color.WHITE));
@@ -201,8 +282,15 @@ public class InstructorView {
 		StyleConstants.setAlignment(center_5, StyleConstants.ALIGN_CENTER);
 		doc_5.setParagraphAttributes(0, doc_5.getLength(), center_5, false);
 
-		JTextPane txt_Horario_2 = new JTextPane();
-		txt_Horario_2.setText("tilin tilin tilin tilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilin");
+		if (instructores[1] != null) {
+			// Obtener el primer dato del primer arreglo
+			Object cuartoDato = instructores[1][3]; // Suponiendo que el primer dato es el nombre del instructor
+
+			// Asignar el primer dato al componente lbl_instructor1
+			txt_Horario_2.setText(cuartoDato.toString());
+		}else {
+			txt_Horario_2.setText("");
+		}
 		txt_Horario_2.setFont(new Font("Calibri", Font.PLAIN, 15));
 		txt_Horario_2.setEditable(false);
 		txt_Horario_2.setBorder(new LineBorder(Color.WHITE));
@@ -215,7 +303,7 @@ public class InstructorView {
 		StyleConstants.setAlignment(center_6, StyleConstants.ALIGN_CENTER);
 		doc_6.setParagraphAttributes(0, doc_6.getLength(), center_6, false);
 
-		//----
+		//Tercer instructor
 		JPanel panel_Instructor_3 = new JPanel();
 		panel_Instructor_3.setBounds(449, 55, 200, 415);
 		panel_Instructor_3.setBackground(new Color(255, 255, 255));
@@ -223,9 +311,6 @@ public class InstructorView {
 		panel_Instructor_3.setBorder(new LineBorder(Color.decode("#F0F0F0"), 2));
 		panel_Instructor_3.setLayout(null);
 
-
-
-		JLabel lblImg_Instructor_3 = new JLabel("");
 		lblImg_Instructor_3.setOpaque(true);
 		lblImg_Instructor_3.setBackground(Color.CYAN);
 		lblImg_Instructor_3.setBounds(50, 15, 100, 100);
@@ -234,8 +319,15 @@ public class InstructorView {
 		panel_Instructor_3.add(lblImg_Instructor_3);
 
 
+		if (instructores[2] != null) {
+			// Obtener el primer dato del primer arreglo
+			Object primerDato = instructores[2][0]; // Suponiendo que el primer dato es el nombre del instructor
 
-		JLabel lbl_Instructor_3 = new JLabel("Tilin");
+			// Asignar el primer dato al componente lbl_instructor1
+			lbl_Instructor_3.setText(primerDato.toString());
+		}else {
+			lbl_Instructor_3.setText("");
+		}
 		lbl_Instructor_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_Instructor_3.setFont(new Font("Calibri", Font.BOLD, 16));
 		lbl_Instructor_3.setBounds(10, 126, 180, 28);
@@ -243,8 +335,15 @@ public class InstructorView {
 
 
 
-		JTextPane txt_Horario_3 = new JTextPane();
-		txt_Horario_3.setText("tilin tilin tilin tilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilin");
+		if (instructores[2] != null) {
+			// Obtener el primer dato del primer arreglo
+			Object cuartoDato = instructores[2][3]; // Suponiendo que el primer dato es el nombre del instructor
+
+			// Asignar el primer dato al componente lbl_instructor1
+			txt_Horario_3.setText(cuartoDato.toString());
+		}else {
+			txt_Horario_3.setText("");
+		}
 		txt_Horario_3.setFont(new Font("Calibri", Font.PLAIN, 15));
 		txt_Horario_3.setEditable(false);
 		txt_Horario_3.setBorder(new LineBorder(Color.WHITE));
@@ -258,10 +357,15 @@ public class InstructorView {
 		doc_7.setParagraphAttributes(0, doc_7.getLength(), center_7, false);
 
 
+		if (instructores[2] != null) {
+			// Obtener el primer dato del primer arreglo
+			Object tercerDato = instructores[2][2]; // Suponiendo que el primer dato es el nombre del instructor
 
-
-		JTextPane txt_Formacion_3 = new JTextPane();
-		txt_Formacion_3.setText("tilin tilin tilin tilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilin");
+			// Asignar el primer dato al componente lbl_instructor1
+			txt_Formacion_3.setText(tercerDato.toString());
+		}else {
+			txt_Formacion_3.setText("");
+		}
 		txt_Formacion_3.setFont(new Font("Calibri", Font.PLAIN, 15));
 		txt_Formacion_3.setEditable(false);
 		txt_Formacion_3.setBorder(new LineBorder(Color.WHITE));
@@ -274,11 +378,15 @@ public class InstructorView {
 		StyleConstants.setAlignment(center_9, StyleConstants.ALIGN_CENTER);
 		doc_9.setParagraphAttributes(0, doc_9.getLength(), center_9, false);
 
+		if (instructores[2] != null) {
+			// Obtener el primer dato del primer arreglo
+			Object segundoDato = instructores[2][1]; // Suponiendo que el primer dato es el nombre del instructor
 
-
-
-		JTextPane txt_Experiencia_3 = new JTextPane();
-		txt_Experiencia_3.setText("tilin tilin tilin tilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilin");
+			// Asignar el primer dato al componente lbl_instructor1
+			txt_Experiencia_3.setText(segundoDato.toString());
+		}else {
+			txt_Experiencia_3.setText("");
+		}
 		txt_Experiencia_3.setFont(new Font("Calibri", Font.PLAIN, 15));
 		txt_Experiencia_3.setEditable(false);
 		txt_Experiencia_3.setBorder(new LineBorder(Color.WHITE));
@@ -291,7 +399,7 @@ public class InstructorView {
 		StyleConstants.setAlignment(center_8, StyleConstants.ALIGN_CENTER);
 		doc_8.setParagraphAttributes(0, doc_8.getLength(), center_8, false);
 
-		//------
+		//Cuarto instructor
 
 		JPanel panel_Instructor_4 = new JPanel();
 		panel_Instructor_4.setBounds(667, 55, 200, 415);
@@ -300,7 +408,7 @@ public class InstructorView {
 		panel_Instructor_4.setBorder(new LineBorder(Color.decode("#F0F0F0"), 2));
 		panel_Instructor_4.setLayout(null);
 
-		JLabel lblImg_Instructor_4 = new JLabel("");
+
 		lblImg_Instructor_4.setOpaque(true);
 		lblImg_Instructor_4.setBackground(Color.CYAN);
 		lblImg_Instructor_4.setBounds(49, 15, 100, 100);
@@ -308,14 +416,29 @@ public class InstructorView {
 		lblImg_Instructor_4.setIcon(imageIcon_Instructor_4);
 		panel_Instructor_4.add(lblImg_Instructor_4);
 
-		JLabel lbl_Instructor_4 = new JLabel("Tilin");
+		if (instructores[3] != null) {
+			// Obtener el primer dato del primer arreglo
+			Object primerDato = instructores[3][0]; // Suponiendo que el primer dato es el nombre del instructor
+
+			// Asignar el primer dato al componente lbl_instructor1
+			lbl_Instructor_4.setText(primerDato.toString());
+		}else {
+			lbl_Instructor_4.setText("");
+		}
 		lbl_Instructor_4.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_Instructor_4.setFont(new Font("Calibri", Font.BOLD, 16));
 		lbl_Instructor_4.setBounds(10, 126, 180, 28);
 		panel_Instructor_4.add(lbl_Instructor_4);
 
-		JTextPane txt_Horario_4 = new JTextPane();
-		txt_Horario_4.setText("tilin tilin tilin tilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilin");
+		if (instructores[3] != null) {
+			// Obtener el primer dato del primer arreglo
+			Object cuartoDato = instructores[3][3]; // Suponiendo que el primer dato es el nombre del instructor
+
+			// Asignar el primer dato al componente lbl_instructor1
+			txt_Horario_4.setText(cuartoDato.toString());
+		}else {
+			txt_Horario_4.setText("");
+		}
 		txt_Horario_4.setFont(new Font("Calibri", Font.PLAIN, 15));
 		txt_Horario_4.setEditable(false);
 		txt_Horario_4.setBorder(new LineBorder(Color.WHITE));
@@ -328,10 +451,15 @@ public class InstructorView {
 		StyleConstants.setAlignment(center_12, StyleConstants.ALIGN_CENTER);
 		doc_12.setParagraphAttributes(0, doc_12.getLength(), center_12, false);
 
+		if (instructores[3] != null) {
+			// Obtener el primer dato del primer arreglo
+			Object tercerDato = instructores[3][2]; // Suponiendo que el primer dato es el nombre del instructor
 
-
-		JTextPane txt_Formacion_4 = new JTextPane();
-		txt_Formacion_4.setText("tilin tilin tilin tilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilin");
+			// Asignar el primer dato al componente lbl_instructor1
+			txt_Formacion_4.setText(tercerDato.toString());
+		}else {
+			txt_Formacion_4.setText("");
+		}
 		txt_Formacion_4.setFont(new Font("Calibri", Font.PLAIN, 15));
 		txt_Formacion_4.setEditable(false);
 		txt_Formacion_4.setBorder(new LineBorder(Color.WHITE));
@@ -346,14 +474,22 @@ public class InstructorView {
 
 
 
-		JTextPane txt_Experiencia_4 = new JTextPane();
-		txt_Experiencia_4.setText("tilin tilin tilin tilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilintilin tilin tilin");
+		if (instructores[3] != null) {
+			// Obtener el primer dato del primer arreglo
+			Object segundoDato = instructores[3][1]; // Suponiendo que el primer dato es el nombre del instructor
+
+			// Asignar el primer dato al componente lbl_instructor1
+			txt_Experiencia_4.setText(segundoDato.toString());
+		}else {
+			txt_Experiencia_4.setText("");
+		}
 		txt_Experiencia_4.setFont(new Font("Calibri", Font.PLAIN, 15));
 		txt_Experiencia_4.setEditable(false);
 		txt_Experiencia_4.setBorder(new LineBorder(Color.WHITE));
 		txt_Experiencia_4.setBackground(Color.WHITE);
 		txt_Experiencia_4.setBounds(10, 176, 180, 64);
 		panel_Instructor_4.add(txt_Experiencia_4);
+
 
 
 		//Botones
@@ -377,7 +513,9 @@ public class InstructorView {
 
 			btnAñadirInstructor1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					System.out.println("Añadir instructor 1");
+					InstructorController controller= new InstructorController();
+					frame.dispose();
+					controller.CrearInstructor();
 				}
 			});
 		} else {
@@ -386,7 +524,8 @@ public class InstructorView {
 			panelcontenedor.add(btnDescargarCredencial1);
 			btnDescargarCredencial1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					System.out.println("Descargar credencial 1");
+					Object quintoDato = instructores[0][4]; // Suponiendo que el primer dato es el nombre del instructor
+					instructorModel.pdf(Integer.parseInt(quintoDato.toString()));
 				}
 			});
 			btnDescargarCredencial1.setForeground(Color.WHITE);
@@ -440,9 +579,14 @@ public class InstructorView {
 			btnEliminarInstructor1.setBounds(0, 0, 200, 20);
 			panelBtnInstructor3.add(btnEliminarInstructor1);
 
+
 			btnEliminarInstructor1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					System.out.println("Eliminar instructor 1");
+					Object quintoDato = instructores[0][4]; // Suponiendo que el primer dato es el nombre del instructor
+					instructorModel.eliminarInstructor(Integer.parseInt(quintoDato.toString()));
+					InstructorController controller= new InstructorController();
+					frame.dispose();
+					controller.instructor();
 				}
 			});
 		}
@@ -466,7 +610,9 @@ public class InstructorView {
 
 			btnAñadirInstructor2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					System.out.println("Añadir instructor 2");
+					InstructorController controller= new InstructorController();
+					frame.dispose();
+					controller.CrearInstructor();
 				}
 			});
 		} else {
@@ -488,7 +634,8 @@ public class InstructorView {
 
 			btnDescargarCredencial2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					System.out.println("Descargar credencial 2");
+					Object quintoDato = instructores[1][4]; // Suponiendo que el primer dato es el nombre del instructor
+					instructorModel.pdf(Integer.parseInt(quintoDato.toString()));
 				}
 			});
 
@@ -532,7 +679,11 @@ public class InstructorView {
 
 			btnEliminarInstructor2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					System.out.println("Eliminar instructor 2");
+					Object quintoDato = instructores[1][4]; // Suponiendo que el primer dato es el nombre del instructor
+					instructorModel.eliminarInstructor(Integer.parseInt(quintoDato.toString()));
+					InstructorController controller= new InstructorController();
+					frame.dispose();
+					controller.instructor();
 				}
 			});
 		}
@@ -556,7 +707,9 @@ public class InstructorView {
 
 			btnAñadirInstructor3.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					System.out.println("Añadir instructor 3");
+					InstructorController controller= new InstructorController();
+					frame.dispose();
+					controller.CrearInstructor();
 				}
 			});
 		} else {
@@ -578,7 +731,8 @@ public class InstructorView {
 
 			btnDescargarCredencial3.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					System.out.println("Descargar credencial 3");
+					Object quintoDato = instructores[2][4]; // Suponiendo que el primer dato es el nombre del instructor
+					instructorModel.pdf(Integer.parseInt(quintoDato.toString()));
 				}
 			});
 
@@ -622,7 +776,11 @@ public class InstructorView {
 
 			btnEliminarInstructor.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					System.out.println("Eliminar instructor 3");
+					Object quintoDato = instructores[1][4]; // Suponiendo que el primer dato es el nombre del instructor
+					instructorModel.eliminarInstructor(Integer.parseInt(quintoDato.toString()));
+					InstructorController controller= new InstructorController();
+					frame.dispose();
+					controller.instructor();
 				}
 			});
 		}
@@ -646,7 +804,9 @@ public class InstructorView {
 
 			btnAñadirInstructor1_3.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					System.out.println("Añadir instructor 4");
+					InstructorController controller= new InstructorController();
+					frame.dispose();
+					controller.CrearInstructor();
 				}
 			});
 		} else {
@@ -668,7 +828,8 @@ public class InstructorView {
 
 			btnDescargarCredencial4.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					System.out.println("Descargar credencial 4");
+					Object quintoDato = instructores[3][4]; // Suponiendo que el primer dato es el nombre del instructor
+					instructorModel.pdf(Integer.parseInt(quintoDato.toString()));
 				}
 			});
 
@@ -712,19 +873,19 @@ public class InstructorView {
 
 			btnEliminarInstructor4.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					System.out.println("Eliminar instructor 4");
+					Object quintoDato = instructores[1][4]; // Suponiendo que el primer dato es el nombre del instructor
+					instructorModel.eliminarInstructor(Integer.parseInt(quintoDato.toString()));
+					InstructorController controller= new InstructorController();
+					frame.dispose();
+					controller.instructor();
 				}
 			});
 		}
-
-
 		vistaComun();
-
-
-
-
+		frame.repaint();
 	}
 
+	//Para crear los instructores
 	public void crearInstructor() {
 		panel = new JPanel();
 		panel.setBounds(0, 0, 1092, 660);
@@ -732,121 +893,128 @@ public class InstructorView {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 
-		
+		InstructorModel instructorModel = new InstructorModel();
 		//Contenido
-				JPanel panelcontenedor =new JPanel();
-				panelcontenedor.setBackground(Color.decode("#FFFFFF"));
-				panelcontenedor.setBounds(200, 76, 882, 573);
-				panel.add(panelcontenedor);
-				panelcontenedor.setLayout(null);
+		JPanel panelcontenedor =new JPanel();
+		panelcontenedor.setBackground(Color.decode("#FFFFFF"));
+		panelcontenedor.setBounds(200, 76, 882, 573);
+		panel.add(panelcontenedor);
+		panelcontenedor.setLayout(null);
 
-				JPanel panelCabeceraContenido = new JPanel();
-				panelCabeceraContenido.setLayout(null);
-				panelCabeceraContenido.setBackground(new Color(188, 218, 242));
-				panelCabeceraContenido.setBounds(0, 0, 882, 40);
-				panelcontenedor.add(panelCabeceraContenido);
+		JPanel panelCabeceraContenido = new JPanel();
+		panelCabeceraContenido.setLayout(null);
+		panelCabeceraContenido.setBackground(new Color(188, 218, 242));
+		panelCabeceraContenido.setBounds(0, 0, 882, 40);
+		panelcontenedor.add(panelCabeceraContenido);
 
-				JLabel lblTituloContenido = new JLabel("Crear instructor");
-				lblTituloContenido.setFont(new Font("Calibri", Font.PLAIN, 26));
-				lblTituloContenido.setBounds(10, 11, 438, 29);
-				panelCabeceraContenido.add(lblTituloContenido);
+		JLabel lblTituloContenido = new JLabel("Crear instructor");
+		lblTituloContenido.setFont(new Font("Calibri", Font.PLAIN, 26));
+		lblTituloContenido.setBounds(10, 11, 438, 29);
+		panelCabeceraContenido.add(lblTituloContenido);
 
-				JLabel lblIngreseLosDatos = new JLabel("Ingrese los datos del instructor");
-				lblIngreseLosDatos.setFont(new Font("Calibri", Font.PLAIN, 26));
-				lblIngreseLosDatos.setBounds(243, 72, 414, 29);
-				panelcontenedor.add(lblIngreseLosDatos);
+		JLabel lblIngreseLosDatos = new JLabel("Ingrese los datos del instructor");
+		lblIngreseLosDatos.setFont(new Font("Calibri", Font.PLAIN, 26));
+		lblIngreseLosDatos.setBounds(243, 72, 414, 29);
+		panelcontenedor.add(lblIngreseLosDatos);
 
-				JLabel lblNombreCompleto = new JLabel("Nombre completo");
-				lblNombreCompleto.setFont(new Font("Calibri", Font.PLAIN, 16));
-				lblNombreCompleto.setBounds(191, 137, 168, 29);
-				panelcontenedor.add(lblNombreCompleto);
+		JLabel lblNombreCompleto = new JLabel("Nombre completo");
+		lblNombreCompleto.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblNombreCompleto.setBounds(191, 137, 168, 29);
+		panelcontenedor.add(lblNombreCompleto);
 
-				JTextArea textClasenombre = new JTextArea();
-				textClasenombre.setFont(new Font("Calibri", Font.PLAIN, 18));
-				textClasenombre.setBackground(Color.decode("#F5F5F5"));
-				textClasenombre.setBounds(191, 168, 500, 35);
-				textClasenombre.setBorder(BorderFactory.createCompoundBorder(
-						new LineBorder(Color.decode("#D4D4D4"), 1),
-						new EmptyBorder(10, 10, 10, 10)
-						));
-				((PlainDocument) textClasenombre.getDocument()).setDocumentFilter(new FixedLengthDocumentFilter(40));
-				panelcontenedor.add(textClasenombre);
+		//LLenar la informacion del instructor
+		JTextArea textClasenombre = new JTextArea();
+		textClasenombre.setFont(new Font("Calibri", Font.PLAIN, 18));
+		textClasenombre.setBackground(Color.decode("#F5F5F5"));
+		textClasenombre.setBounds(191, 168, 500, 35);
+		((PlainDocument) textClasenombre.getDocument()).setDocumentFilter(new FixedLengthDocumentFilter(40));
+		panelcontenedor.add(textClasenombre);
 
-				JLabel lblExperiencia = new JLabel("Experiencia");
-				lblExperiencia.setFont(new Font("Calibri", Font.PLAIN, 16));
-				lblExperiencia.setBounds(191, 214, 168, 29);
-				panelcontenedor.add(lblExperiencia);
+		JLabel lblExperiencia = new JLabel("Experiencia");
+		lblExperiencia.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblExperiencia.setBounds(191, 214, 168, 29);
+		panelcontenedor.add(lblExperiencia);
 
-				JTextArea textExperiencia = new JTextArea();
-				textExperiencia.setFont(new Font("Calibri", Font.PLAIN, 18));
-				textExperiencia.setBorder(new LineBorder(Color.decode("#D4D4D4"), 1));
-				textExperiencia.setBackground(new Color(245, 245, 245));
-				textExperiencia.setBounds(191, 240, 500, 62);
-				((PlainDocument) textExperiencia.getDocument()).setDocumentFilter(new FixedLengthDocumentFilter(100));
-				panelcontenedor.add(textExperiencia);
+		JTextArea textExperiencia = new JTextArea();
+		textExperiencia.setFont(new Font("Calibri", Font.PLAIN, 18));
+		textExperiencia.setBorder(new LineBorder(Color.decode("#D4D4D4"), 1));
+		textExperiencia.setBackground(new Color(245, 245, 245));
+		textExperiencia.setBounds(191, 240, 500, 62);
+		((PlainDocument) textExperiencia.getDocument()).setDocumentFilter(new FixedLengthDocumentFilter(100));
+		panelcontenedor.add(textExperiencia);
 
-				JLabel lblFormacion = new JLabel("Formación");
-				lblFormacion.setFont(new Font("Calibri", Font.PLAIN, 16));
-				lblFormacion.setBounds(191, 307, 202, 29);
-				panelcontenedor.add(lblFormacion);
+		JLabel lblFormacion = new JLabel("Formación");
+		lblFormacion.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblFormacion.setBounds(191, 307, 202, 29);
+		panelcontenedor.add(lblFormacion);
 
-				JTextArea textFormacion = new JTextArea();
-				textFormacion.setFont(new Font("Calibri", Font.PLAIN, 18));
-				textFormacion.setBorder(new LineBorder(Color.decode("#D4D4D4"), 1));
-				textFormacion.setBackground(new Color(245, 245, 245));
-				textFormacion.setBounds(191, 332, 500, 62);
-				((PlainDocument) textFormacion.getDocument()).setDocumentFilter(new FixedLengthDocumentFilter(100));
-				panelcontenedor.add(textFormacion);
+		JTextArea textFormacion = new JTextArea();
+		textFormacion.setFont(new Font("Calibri", Font.PLAIN, 18));
+		textFormacion.setBorder(new LineBorder(Color.decode("#D4D4D4"), 1));
+		textFormacion.setBackground(new Color(245, 245, 245));
+		textFormacion.setBounds(191, 332, 500, 62);
+		((PlainDocument) textFormacion.getDocument()).setDocumentFilter(new FixedLengthDocumentFilter(100));
+		panelcontenedor.add(textFormacion);
 
-				JLabel lblHorario = new JLabel("Horario");
-				lblHorario.setFont(new Font("Calibri", Font.PLAIN, 16));
-				lblHorario.setBounds(191, 401, 202, 29);
-				panelcontenedor.add(lblHorario);
+		JLabel lblHorario = new JLabel("Horario");
+		lblHorario.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblHorario.setBounds(191, 401, 202, 29);
+		panelcontenedor.add(lblHorario);
 
-				JTextArea textHorario = new JTextArea();
-				textHorario.setFont(new Font("Calibri", Font.PLAIN, 18));
-				textHorario.setBorder(new LineBorder(Color.decode("#D4D4D4"), 1));
-				textHorario.setBackground(new Color(245, 245, 245));
-				textHorario.setBounds(191, 427, 500, 40);
-				((PlainDocument) textHorario.getDocument()).setDocumentFilter(new FixedLengthDocumentFilter(80));
-				panelcontenedor.add(textHorario);
+		JTextArea textHorario = new JTextArea();
+		textHorario.setFont(new Font("Calibri", Font.PLAIN, 18));
+		textHorario.setBorder(new LineBorder(Color.decode("#D4D4D4"), 1));
+		textHorario.setBackground(new Color(245, 245, 245));
+		textHorario.setBounds(191, 427, 500, 40);
+		((PlainDocument) textHorario.getDocument()).setDocumentFilter(new FixedLengthDocumentFilter(80));
+		panelcontenedor.add(textHorario);
 
-				JPanel panel_1 = new JPanel();
-				panel_1.setBounds(191, 494, 502, 40);
-				panelcontenedor.add(panel_1);
-				panel_1.setBackground(Color.decode("#214177"));
-				panel_1.setLayout(null);
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(191, 494, 502, 40);
+		panelcontenedor.add(panel_1);
+		panel_1.setBackground(Color.decode("#214177"));
+		panel_1.setLayout(null);
+		
+		//registrar el instructor
+		JButton btnRegistrarInstructor = new JButton("Registrar instructor");
+		btnRegistrarInstructor.setBounds(0, 0, 502, 38);
+		panel_1.add(btnRegistrarInstructor);
+		btnRegistrarInstructor.setForeground(Color.WHITE);
+		btnRegistrarInstructor.setFont(new Font("Calibri", Font.BOLD, 20));
+		btnRegistrarInstructor.setFocusPainted(false);
+		btnRegistrarInstructor.setBorderPainted(false);
+		btnRegistrarInstructor.setContentAreaFilled(false);
+		btnRegistrarInstructor.setBackground(Color.decode("#214177"));
 
-				JButton btnRegistrarInstructor = new JButton("Registrar instructor");
-				btnRegistrarInstructor.setBounds(0, 0, 502, 38);
-				panel_1.add(btnRegistrarInstructor);
-				btnRegistrarInstructor.setForeground(Color.WHITE);
-				btnRegistrarInstructor.setFont(new Font("Calibri", Font.BOLD, 20));
-				btnRegistrarInstructor.setFocusPainted(false);
-				btnRegistrarInstructor.setBorderPainted(false);
-				btnRegistrarInstructor.setContentAreaFilled(false);
-				btnRegistrarInstructor.setBackground(Color.decode("#214177"));
+		btnRegistrarInstructor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String nombre = textClasenombre.getText().trim();
+				String experiencia = textExperiencia.getText().trim();
+				String formacion = textFormacion.getText().trim();
+				String horario = textHorario.getText().trim();
 
-				btnRegistrarInstructor.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						String nombre = textClasenombre.getText().trim();
-						String experiencia = textExperiencia.getText().trim();
-						String formacion = textFormacion.getText().trim();
-						String horario = textHorario.getText().trim();
+				if (nombre.isEmpty() || experiencia.isEmpty() || formacion.isEmpty() || horario.isEmpty()) {
+					JOptionPane.showMessageDialog(frame, "Todos los campos deben estar llenos.", "Error", JOptionPane.ERROR_MESSAGE);
+				} else {
+					if(instructorModel.agregarInstructor(nombre, experiencia, formacion, horario) == true) {
+						JOptionPane.showMessageDialog(frame, "El instructor ya se encuentra registrado.", "Registro erroneo", JOptionPane.ERROR_MESSAGE);
+					}else {
+						JOptionPane.showMessageDialog(frame, "Instructor registrado exitosamente.", "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
 
-						if (nombre.isEmpty() || experiencia.isEmpty() || formacion.isEmpty() || horario.isEmpty()) {
-							JOptionPane.showMessageDialog(frame, "Todos los campos deben estar llenos.", "Error", JOptionPane.ERROR_MESSAGE);
-						} else {
-							JOptionPane.showMessageDialog(frame, "Instructor registrado exitosamente.", "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
-						}
+
+						InstructorController controller= new InstructorController();
+						frame.dispose();
+						controller.AvatarInstructor();
 					}
-				});
+				}
+			}
+		});
 
-				vistaComun();
+		vistaComun();
 
 
 	}
-
+	//Avatar del instructor
 	public void crearInstructorAvatar() {
 		panel = new JPanel();
 		panel.setBounds(0, 0, 1092, 660);
@@ -891,7 +1059,10 @@ public class InstructorView {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// Acción al hacer clic en el label
-				
+				InstructorController controller= new InstructorController();
+				frame.dispose();
+				controller.instructor();
+
 			}
 		});
 		panelcontenedor.add(lblAvatar1);
@@ -901,22 +1072,25 @@ public class InstructorView {
 		lblAvatar2.setFont(new Font("Calibri", Font.PLAIN, 16));
 		lblAvatar2.setBackground(new Color(0, 64, 128));
 		lblAvatar2.setBounds(510, 140, 160, 160);
-		ImageIcon imageIcon_lblAvatar2 = new ImageIcon("img/mujerCrearpfp.png");
+		ImageIcon imageIcon_lblAvatar2 = new ImageIcon("img/imgEntrenador1.png");
 		lblAvatar2.setIcon(imageIcon_lblAvatar2);
 		lblAvatar2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// Acción al hacer clic en el label
-				
+				ImageIcon nuevaImagen = new ImageIcon("img/imgEntrenador1.png");
+				lblImg_Instructor_1.setIcon(nuevaImagen);
+				InstructorController controller= new InstructorController();
+				frame.dispose();
+				controller.instructor();
 			}
 		});
 		panelcontenedor.add(lblAvatar2);
 		vistaComun();
 	}
-
+	//editar instructor
 	public void editarInstructor() {
-		
-		
+
+
 		panel = new JPanel();
 		panel.setBounds(0, 0, 1092, 660);
 		panel.setBackground(Color.decode("#F2F2F2"));
@@ -1016,13 +1190,13 @@ public class InstructorView {
 		btnRegistrarInstructor.setBorderPainted(false);
 		btnRegistrarInstructor.setContentAreaFilled(false);
 		btnRegistrarInstructor.setBackground(Color.decode("#214177"));
-		
+
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setLayout(null);
 		panel_1_1.setBackground(Color.decode("#A73737"));
 		panel_1_1.setBounds(189, 524, 502, 35);
 		panelcontenedor.add(panel_1_1);
-		
+
 		JButton btnCancelar = new JButton("Cancelar cambios");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1053,10 +1227,10 @@ public class InstructorView {
 		});
 
 		vistaComun();
-		
+
 	}
 
-	//Parte de botones ventanas principales y cabecere
+	//Parte de botones ventanas principales y cabecera
 	public void vistaComun() {
 
 		//Cabecera
@@ -1314,7 +1488,6 @@ public class InstructorView {
 		btnCerrarSesion.setBackground(new Color(33, 65, 119));
 		btnCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(frame,"Su cuenta ha sido cerrada.","Alerta de Cuenta Cerrada",JOptionPane.WARNING_MESSAGE);
 				Auth controller = new Auth();
 				frame.dispose();
 				controller.cerrar();
