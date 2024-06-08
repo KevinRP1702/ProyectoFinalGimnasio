@@ -62,43 +62,46 @@ public class ClassModel {
 		return true;
 	}
 	
-	public List<List<Object>> get() {
-	        List<List<Object>> datos = new ArrayList<>();
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			
-			
-				Connection con=DriverManager.getConnection("jdbc:mysql://sql.freedb.tech:3306/freedb_data_base_gym","freedb_data_base_master","DdkJubsw3X%ZW2t");
-				Statement stmt = con.createStatement();
-		        ResultSet rs = stmt.executeQuery("SELECT * FROM `Clases`");
+	public ArrayList<String[]> obtenerDatosClases() {
+	    ArrayList<String[]> datosClases = new ArrayList<>();
 
-		            while (rs.next()) {
-		            	String nombreClase = rs.getString("clase");
-		                String instructor = rs.getString("instructor");
-		                List<Object> claseData = new ArrayList<>();
-		                claseData.add(nombreClase);
-		                claseData.add(instructor);
+	    try {
+	        Class.forName("com.mysql.cj.jdbc.Driver");
 
-		                Statement stmt2 = con.createStatement();
-		                ResultSet rs2 = stmt2.executeQuery("SELECT COUNT(*) FROM Inscripciones WHERE clase_id = " + rs.getString("idClase"));
+	        try (Connection con = DriverManager.getConnection("jdbc:mysql://sql.freedb.tech:3306/freedb_data_base_gym", "freedb_data_base_master", "DdkJubsw3X%ZW2t")) {
+	            String query = "SELECT idClase, clase, instructor FROM Clases;";
+	            
+	            try (PreparedStatement pstmt = con.prepareStatement(query);
+	                 ResultSet rs = pstmt.executeQuery()) {
+	                
+	                while (rs.next()) {
+	                    String[] claseData = new String[3];
+	                    claseData[0] = rs.getString("idClase");
+	                    claseData[1] = rs.getString("clase");
+	                    claseData[2] = rs.getString("instructor");
 
-		                int numeroClientes = 0;
-		                if (rs2.next()) {
-		                    numeroClientes = rs2.getInt(1);
-		                }
+	              
+	                    String subQuery = "SELECT COUNT(*) FROM Inscripciones WHERE clase_id = ?";
+	                    try (PreparedStatement subPstmt = con.prepareStatement(subQuery)) {
+	                        subPstmt.setString(1, claseData[0]);
+	                        try (ResultSet rs2 = subPstmt.executeQuery()) {
+	                            if (rs2.next()) {
+	                                String numeroClientes = Integer.toString(rs2.getInt(1));
+	                                claseData = Arrays.copyOf(claseData, claseData.length + 1);
+	                                claseData[3] = numeroClientes;
+	                            }
+	                        }
+	                    }	
+	                    
+	                    datosClases.add(claseData);
+	                }
+	            }
+	        }
+	    } catch (ClassNotFoundException | SQLException e) {
+	        e.printStackTrace();
+	    }
 
-		                claseData.add(numeroClientes);
-		                datos.add(claseData);
-		            	}
-		            
-				con.close();  
-				
-			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}  
-		return datos;
-		
+	    return datosClases;
 	}
 	
 	public boolean entrarClase(int idCliente, String clase) {
@@ -142,105 +145,115 @@ public class ClassModel {
 		return true;
 	}
 	
-	public List<List> clientesClases(String clase) {
-		List<List> data = new ArrayList();
-		List<List> data2 = new ArrayList();
-		int idClase = 0;
-		
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			
-				Connection con=DriverManager.getConnection("jdbc:mysql://sql.freedb.tech:3306/freedb_data_base_gym","freedb_data_base_master","DdkJubsw3X%ZW2t");
-				
-				Statement stmt=con.createStatement();  
-				ResultSet rs=stmt.executeQuery("SELECT * FROM `Clases` WHERE clase = '"+clase+"';");  
-				if (rs.next()) {
-		             idClase = Integer.valueOf(rs.getString(1));
-				}
-				
-				Statement stmt3=con.createStatement();  
-				ResultSet rs3=stmt3.executeQuery("SELECT * FROM `Inscripciones` WHERE clase_id = '"+idClase+"';");  
-			            while(rs3.next()) {
-				    	String [] idClientes = {rs3.getString(3)};	
-				    	List<String> info = Arrays.asList(idClientes);
-				    	
-				    	data.add(info);
-			            }
-			    
-			    for(int i = 0; i < data.size(); i++) {
-					Statement stm2 = con.createStatement(); 
-				    ResultSet rs2 = stm2.executeQuery("SELECT * FROM `Clientes` WHERE idCliente = '"+data.get(i).get(0)+"';");
+	public List<String[]> clientesClases(String clase) {
+        List<String[]> data2 = new ArrayList<>();
+        int idClase = 0;
 
-				    while(rs2.next()) {
-				    	String [] clientes = {rs2.getString(2), rs2.getString(3), rs2.getString(1)};	
-				    	List<String> info = Arrays.asList(clientes);
-				    	
-				    	data2.add(info);
-				    }
-			    }
-				con.close();  
-				return data2;
-				
-			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}  
-		return null;
-	}
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            try (Connection con = DriverManager.getConnection("jdbc:mysql://sql.freedb.tech:3306/freedb_data_base_gym", "freedb_data_base_master", "DdkJubsw3X%ZW2t")) {
+                // Obtener el ID de la clase
+                String claseQuery = "SELECT idClase FROM Clases WHERE clase = ?";
+                try (PreparedStatement pstmtClase = con.prepareStatement(claseQuery)) {
+                    pstmtClase.setString(1, clase);
+                    try (ResultSet rsClase = pstmtClase.executeQuery()) {
+                        if (rsClase.next()) {
+                            idClase = rsClase.getInt("idClase");
+                        }
+                    }
+                }
+
+                // Obtener los IDs de los clientes inscritos en la clase
+                List<Integer> idClientes = new ArrayList<>();
+                String inscripcionesQuery = "SELECT cliente_id FROM Inscripciones WHERE clase_id = ?";
+                try (PreparedStatement pstmtInscripciones = con.prepareStatement(inscripcionesQuery)) {
+                    pstmtInscripciones.setInt(1, idClase);
+                    try (ResultSet rsInscripciones = pstmtInscripciones.executeQuery()) {
+                        while (rsInscripciones.next()) {
+                            idClientes.add(rsInscripciones.getInt("cliente_id"));
+                        }
+                    }
+                }
+
+                // Obtener los datos de los clientes
+                String clienteQuery = "SELECT idCliente, nombres, apellidos FROM Clientes WHERE idCliente = ?";
+                try (PreparedStatement pstmtCliente = con.prepareStatement(clienteQuery)) {
+                    for (int idCliente : idClientes) {
+                        pstmtCliente.setInt(1, idCliente);
+                        try (ResultSet rsCliente = pstmtCliente.executeQuery()) {
+                            if (rsCliente.next()) {
+                                String[] clienteData = new String[3];
+                                clienteData[0] = rsCliente.getString("idCliente");
+                                clienteData[1] = rsCliente.getString("nombres");
+                                clienteData[2] = rsCliente.getString("apellidos");
+                                data2.add(clienteData);
+                            }
+                        }
+                    }
+                }
+            }
+            return data2;
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 	
 	public void pdf(String clase) {
-		List<List> clientes = clientesClases(clase); 
-	    
-	    Document document = new Document(PageSize.A4.rotate());
-	    JFileChooser chooser = new JFileChooser();
-		chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-		chooser.setAcceptAllFileFilterUsed(false);
-		FileNameExtensionFilter pdfs = new FileNameExtensionFilter("Documentos PDF", "pdf");
-		chooser.addChoosableFileFilter(pdfs);
-		chooser.setFileFilter(pdfs);
-		
-		if (JFileChooser.CANCEL_OPTION == chooser.showDialog(null, "Generar PDF")) {
-			JOptionPane.showMessageDialog(null, "No se genero el PDF.");
-			return;
-		}
-	    try {
-	        PdfWriter.getInstance(document, new FileOutputStream(chooser.getSelectedFile()));
-	        document.open();
+		List<String[]> clientes = clientesClases(clase);
 
-	        // Agrega contenido al documento
-	        document.add(new Paragraph("Tabla de clientes de la clase de: " + clase));
+        Document document = new Document(PageSize.A4.rotate());
+        JFileChooser chooser = new JFileChooser();
+        chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        chooser.setAcceptAllFileFilterUsed(false);
+        FileNameExtensionFilter pdfs = new FileNameExtensionFilter("Documentos PDF", "pdf");
+        chooser.addChoosableFileFilter(pdfs);
+        chooser.setFileFilter(pdfs);
 
-	        // Crea la tabla
-	        PdfPTable table = new PdfPTable(new float[] { 1, 1, 1 });
-	        table.setWidthPercentage(100);
-	        
-	        PdfPCell nombresHeader = new PdfPCell(new Phrase("Nombre(s)"));
-	        nombresHeader.setHorizontalAlignment(Element.ALIGN_CENTER); 
-	        PdfPCell apellidosHeader = new PdfPCell(new Phrase("Apellido(s)"));
-	        apellidosHeader.setHorizontalAlignment(Element.ALIGN_CENTER); 
-	        PdfPCell idHeader = new PdfPCell(new Phrase("ID cliente"));
-	        idHeader.setHorizontalAlignment(Element.ALIGN_CENTER); 
-	        table.addCell(nombresHeader);
-	        table.addCell(apellidosHeader);
-	        table.addCell(idHeader);
+        if (JFileChooser.CANCEL_OPTION == chooser.showDialog(null, "Generar PDF")) {
+            JOptionPane.showMessageDialog(null, "No se genero el PDF.");
+            return;
+        }else {
+        	 JOptionPane.showMessageDialog(null, "Se generó el PDF correctamente.");
+        }
+        try {
+            PdfWriter.getInstance(document, new FileOutputStream(chooser.getSelectedFile()));
+            document.open();
 
-	        // Agrega filas y columnas a la tabla utilizando los datos obtenidos de clientesClases
-	        for (List<String> cliente : clientes) {
-	            table.addCell(cliente.get(0)); // Nombre
-	            table.addCell(cliente.get(1)); // Apellido
-	            table.addCell(cliente.get(2)); // Correo
-	        }
+            // Agrega contenido al documento
+            document.add(new Paragraph("Tabla de clientes de la clase de: " + clase));
 
-	        // Agrega la tabla al documento
-	        document.add(table);
+            // Crea la tabla
+            PdfPTable table = new PdfPTable(new float[]{1, 1, 1});
+            table.setWidthPercentage(100);
 
-	        // Cierra el documento
-	        document.close();
-	        
-		} catch (FileNotFoundException | DocumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+            PdfPCell nombresHeader = new PdfPCell(new Phrase("Nombre(s)"));
+            nombresHeader.setHorizontalAlignment(Element.ALIGN_CENTER);
+            PdfPCell apellidosHeader = new PdfPCell(new Phrase("Apellido(s)"));
+            apellidosHeader.setHorizontalAlignment(Element.ALIGN_CENTER);
+            PdfPCell idHeader = new PdfPCell(new Phrase("ID cliente"));
+            idHeader.setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.addCell(nombresHeader);
+            table.addCell(apellidosHeader);
+            table.addCell(idHeader);
+
+            // Agrega filas y columnas a la tabla utilizando los datos obtenidos de clientesClases
+            for (String[] cliente : clientes) {
+                table.addCell(cliente[1]); // Nombre
+                table.addCell(cliente[2]); // Apellido
+                table.addCell(cliente[0]); // ID cliente
+            }
+
+            // Agrega la tabla al documento
+            document.add(table);
+
+            // Cierra el documento
+            document.close();
+
+        } catch (FileNotFoundException | DocumentException e) {
+            e.printStackTrace();
+        }
 	}
 	
 	public String nombreEntrenador(String clase) {

@@ -19,7 +19,7 @@ public class FeeModel {
 	        Connection con = DriverManager.getConnection("jdbc:mysql://sql.freedb.tech:3306/freedb_data_base_gym", "freedb_data_base_master", "DdkJubsw3X%ZW2t");
 	        
 	        Statement stmt = con.createStatement();
-	        ResultSet rs = stmt.executeQuery("SELECT idCliente, nombres, apellidos correo FROM `Clientes` WHERE idCliente = '" + idCliente + "';");
+	        ResultSet rs = stmt.executeQuery("SELECT idCliente, nombres, apellidos, correo FROM `Clientes` WHERE idCliente = '" + idCliente + "';");
 
 	        if (rs.next()) {
 	        	datosCliente.add(rs.getString("nombres"));

@@ -19,8 +19,7 @@ public class ClassController {
 	
 	public void clase() {
 		
-		List<List<Object>> clases = data.get();
-		vista.clase(clases);
+		vista.clase();
 
 	}
 	
@@ -31,9 +30,8 @@ public class ClassController {
 	}
 	
 	public void consultarClase(String claseSeleccionada) {
-		
-		List<List> clientesClases = data.clientesClases(claseSeleccionada);
-		vista.consultarClase(claseSeleccionada, clientesClases);
+
+		vista.consultarClase(claseSeleccionada);
 		
 	}
 }

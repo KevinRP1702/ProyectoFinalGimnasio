@@ -46,7 +46,6 @@ public class AuthView {
 	}
 	
 	public void login() {
-		
 		//Diseño del login
 		JPanel panelLogin = new JPanel();
 		panelLogin.setBounds(0, 0, 550, 660);
@@ -60,15 +59,13 @@ public class AuthView {
 		panelLogincontenedor.setLayout(null);
 		
 		JLabel lblLogintitulo = new JLabel("Gym-World");
-		lblLogintitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLogintitulo.setFont(new Font("Calibri", Font.BOLD, 61));
-		lblLogintitulo.setBounds(10, 49, 460, 109);
+		lblLogintitulo.setFont(new Font("Calibri", Font.BOLD, 65));
+		lblLogintitulo.setBounds(60, 49, 350, 109);
 		panelLogincontenedor.add(lblLogintitulo);
 		
 		JLabel lblSub = new JLabel("Ingrese sus datos para iniciar sesión");
-		lblSub.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSub.setFont(new Font("Calibri", Font.PLAIN, 18));
-		lblSub.setBounds(10, 169, 450, 26);
+		lblSub.setBounds(89, 169, 292, 26);
 		panelLogincontenedor.add(lblSub);
 		
 		
@@ -107,71 +104,60 @@ public class AuthView {
 		panelLogincontenedor.add(textCont);
 		
 		
-		//Botono iniciar sesion
-		JPanel panelCrearCuenta = new JPanel();
-		panelCrearCuenta.setBounds(60, 452, 350, 40);
-		panelCrearCuenta.setBackground(Color.decode("#214177"));
-		panelLogincontenedor.add(panelCrearCuenta);
-		panelCrearCuenta.setLayout(null);
-		JButton btnCrearCuenta = new JButton("Añadir instructor");
-		btnCrearCuenta.setBounds(0, 0, 350, 40);
-		panelCrearCuenta.add(btnCrearCuenta);
-		btnCrearCuenta.setForeground(Color.WHITE);
-		btnCrearCuenta.setFont(new Font("Calibri", Font.BOLD, 17));
-		btnCrearCuenta.setFocusPainted(false);
-		btnCrearCuenta.setContentAreaFilled(false);
-		btnCrearCuenta.setBorderPainted(false);
 		
+		
+		JButton btnSesion = new JButton("Iniciar sesión");
+		btnSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 if (textUsuario.getText().equals("") || textCont.getPassword().length == 0) {
+					 
+			            JOptionPane.showMessageDialog(frame, "Debe llenar todos los campos", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
+			        } else {
+			        	
+			        	
+			        	if((auth.login(textUsuario.getText(), textCont.getText()) != false)) {
+			        		frame.dispose();
+			        	}
+			        	else {
+			        		JOptionPane.showMessageDialog(frame, "Sus credenciales no coinciden con una cuenta existente", "Error", JOptionPane.WARNING_MESSAGE);
+			        	}
+			           
+			        }
+					
+				
+				
+				
+			}
+		});
+		btnSesion.setFont(new Font("Calibri", Font.BOLD, 24));
+		btnSesion.setForeground(new Color(255, 255, 255));
+		btnSesion.setBackground(Color.decode("#3768A7"));
+		btnSesion.setBounds(60, 375, 350, 40);
+		btnSesion.setFocusPainted(false);
+		
+		panelLogincontenedor.add(btnSesion);
+		
+		JButton btnCrearCuenta = new JButton("Crear cuenta");
+		btnCrearCuenta.setFont(new Font("Calibri", Font.BOLD, 24));
+		btnCrearCuenta.setForeground(new Color(255, 255, 255));
+		btnCrearCuenta.setBackground(Color.decode("#214177"));
+		btnCrearCuenta.setFocusPainted(false);
 		btnCrearCuenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller = new Auth();
 	        	frame.dispose();
 	        	controller.registro();
-				
-				
 			}
 		});
-			
+		
+		btnCrearCuenta.setBounds(60, 450, 350, 40);
+		panelLogincontenedor.add(btnCrearCuenta);
 		
 		JLabel lblLinea = new JLabel("");
 		lblLinea.setBackground(Color.decode("#CFCFCF"));
 		lblLinea.setOpaque(true);
 		lblLinea.setBounds(50, 435, 370, 1);
 		panelLogincontenedor.add(lblLinea);
-		
-		JPanel panelIniciarSesion = new JPanel();
-		panelIniciarSesion.setLayout(null);
-		panelIniciarSesion.setBackground(Color.decode("#3768A7"));
-		panelIniciarSesion.setBounds(60, 372, 350, 40);
-		panelLogincontenedor.add(panelIniciarSesion);
-		
-		JButton btnIniciarSesion = new JButton("Iniciar sesión");
-		btnIniciarSesion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (textUsuario.getText().equals("") || textCont.getPassword().length == 0) {
-					 
-		            JOptionPane.showMessageDialog(frame, "Debe llenar todos los campos", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
-		        } else {
-		        	
-		        	
-		        	if((auth.login(textUsuario.getText(), textCont.getText()) != false)) {
-		        		frame.dispose();
-		        	}
-		        	else {
-		        		JOptionPane.showMessageDialog(frame, "Sus credenciales no coinciden con una cuenta existente", "Error", JOptionPane.WARNING_MESSAGE);
-		        	}
-		           
-		        }
-			}
-		});
-		btnIniciarSesion.setForeground(Color.WHITE);
-		btnIniciarSesion.setFont(new Font("Calibri", Font.BOLD, 17));
-		btnIniciarSesion.setFocusPainted(false);
-		btnIniciarSesion.setContentAreaFilled(false);
-		btnIniciarSesion.setBorderPainted(false);
-		btnIniciarSesion.setBounds(0, 0, 350, 40);
-		panelIniciarSesion.add(btnIniciarSesion);
-		
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(550, 0, 542, 660);
@@ -184,7 +170,7 @@ public class AuthView {
         lblNewLabel.setIcon(imageIcon);
 		panel.add(lblNewLabel);
 		
-		frame.getContentPane().add(panelLogin);
+		frame.add(panelLogin);
 		frame.setVisible(true);
 		frame.repaint();
 		frame.revalidate();
@@ -205,9 +191,8 @@ public class AuthView {
 		panelLogincontenedor.setLayout(null);
 		
 		JLabel lblSub = new JLabel("¡Crear una cuenta!");
-		lblSub.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSub.setFont(new Font("Calibri", Font.PLAIN, 22));
-		lblSub.setBounds(71, 22, 420, 26);
+		lblSub.setBounds(193, 22, 217, 26);
 		panelLogincontenedor.add(lblSub);
 		
 		JTextArea textUsuario = new JTextArea();
@@ -273,46 +258,35 @@ public class AuthView {
 		
 		
 		
-		JPanel panelCrearCuenta = new JPanel();
-		panelCrearCuenta.setBounds(111, 286, 350, 40);
-		panelCrearCuenta.setBackground(Color.decode("#3768A7"));
-		panelLogincontenedor.add(panelCrearCuenta);
-		panelCrearCuenta.setLayout(null);
-		JButton btnCrearCuenta = new JButton("Resgistrarte");
-		btnCrearCuenta.setBounds(0, 0, 350, 40);
-		panelCrearCuenta.add(btnCrearCuenta);
-		btnCrearCuenta.setForeground(Color.WHITE);
-		btnCrearCuenta.setFont(new Font("Calibri", Font.BOLD, 17));
-		btnCrearCuenta.setFocusPainted(false);
-		btnCrearCuenta.setContentAreaFilled(false);
-		btnCrearCuenta.setBorderPainted(false);
-		btnCrearCuenta.addActionListener(new ActionListener() {
+		
+		JButton btnSesion = new JButton("Registrarte");
+		btnSesion.setFont(new Font("Calibri", Font.BOLD, 24));
+		btnSesion.setForeground(new Color(255, 255, 255));
+		btnSesion.setBackground(Color.decode("#3768A7"));
+		btnSesion.setBounds(40, 286, 480, 40);
+		btnSesion.setFocusPainted(false);
+		btnSesion.addActionListener(new ActionListener() {
+			
+			@Override
 			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if(textCont.getText().isEmpty() || textContConfir.getText().isEmpty() || textUsuario.getText().isEmpty() || textCorreo.getText().isEmpty()) {
+					 JOptionPane.showMessageDialog(frame, "Debe llenar todos los campos", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
+				}
+
+				else {
+					auth.registro(textUsuario.getText(), textCorreo.getText(), textCont.getText());
+					JOptionPane.showMessageDialog(frame, "Su cuenta ha sido creada con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
+					
+					controller = new Auth();
+		        	frame.dispose();
+		        	controller.login();
+				}
 				
-				 String usuario = textUsuario.getText();
-			        String correo = textCorreo.getText();
-			        String contrasena = new String(textCont.getPassword());
-			        String contrasenaConfir = new String(textContConfir.getPassword());
-
-			        if (usuario.isEmpty() || correo.isEmpty() || contrasena.isEmpty() || contrasenaConfir.isEmpty()) {
-			            JOptionPane.showMessageDialog(frame, "Debe llenar todos los campos", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
-			        } else if (!contrasena.equals(contrasenaConfir)) {
-			            JOptionPane.showMessageDialog(frame, "Las contraseñas no coinciden", "Error de contraseña", JOptionPane.ERROR_MESSAGE);
-			        } else if (!correo.contains("@")) {
-			            JOptionPane.showMessageDialog(frame, "El correo electrónico debe contener una '@'", "Correo inválido", JOptionPane.ERROR_MESSAGE);
-			        } else {
-			            auth.registro(usuario, correo, contrasena);
-			            JOptionPane.showMessageDialog(frame, "Su cuenta ha sido creada con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-
-			            controller = new Auth();
-			            frame.dispose();
-			            controller.login();
-			        }
-
 			}
 		});
 		
-	
+		panelLogincontenedor.add(btnSesion);
 		
 		JLabel lblLinea = new JLabel("");
 		lblLinea.setBackground(Color.decode("#CFCFCF"));
@@ -321,10 +295,9 @@ public class AuthView {
 		panelLogincontenedor.add(lblLinea);
 		
 		JLabel lblRegresar = new JLabel("¿Ya tienes una cuenta?");
-		lblRegresar.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRegresar.setFont(new Font("Calibri", Font.PLAIN, 18));
 		lblRegresar.setForeground(Color.decode("#3588F4"));
-		lblRegresar.setBounds(111, 337, 350, 36);
+		lblRegresar.setBounds(203, 337, 239, 36);
 		lblRegresar.addMouseListener((MouseListener) new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -339,12 +312,11 @@ public class AuthView {
 		panelLogincontenedor.add(lblRegresar);
 		
 		JLabel lblLogintitulo = new JLabel("Gym-World");
-		lblLogintitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLogintitulo.setBounds(132, 70, 826, 99);
+		lblLogintitulo.setBounds(293, 70, 533, 99);
 		panelLogin.add(lblLogintitulo);
 		lblLogintitulo.setFont(new Font("Calibri", Font.BOLD, 99));
 		
-		frame.getContentPane().add(panelLogin);
+		frame.add(panelLogin);
 		frame.setVisible(true);
 		frame.repaint();
 		frame.revalidate();

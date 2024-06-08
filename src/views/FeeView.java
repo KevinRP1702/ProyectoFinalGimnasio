@@ -213,7 +213,6 @@ public class FeeView {
 		//Contenido
 		FeeModel modelo = new FeeModel();
 		ArrayList<String> datosCliente = modelo.datosClientes(idUsuario);
-		
 
 		JPanel panelcontenedor1 =new JPanel();
 		panelcontenedor1.setBackground(Color.decode("#FFFFFF"));
@@ -271,27 +270,27 @@ public class FeeView {
 
 		JLabel lblNombreClienteCambia = new JLabel(datosCliente.get(0));
 		lblNombreClienteCambia.setFont(new Font("Calibri", Font.PLAIN, 18));
-		lblNombreClienteCambia.setBounds(110, 70, 335, 23);
+		lblNombreClienteCambia.setBounds(110, 70, 114, 23);
 		panelcontenedor1.add(lblNombreClienteCambia);
 
 		JLabel lblApellidosClienteCambia = new JLabel(datosCliente.get(1));
 		lblApellidosClienteCambia.setFont(new Font("Calibri", Font.PLAIN, 18));
-		lblApellidosClienteCambia.setBounds(108, 135, 337, 23);
+		lblApellidosClienteCambia.setBounds(108, 135, 114, 23);
 		panelcontenedor1.add(lblApellidosClienteCambia);
 
 		JLabel lblCorreoClienteCambia = new JLabel(datosCliente.get(2));
 		lblCorreoClienteCambia.setFont(new Font("Calibri", Font.PLAIN, 18));
-		lblCorreoClienteCambia.setBounds(173, 200, 272, 23);
+		lblCorreoClienteCambia.setBounds(173, 200, 212, 23);
 		panelcontenedor1.add(lblCorreoClienteCambia);
 
 		JLabel lblClienteIdCambia = new JLabel(datosCliente.get(3));
 		lblClienteIdCambia.setFont(new Font("Calibri", Font.PLAIN, 18));
-		lblClienteIdCambia.setBounds(87, 265, 358, 23);
+		lblClienteIdCambia.setBounds(87, 265, 120, 23);
 		panelcontenedor1.add(lblClienteIdCambia);
 
 		JLabel lblInicioMembresiaCambia = new JLabel("Inicio de membresía");
 		lblInicioMembresiaCambia.setFont(new Font("Calibri", Font.PLAIN, 18));
-		lblInicioMembresiaCambia.setBounds(173, 330, 272, 23);
+		lblInicioMembresiaCambia.setBounds(173, 330, 212, 23);
 		panelcontenedor1.add(lblInicioMembresiaCambia);
 
 		JLabel lblFinalizacinMembresiaCambia = new JLabel("Finalización de membresía:");
@@ -301,7 +300,7 @@ public class FeeView {
 
 		JLabel lblEstadoMembresiaCambio = new JLabel("Estado de membresía");
 		lblEstadoMembresiaCambio.setFont(new Font("Calibri", Font.PLAIN, 18));
-		lblEstadoMembresiaCambio.setBounds(196, 460, 233, 23);
+		lblEstadoMembresiaCambio.setBounds(196, 460, 189, 23);
 		panelcontenedor1.add(lblEstadoMembresiaCambio);
 
 
@@ -315,27 +314,19 @@ public class FeeView {
 
 
 		String[] months = {"1", "2", "3", "4", "5", "6","7", "8", "9", "10", "11", "12"};
-		String[] valores= {"300", "350", "400", "450", "475", "500"};
 
 
 		JComboBox<String> comboBox = new JComboBox<>(months);
-		comboBox.setLocation(149, 166);
+		comboBox.setLocation(20, 140);
 		comboBox.setSize(173, 29);
 
 		comboBox.setFont(new Font("Calibri", Font.PLAIN, 18));
 		panelcontenedor2.add(comboBox);
-		
-		JComboBox<String> comboBox2 = new JComboBox<>(valores);
-		comboBox2.setLocation(149, 126);
-		comboBox2.setSize(173, 29);
-
-		comboBox2.setFont(new Font("Calibri", Font.PLAIN, 18));
-		panelcontenedor2.add(comboBox2);
 
 
 
 		JTextPane txt_Experiencia_1 = new JTextPane();
-		txt_Experiencia_1.setText("Seleccione la cantidad de meses y precio actual de la mensualida para el pago del cliente ");
+		txt_Experiencia_1.setText("Seleccione la cantidad de meses que va a pagar el cliente (cada mes cuesta $200) ");
 		txt_Experiencia_1.setFont(new Font("Calibri", Font.PLAIN, 18));
 		txt_Experiencia_1.setBackground(Color.WHITE);
 		txt_Experiencia_1.setBounds(10, 51, 399, 64);
@@ -391,16 +382,6 @@ public class FeeView {
 		btnBtnPagar.setContentAreaFilled(false);
 		btnBtnPagar.setBorderPainted(false);
 		btnBtnPagar.setBackground(new Color(55, 104, 167));
-		
-		JLabel lblMesePago = new JLabel("Meses:");
-		lblMesePago.setFont(new Font("Calibri", Font.PLAIN, 18));
-		lblMesePago.setBounds(20, 126, 173, 29);
-		panelcontenedor2.add(lblMesePago);
-		
-		JLabel lblMensualidad = new JLabel("Mensualidad:");
-		lblMensualidad.setFont(new Font("Calibri", Font.PLAIN, 18));
-		lblMensualidad.setBounds(20, 167, 173, 29);
-		panelcontenedor2.add(lblMensualidad);
 		btnBtnPagar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panelcontenedor3.removeAll();
@@ -495,10 +476,9 @@ public class FeeView {
 		panelOpciones.setLayout(null);
 
 		JLabel lblMarca = new JLabel("Gym-World");
-		lblMarca.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMarca.setBounds(2, 514, 188, 45);
 		lblMarca.setForeground(Color.WHITE);
-		lblMarca.setFont(new Font("Calibri", Font.BOLD, 29));
+		lblMarca.setFont(new Font("Calibri", Font.BOLD, 38));
 		panelOpciones.add(lblMarca);
 
 
@@ -511,7 +491,7 @@ public class FeeView {
 		panelOpciones.add(panel_1);
 		panel_1.setLayout(null);
 
-		JButton btnInicio = new JButton("         Inicio");
+		JButton btnInicio = new JButton("           Inicio");
 		btnInicio.setHorizontalAlignment(SwingConstants.LEFT);
 		btnInicio.setBounds(0, 27, 190, 58);
 		panel_1.add(btnInicio);
@@ -545,8 +525,7 @@ public class FeeView {
 		panel_2.setLayout(null);
 
 
-		JButton btnClientes = new JButton("       Clientes");
-		btnClientes.setHorizontalAlignment(SwingConstants.LEFT);
+		JButton btnClientes = new JButton(" Clientes");
 		btnClientes.setBounds(0, 11, 190, 44);
 		panel_2.add(btnClientes);
 		btnClientes.setForeground(Color.WHITE);
@@ -581,8 +560,7 @@ public class FeeView {
 		panel_3.setBackground(Color.decode("#3768A7"));
 		panel_3.setLayout(null);
 
-		JButton btnTarifas = new JButton("       Tarifas");
-		btnTarifas.setHorizontalAlignment(SwingConstants.LEFT);
+		JButton btnTarifas = new JButton("Tarifas");
 		btnTarifas.setBounds(0, 11, 190, 44);
 		panel_3.add(btnTarifas);
 		btnTarifas.setForeground(Color.WHITE);
@@ -614,12 +592,12 @@ public class FeeView {
 		panelOpciones.add(panel_4);
 		panel_4.setLayout(null);
 
-		JButton btnInstructores = new JButton("        Instructores");
+		JButton btnInstructores = new JButton("          Instructores");
 		btnInstructores.setHorizontalAlignment(SwingConstants.LEFT);
 		btnInstructores.setBounds(0, 11, 190, 44);
 		panel_4.add(btnInstructores);
 		btnInstructores.setForeground(Color.WHITE);
-		btnInstructores.setFont(new Font("Calibri", Font.BOLD, 17));
+		btnInstructores.setFont(new Font("Calibri", Font.BOLD, 20));
 		btnInstructores.setFocusPainted(false);
 		btnInstructores.setBorderPainted(false);
 		btnInstructores.setContentAreaFilled(false);
@@ -647,8 +625,7 @@ public class FeeView {
 		panelOpciones.add(panel_5);
 		panel_5.setLayout(null);
 
-		JButton btnClases = new JButton("        Clases");
-		btnClases.setHorizontalAlignment(SwingConstants.LEFT);
+		JButton btnClases = new JButton("Clases");
 		btnClases.setBounds(0, 11, 190, 44);
 		panel_5.add(btnClases);
 		btnClases.setForeground(Color.WHITE);
@@ -681,7 +658,7 @@ public class FeeView {
 		panelOpciones.add(panel_6);
 		panel_6.setLayout(null);
 
-		JButton btnChecador = new JButton("        Checador");
+		JButton btnChecador = new JButton("          Checador");
 		btnChecador.setHorizontalAlignment(SwingConstants.LEFT);
 		btnChecador.setBounds(0, 11, 190, 44);
 		panel_6.add(btnChecador);
@@ -719,7 +696,7 @@ public class FeeView {
 		btnCerrarSesion.setBounds(0, 11, 190, 44);
 		panel_7.add(btnCerrarSesion);
 		btnCerrarSesion.setForeground(Color.WHITE);
-		btnCerrarSesion.setFont(new Font("Calibri", Font.BOLD, 17));
+		btnCerrarSesion.setFont(new Font("Calibri", Font.BOLD, 20));
 		btnCerrarSesion.setFocusPainted(false);
 		btnCerrarSesion.setBorderPainted(false);
 		btnCerrarSesion.setContentAreaFilled(false);
@@ -739,7 +716,7 @@ public class FeeView {
 		lblCerrarSesion.setIcon(imageIcon_CerrarSesion);
 		panel_7.add(lblCerrarSesion);
 
-		frame.getContentPane().add(panel);
+		frame.add(panel);
 		frame.setVisible(true);
 		frame.repaint();
 		frame.revalidate();
