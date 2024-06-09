@@ -1,12 +1,12 @@
 package views;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
+
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -14,12 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
-import javax.swing.SwingConstants;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyledDocument;
+
 
 import controllers.Auth;
 import controllers.CheckController;
@@ -28,6 +23,14 @@ import controllers.ClientController;
 import controllers.FeeController;
 import controllers.HomeController;
 import controllers.InstructorController;
+
+import javax.swing.*;
+
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.time.format.TextStyle;
+import java.util.Locale;
 
 
 
@@ -55,62 +58,55 @@ public class HomeView {
 		panel.setLayout(null);
 
 
-		//Contenido
-		JPanel panelcontenedor =new JPanel();
-		panelcontenedor.setBackground(Color.decode("#FFFFFF"));
-		panelcontenedor.setBounds(200, 75, 882, 573);
-		panel.add(panelcontenedor);
+		 // Contenido
+        JPanel panelContenedor = new JPanel();
+        panelContenedor.setBackground(Color.decode("#FFFFFF"));
+        panelContenedor.setBounds(200, 75, 581, 573);
+        panel.add(panelContenedor);
+        panelContenedor.setLayout(null);
+
+        JPanel panelCabeceraContenido = new JPanel();
+        panelCabeceraContenido.setLayout(null);
+        panelCabeceraContenido.setBackground(new Color(188, 218, 242));
+        panelCabeceraContenido.setBounds(0, 0, 581, 40);
+        panelContenedor.add(panelCabeceraContenido);
+
+        JLabel lblTituloContenido = new JLabel("Inicio");
+        lblTituloContenido.setFont(new Font("Calibri", Font.PLAIN, 26));
+        lblTituloContenido.setBounds(10, 11, 438, 29);
+        panelCabeceraContenido.add(lblTituloContenido);
+        
+        
+        JPanel panelcontenedor = new JPanel();
 		panelcontenedor.setLayout(null);
+		panelcontenedor.setBackground(Color.WHITE);
+		panelcontenedor.setBounds(791, 75, 291, 573);
+		panel.add(panelcontenedor);
+		        
+		        JTextArea txtQuienesSomos = new JTextArea("En Gym World, creemos en el poder de la transformación personal a través del ejercicio.\n\nÚnete a nuestra comunidad y descubre un lugar donde tus metas son nuestra prioridad.\n\nVen y experimenta instalaciones de primera clase, entrenadores dedicados y un ambiente motivador.\n\n¡Te esperamos para comenzar juntos tu viaje hacia una vida más saludable y fuerte!");
+		        txtQuienesSomos.setWrapStyleWord(true);
+		        txtQuienesSomos.setLineWrap(true);
+		        txtQuienesSomos.setFont(new Font("Calibri", Font.PLAIN, 21));
+		        txtQuienesSomos.setEditable(false);
+		        txtQuienesSomos.setBackground(new Color(255, 255, 255));
+		        txtQuienesSomos.setBounds(10, 71, 271, 454);
+		        panelcontenedor.add(txtQuienesSomos);
+		        
+		        JPanel panelCabeceraContenido_1 = new JPanel();
+		        panelCabeceraContenido_1.setBounds(0, 0, 291, 40);
+		        panelcontenedor.add(panelCabeceraContenido_1);
+		        panelCabeceraContenido_1.setLayout(null);
+		        panelCabeceraContenido_1.setBackground(new Color(188, 218, 242));
+		        
+		        JLabel lblquienesSomos = new JLabel("¿Quienes somos?");
+		        lblquienesSomos.setFont(new Font("Calibri", Font.PLAIN, 26));
+		        lblquienesSomos.setBounds(0, 11, 291, 29);
+		        panelCabeceraContenido_1.add(lblquienesSomos);
 
-		JPanel panelCabeceraContenido = new JPanel();
-		panelCabeceraContenido.setLayout(null);
-		panelCabeceraContenido.setBackground(new Color(188, 218, 242));
-		panelCabeceraContenido.setBounds(0, 0, 882, 40);
-		panelcontenedor.add(panelCabeceraContenido);
-
-		JLabel lblTituloContenido = new JLabel("Inicio");
-		lblTituloContenido.setFont(new Font("Calibri", Font.PLAIN, 26));
-		lblTituloContenido.setBounds(10, 11, 438, 29);
-		panelCabeceraContenido.add(lblTituloContenido);
-
-		JLabel lblIngreseLosDatos = new JLabel("¿Quienes somos?");
-		lblIngreseLosDatos.setHorizontalAlignment(SwingConstants.CENTER);
-		lblIngreseLosDatos.setFont(new Font("Calibri", Font.PLAIN, 26));
-		lblIngreseLosDatos.setBounds(237, 73, 414, 29);
-		panelcontenedor.add(lblIngreseLosDatos);
-
-		//Mensaje
-		JTextPane messagePane = new JTextPane();
-		messagePane.setText(
-				"En Gym World, creemos en el poder de la transformación personal a través del ejercicio.\n\n" +
-						"Únete a nuestra comunidad y descubre un lugar donde tus metas son nuestra prioridad.\n\n" +
-						"Ven y experimenta instalaciones de primera clase, entrenadores dedicados y un ambiente motivador.\n\n" +
-						"¡Te esperamos para comenzar juntos tu viaje hacia una vida más saludable y fuerte!"
-				);
-		messagePane.setFont(new Font("Calibri", Font.PLAIN, 18));
-		messagePane.setEditable(false);
-		messagePane.setBackground(Color.WHITE);
-
-
-		StyledDocument doc = messagePane.getStyledDocument();
-		SimpleAttributeSet center = new SimpleAttributeSet();
-		StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
-		doc.setParagraphAttributes(0, doc.getLength(), center, false);
-		messagePane.setBorder(BorderFactory.createCompoundBorder(
-				BorderFactory.createLineBorder(Color.LIGHT_GRAY),
-				BorderFactory.createEmptyBorder(10, 10, 10, 10)
-				));
-
-		messagePane.setPreferredSize(new Dimension(800, 300));
-
-
-		JScrollPane scrollPane = new JScrollPane(messagePane);
-		scrollPane.setBounds(50, 150, 800, 200);
-		scrollPane.setBorder(null);
-		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setBackground(Color.WHITE);
-		panelcontenedor.add(scrollPane);
-		
+ 
+        crearCalendario(panelContenedor);
+        
+       	
 		//Parte de botones de ventanas principales y cabecera que se repite
 		//Cabecera
 		JPanel panelCabecera = new JPanel();
@@ -386,4 +382,54 @@ public class HomeView {
 		frame.repaint();
 		frame.revalidate();
 	}
+	
+	
+	 private void crearCalendario(JPanel panel) {
+	        JPanel panelCalendario = new JPanel();
+	        panelCalendario.setBounds(0, 50, 581, 523);
+	        panelCalendario.setLayout(new BorderLayout());
+	        panel.add(panelCalendario);
+
+	        YearMonth mesActual = YearMonth.now();
+	        LocalDate primerDiaDelMes = mesActual.atDay(1);
+	        LocalDate hoy = LocalDate.now();
+
+	      
+	        JLabel lblMesAnio = new JLabel("Junio 2024", SwingConstants.CENTER);
+	        lblMesAnio.setBackground(new Color(255, 255, 255));
+	        lblMesAnio.setFont(new Font("Calibri", Font.BOLD, 20));
+	        panelCalendario.add(lblMesAnio, BorderLayout.NORTH);
+
+	        JPanel panelDias = new JPanel();
+	        panelDias.setBackground(new Color(255, 255, 255));
+	        panelDias.setLayout(new GridLayout(0, 7));
+
+	 
+	        for (DayOfWeek dia : DayOfWeek.values()) {
+	            JLabel lblDia = new JLabel(dia.getDisplayName(TextStyle.SHORT, Locale.getDefault()), SwingConstants.CENTER);
+	            lblDia.setFont(new Font("Calibri", Font.BOLD, 14));
+	            panelDias.add(lblDia);
+	        }
+
+	        //LLenar calendario
+	        int diasEnMes = mesActual.lengthOfMonth();
+	        int primerDiaDeSemana = primerDiaDelMes.getDayOfWeek().getValue();
+	        for (int i = 1; i < primerDiaDeSemana; i++) {
+	            panelDias.add(new JLabel(""));
+	        }
+	        for (int dia = 1; dia <= diasEnMes; dia++) {
+	            JLabel lblDia = new JLabel(String.valueOf(dia), SwingConstants.CENTER);
+	            lblDia.setFont(new Font("Calibri", Font.PLAIN, 14));
+	            lblDia.setOpaque(true);
+	            if (hoy.getDayOfMonth() == dia && hoy.getMonth() == mesActual.getMonth() && hoy.getYear() == mesActual.getYear()) {
+	                lblDia.setBackground(Color.YELLOW);
+	            } else {
+	                lblDia.setBackground(Color.WHITE);
+	            }
+	            lblDia.setBorder(BorderFactory.createLineBorder(Color.decode("#D3D3D3"), 2));
+	            panelDias.add(lblDia);
+	        }
+
+	        panelCalendario.add(panelDias, BorderLayout.CENTER);
+	    }
 }
