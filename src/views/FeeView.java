@@ -113,11 +113,56 @@ public class FeeView {
 		btnAgregarCliente.setFocusPainted(false);
 		btnAgregarCliente.setBorderPainted(false);
 		btnAgregarCliente.setBackground(new Color(55, 104, 167));
+		
+		JPanel panelBotonEliminarPago = new JPanel();
+		panelBotonEliminarPago.setLayout(null);
+		panelBotonEliminarPago.setBackground(Color.decode("#A73737"));
+		panelBotonEliminarPago.setBounds(451, 5, 203, 30);
+		panelCabeceraContenido.add(panelBotonEliminarPago);
+		
+		JButton btnEliminarPago = new JButton("Eliminar pago");
+		btnEliminarPago.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int confirmResult = JOptionPane.showConfirmDialog(frame, "¿Está seguro de que desea eliminar el pago?","Confirmar eliminación",JOptionPane.YES_NO_OPTION);
+
+
+				if (confirmResult == JOptionPane.YES_OPTION) {
+				userID = JOptionPane.showInputDialog(null, "Ingrese el ID del usuario:", "Solicitud de ID", JOptionPane.QUESTION_MESSAGE);
+				// Mostrar el ID ingresado (para confirmar que se ha capturado correctamente)
+				if (userID != null && !userID.trim().isEmpty()) {
+					FeeModel model = new FeeModel();
+
+					
+					if(model.eliminarPago(Integer.parseInt(userID)) == false) {
+						JOptionPane.showMessageDialog(null, "No se encontró el ID del cliente.", "Error", JOptionPane.ERROR_MESSAGE);
+					}else {
+						
+						FeeController controller = new FeeController();
+						JOptionPane.showMessageDialog(null, "El pago se eliminó con éxito.", "Eliminación con éxito", JOptionPane.INFORMATION_MESSAGE);
+						frame.dispose();
+						
+						controller.tarifa();
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "No se ingresó ningún ID.", "Error", JOptionPane.ERROR_MESSAGE);
+				
+				}
+			}
+			}
+		});
+		btnEliminarPago.setForeground(Color.WHITE);
+		btnEliminarPago.setFont(new Font("Calibri", Font.BOLD, 18));
+		btnEliminarPago.setFocusPainted(false);
+		btnEliminarPago.setContentAreaFilled(false);
+		btnEliminarPago.setBorderPainted(false);
+		btnEliminarPago.setBackground(new Color(55, 104, 167));
+		btnEliminarPago.setBounds(0, -1, 203, 30);
+		panelBotonEliminarPago.add(btnEliminarPago);
+		
 		btnAgregarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				userID = JOptionPane.showInputDialog(null, "Ingrese el ID del usuario:", "Solicitud de ID", JOptionPane.QUESTION_MESSAGE);
-
 				// Mostrar el ID ingresado (para confirmar que se ha capturado correctamente)
 				if (userID != null && !userID.trim().isEmpty()) {
 					FeeModel model = new FeeModel();
@@ -125,6 +170,7 @@ public class FeeView {
 					if(model.datosClientes(Integer.parseInt(userID)) == null) {
 						JOptionPane.showMessageDialog(null, "No se encontró el ID del cliente.", "Error", JOptionPane.ERROR_MESSAGE);
 					}else {
+						
 						FeeController controller = new FeeController();
 						frame.dispose();
 						controller.pagar(Integer.parseInt(userID));
@@ -213,7 +259,6 @@ public class FeeView {
 		//Contenido
 		FeeModel modelo = new FeeModel();
 		ArrayList<String> datosCliente = modelo.datosClientes(idUsuario);
-
 		JPanel panelcontenedor1 =new JPanel();
 		panelcontenedor1.setBackground(Color.decode("#FFFFFF"));
 		panelcontenedor1.setBounds(200, 75, 455, 574);
@@ -253,16 +298,6 @@ public class FeeView {
 		lblClienteId.setBounds(10, 265, 120, 23);
 		panelcontenedor1.add(lblClienteId);
 
-		JLabel lblInicioMembresia = new JLabel("Inicio de membresía:");
-		lblInicioMembresia.setFont(new Font("Calibri", Font.BOLD, 18));
-		lblInicioMembresia.setBounds(10, 330, 212, 23);
-		panelcontenedor1.add(lblInicioMembresia);
-
-		JLabel lblFinalizacinMembresia = new JLabel("Finalización de membresía:");
-		lblFinalizacinMembresia.setFont(new Font("Calibri", Font.BOLD, 18));
-		lblFinalizacinMembresia.setBounds(10, 395, 244, 23);
-		panelcontenedor1.add(lblFinalizacinMembresia);
-
 		JLabel lblEstadoMembresia = new JLabel("Estado de membresía:");
 		lblEstadoMembresia.setFont(new Font("Calibri", Font.BOLD, 18));
 		lblEstadoMembresia.setBounds(10, 460, 189, 23);
@@ -270,38 +305,36 @@ public class FeeView {
 
 		JLabel lblNombreClienteCambia = new JLabel(datosCliente.get(0));
 		lblNombreClienteCambia.setFont(new Font("Calibri", Font.PLAIN, 18));
-		lblNombreClienteCambia.setBounds(110, 70, 114, 23);
+		lblNombreClienteCambia.setBounds(110, 70, 335, 23);
 		panelcontenedor1.add(lblNombreClienteCambia);
 
 		JLabel lblApellidosClienteCambia = new JLabel(datosCliente.get(1));
 		lblApellidosClienteCambia.setFont(new Font("Calibri", Font.PLAIN, 18));
-		lblApellidosClienteCambia.setBounds(108, 135, 114, 23);
+		lblApellidosClienteCambia.setBounds(108, 135, 337, 23);
 		panelcontenedor1.add(lblApellidosClienteCambia);
 
 		JLabel lblCorreoClienteCambia = new JLabel(datosCliente.get(2));
 		lblCorreoClienteCambia.setFont(new Font("Calibri", Font.PLAIN, 18));
-		lblCorreoClienteCambia.setBounds(173, 200, 212, 23);
+		lblCorreoClienteCambia.setBounds(173, 200, 272, 23);
 		panelcontenedor1.add(lblCorreoClienteCambia);
 
 		JLabel lblClienteIdCambia = new JLabel(datosCliente.get(3));
 		lblClienteIdCambia.setFont(new Font("Calibri", Font.PLAIN, 18));
-		lblClienteIdCambia.setBounds(87, 265, 120, 23);
+		lblClienteIdCambia.setBounds(87, 265, 358, 23);
 		panelcontenedor1.add(lblClienteIdCambia);
 
-		JLabel lblInicioMembresiaCambia = new JLabel("Inicio de membresía");
-		lblInicioMembresiaCambia.setFont(new Font("Calibri", Font.PLAIN, 18));
-		lblInicioMembresiaCambia.setBounds(173, 330, 212, 23);
-		panelcontenedor1.add(lblInicioMembresiaCambia);
-
-		JLabel lblFinalizacinMembresiaCambia = new JLabel("Finalización de membresía:");
-		lblFinalizacinMembresiaCambia.setFont(new Font("Calibri", Font.PLAIN, 18));
-		lblFinalizacinMembresiaCambia.setBounds(232, 395, 244, 23);
-		panelcontenedor1.add(lblFinalizacinMembresiaCambia);
-
-		JLabel lblEstadoMembresiaCambio = new JLabel("Estado de membresía");
-		lblEstadoMembresiaCambio.setFont(new Font("Calibri", Font.PLAIN, 18));
-		lblEstadoMembresiaCambio.setBounds(196, 460, 189, 23);
-		panelcontenedor1.add(lblEstadoMembresiaCambio);
+		if(modelo.estadoMembresia(idUsuario) == false) {
+			JLabel lblEstadoMembresiaCambio = new JLabel("Inactiva");
+			lblEstadoMembresiaCambio.setFont(new Font("Calibri", Font.PLAIN, 18));
+			lblEstadoMembresiaCambio.setBounds(196, 460, 233, 23);
+			panelcontenedor1.add(lblEstadoMembresiaCambio);
+		}else {
+			JLabel lblEstadoMembresiaCambio = new JLabel("Activa");
+			lblEstadoMembresiaCambio.setFont(new Font("Calibri", Font.PLAIN, 18));
+			lblEstadoMembresiaCambio.setBounds(196, 460, 233, 23);
+			panelcontenedor1.add(lblEstadoMembresiaCambio);
+		}
+		
 
 
 		//Panel para realizar el pago
@@ -314,26 +347,33 @@ public class FeeView {
 
 
 		String[] months = {"1", "2", "3", "4", "5", "6","7", "8", "9", "10", "11", "12"};
+		String[] valores= {"300", "350", "400", "450", "475", "500"};
 
 
 		JComboBox<String> comboBox = new JComboBox<>(months);
-		comboBox.setLocation(20, 140);
+		comboBox.setLocation(149, 166);
 		comboBox.setSize(173, 29);
 
 		comboBox.setFont(new Font("Calibri", Font.PLAIN, 18));
 		panelcontenedor2.add(comboBox);
+		
+		JComboBox<String> comboBox2 = new JComboBox<>(valores);
+		comboBox2.setLocation(149, 126);
+		comboBox2.setSize(173, 29);
+
+		comboBox2.setFont(new Font("Calibri", Font.PLAIN, 18));
+		panelcontenedor2.add(comboBox2);
 
 
 
 		JTextPane txt_Experiencia_1 = new JTextPane();
-		txt_Experiencia_1.setText("Seleccione la cantidad de meses que va a pagar el cliente (cada mes cuesta $200) ");
+		txt_Experiencia_1.setText("Seleccione la cantidad de meses y precio actual de la mensualida para el pago del cliente ");
 		txt_Experiencia_1.setFont(new Font("Calibri", Font.PLAIN, 18));
 		txt_Experiencia_1.setBackground(Color.WHITE);
 		txt_Experiencia_1.setBounds(10, 51, 399, 64);
 		txt_Experiencia_1.setBorder(new LineBorder(Color.WHITE));
 		txt_Experiencia_1.setEditable(false);
 		panelcontenedor2.add(txt_Experiencia_1);
-
 
 		JPanel panelBtnPagar = new JPanel();
 		panelBtnPagar.setBounds(102, 220, 220, 40);
@@ -382,22 +422,32 @@ public class FeeView {
 		btnBtnPagar.setContentAreaFilled(false);
 		btnBtnPagar.setBorderPainted(false);
 		btnBtnPagar.setBackground(new Color(55, 104, 167));
+		
+		JLabel lblMesePago = new JLabel("Costo :        		$");
+		lblMesePago.setFont(new Font("Calibri", Font.PLAIN, 18));
+		lblMesePago.setBounds(20, 126, 173, 29);
+		panelcontenedor2.add(lblMesePago);
+		
+		JLabel lblMensualidad = new JLabel("Meses:");
+		lblMensualidad.setFont(new Font("Calibri", Font.PLAIN, 18));
+		lblMensualidad.setBounds(20, 167, 173, 29);
+		panelcontenedor2.add(lblMensualidad);
 		btnBtnPagar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panelcontenedor3.removeAll();
 				panelcontenedor3.revalidate();
 				panelcontenedor3.repaint();
 
-				String selected = (String) comboBox.getSelectedItem();
+				String costo = (String) comboBox2.getSelectedItem();
+				String meses = (String) comboBox.getSelectedItem();
 
-				monto = Integer.parseInt(selected);
-				monto *= 200;
+				monto = Integer.parseInt(costo) * Integer.parseInt(meses);
 				JLabel lblUsuario = new JLabel(" Usuario:" + datosCliente.get(0) + " " + datosCliente.get(1));
 				lblUsuario.setFont(new Font("Calibri", Font.PLAIN, 18));
 				lblUsuario.setBounds(25, 65, 240, 23);
 				panelcontenedor3.add(lblUsuario);
 
-				JLabel lblMeses = new JLabel("Meses pagados: " + selected);
+				JLabel lblMeses = new JLabel("Meses pagados: " + meses);
 				lblMeses.setFont(new Font("Calibri", Font.PLAIN, 18));
 				lblMeses.setBounds(28, 145, 184, 23);
 				panelcontenedor3.add(lblMeses);
@@ -407,7 +457,7 @@ public class FeeView {
 				lblId.setBounds(28, 105, 240, 23);
 				panelcontenedor3.add(lblId);
 
-				JLabel lblTotal = new JLabel("Total: " + monto);
+				JLabel lblTotal = new JLabel("Total: $" + monto);
 				lblTotal.setFont(new Font("Calibri", Font.PLAIN, 18));
 				lblTotal.setBounds(267, 145, 122, 23);
 				panelcontenedor3.add(lblTotal);
@@ -424,6 +474,7 @@ public class FeeView {
 						FeeController controller = new FeeController();
 						FeeModel modelo = new FeeModel();
 						modelo.pagar(idUsuario, monto);
+						JOptionPane.showMessageDialog(null, "El pago se realizó con éxito.", "Pago realizado", JOptionPane.INFORMATION_MESSAGE);
 						frame.dispose();
 						controller.tarifa();
 

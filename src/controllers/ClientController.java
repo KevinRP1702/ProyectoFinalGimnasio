@@ -18,23 +18,23 @@ public class ClientController {
 			
 		}
 		
-		public void crearCliente() {
+		public void crearCliente(String rutaImagen) {
 			
-			vista.crearClientes();
+			vista.crearClientes(rutaImagen);
 			
 		}
 		
-//		public void crearClienteFoto() {
-//			
-//			vista.crearClientesFoto();
-//			
-//		}
+		public void crearClienteFoto(int idUsuario, int opcion) {
+			
+			vista.crearClientesFoto(idUsuario, opcion);
+			
+		}
 		
 		public void consultar(int idUsuario) {
 			vista.informacionClientes(idUsuario);
 		}
 		
-		public void editar(int idUsuario) {
-			vista.clienteEditar(idUsuario);
+		public void editar(int idUsuario, String rutaImagen) {
+			vista.clienteEditar(idUsuario, rutaImagen);
 		}
 }

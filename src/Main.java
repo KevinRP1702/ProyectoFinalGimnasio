@@ -1,4 +1,5 @@
 import controllers.Auth;
+import controllers.ClassController;
 
 public class Main {
 

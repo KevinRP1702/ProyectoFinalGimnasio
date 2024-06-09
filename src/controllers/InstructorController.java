@@ -26,15 +26,20 @@ public class InstructorController {
 		
 	}
 	
-	public void CrearInstructor() {
+	public void CrearInstructor(String imgInstructor) {
 		
-		vista.crearInstructor();
+		vista.crearInstructor(imgInstructor);
 		
 	}
 	
-//	public void AvatarInstructor() {
-//		
-//		vista.crearInstructorAvatar();
-//		
-//	}
+	public void editarInstructor(String idInstructor) {
+		
+		vista.editarInstructor(idInstructor);
+	}
+	
+	public void AvatarInstructor() {
+		
+		vista.crearInstructorAvatar();
+		
+	}
 }

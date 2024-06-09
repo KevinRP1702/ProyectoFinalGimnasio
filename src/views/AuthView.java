@@ -266,24 +266,34 @@ public class AuthView {
 		btnSesion.setBounds(40, 286, 480, 40);
 		btnSesion.setFocusPainted(false);
 		btnSesion.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				if(textCont.getText().isEmpty() || textContConfir.getText().isEmpty() || textUsuario.getText().isEmpty() || textCorreo.getText().isEmpty()) {
-					 JOptionPane.showMessageDialog(frame, "Debe llenar todos los campos", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
-				}
 
-				else {
-					auth.registro(textUsuario.getText(), textCorreo.getText(), textCont.getText());
-					JOptionPane.showMessageDialog(frame, "Su cuenta ha sido creada con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
-					
-					controller = new Auth();
-		        	frame.dispose();
-		        	controller.login();
-				}
-				
-			}
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        // Obtener las contraseñas de los JPasswordField
+		        String password = new String(textCont.getPassword());
+		        String confirmPassword = new String(textContConfir.getPassword());
+		        
+		        // Verificar si alguno de los campos está vacío
+		        if (textUsuario.getText().isEmpty() || textCorreo.getText().isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+		            JOptionPane.showMessageDialog(frame, "Debe llenar todos los campos", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
+		        }
+		        // Comparar las contraseñas
+		        else if (!password.equals(confirmPassword)) {
+		            JOptionPane.showMessageDialog(frame, "Las contraseñas no coinciden", "Error", JOptionPane.ERROR_MESSAGE);
+		        }
+		        // Si todo está correcto, proceder con el registro
+		        else {
+		        	if( auth.registro(textUsuario.getText(), textCorreo.getText(), password) == false) {
+		        		 JOptionPane.showMessageDialog(frame, "Ya existe el usuario en la base", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+		        	}else {
+		        		  JOptionPane.showMessageDialog(frame, "Su cuenta ha sido creada con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+				            controller = new Auth();
+				            frame.dispose();
+				            controller.login();
+		        	}
+		        }
+		    }
 		});
 		
 		panelLogincontenedor.add(btnSesion);

@@ -32,29 +32,38 @@ public class AuthModel {
 		return false;
 	}
 	
-	public void registro(String nombre,String correo, String contraseña) {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			
-			try {
-				Connection con=DriverManager.getConnection("jdbc:mysql://sql.freedb.tech:3306/freedb_data_base_gym","freedb_data_base_master","DdkJubsw3X%ZW2t");
-				
-				PreparedStatement stmt=con.prepareStatement("insert into Usuarios(usuario, correo, contraseña) values(?,?,?)");  
-				stmt.setString(1,nombre);
-				stmt.setString(2,correo);
-				stmt.setString(3,contraseña);  
-				  
-				int i=stmt.executeUpdate();  
- 
-				con.close();  
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}  
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}  
+	public boolean registro(String nombre, String correo, String contraseña) {
+	    try {
+	        Class.forName("com.mysql.cj.jdbc.Driver");
+
+	        try {
+	            Connection con = DriverManager.getConnection("jdbc:mysql://sql.freedb.tech:3306/freedb_data_base_gym", "freedb_data_base_master", "DdkJubsw3X%ZW2t");
+
+	            PreparedStatement checkStmt = con.prepareStatement("SELECT COUNT(*) FROM Usuarios WHERE usuario = ?");
+	            checkStmt.setString(1, nombre);
+	            ResultSet rs = checkStmt.executeQuery();
+	            if (rs.next() && rs.getInt(1) > 0) {
+	                con.close();
+	                return false; 
+	            }
+	            
+	            PreparedStatement stmt = con.prepareStatement("INSERT INTO Usuarios(usuario, correo, contraseña) VALUES(?,?,?)");
+	            stmt.setString(1, nombre);
+	            stmt.setString(2, correo);
+	            stmt.setString(3, contraseña);
+
+	            int i = stmt.executeUpdate();
+
+	            con.close();
+
+	            return true; 
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    } catch (ClassNotFoundException e) {
+	        e.printStackTrace();
+	    }
+
+	    return false; 
 	}
 }

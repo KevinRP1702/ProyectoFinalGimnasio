@@ -321,4 +321,28 @@ public class ClassModel {
 			e.printStackTrace();
 		}  
 	}
+	
+	public boolean editarClase(String claseCambio , String nombreClase, String instructor) {
+			boolean actualizado = false;
+			
+			try {
+		        Class.forName("com.mysql.cj.jdbc.Driver");
+		        Connection con = DriverManager.getConnection("jdbc:mysql://sql.freedb.tech:3306/freedb_data_base_gym", "freedb_data_base_master", "DdkJubsw3X%ZW2t");
+
+		        String updateQuery = "UPDATE Clases SET clase = ?, instructor = ? WHERE clase = ?";
+		        PreparedStatement updateStmt = con.prepareStatement(updateQuery);
+		        updateStmt.setString(1, nombreClase);
+		        updateStmt.setString(2, instructor);
+		        updateStmt.setString(3, claseCambio);
+
+		        int filasActualizadas = updateStmt.executeUpdate();
+		        if (filasActualizadas > 0) {
+		            actualizado = true;
+		        }
+		        con.close();
+		    } catch (ClassNotFoundException | SQLException e) {
+		        e.printStackTrace();
+		    }
+		    return actualizado;
+		}
 }

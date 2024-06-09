@@ -39,9 +39,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
-
-
 public class InstructorView {
 
 	private JFrame frame;
@@ -128,15 +125,23 @@ public class InstructorView {
 		lblImg_Instructor_1.setOpaque(true);
 		lblImg_Instructor_1.setBackground(new Color(0, 255, 255));
 		lblImg_Instructor_1.setBounds(50, 15, 100, 100);
-		ImageIcon imageIcon_lblImg_Instructor_1 = new ImageIcon("img/mujerpfp.png");
-		lblImg_Instructor_1.setIcon(imageIcon_lblImg_Instructor_1);
+		if (instructores[0] != null) {
+			Object sextoDato = instructores[0][5];
+			ImageIcon imageIcon_lblImg_Instructor_1 = new ImageIcon(sextoDato.toString());
+			Image image = imageIcon_lblImg_Instructor_1.getImage();
+			Image resizedImage = image.getScaledInstance(lblImg_Instructor_1.getWidth(), lblImg_Instructor_1.getHeight(), Image.SCALE_SMOOTH); 
+			imageIcon_lblImg_Instructor_1 = new ImageIcon(resizedImage); 
+			lblImg_Instructor_1.setIcon(imageIcon_lblImg_Instructor_1);
+		}else {
+			ImageIcon imageIcon_lblImg_Instructor_1 = new ImageIcon("img/mujerpfp.png");
+			lblImg_Instructor_1.setIcon(imageIcon_lblImg_Instructor_1);
+		}
+		
 		panel_Instructor_1.add(lblImg_Instructor_1);
 
 		if (instructores[0] != null) {
-			// Obtener el primer dato del primer arreglo
-			Object primerDato = instructores[0][0]; // Suponiendo que el primer dato es el nombre del instructor
+			Object primerDato = instructores[0][0];
 
-			// Asignar el primer dato al componente lbl_instructor1
 			lbl_Instructor_1.setText(primerDato.toString());
 		}else {
 			lbl_Instructor_1.setText("");
@@ -147,10 +152,8 @@ public class InstructorView {
 		panel_Instructor_1.add(lbl_Instructor_1);
 
 		if (instructores[0] != null) {
-			// Obtener el primer dato del primer arreglo
-			Object segundoDato = instructores[0][1]; // Suponiendo que el primer dato es el nombre del instructor
+			Object segundoDato = instructores[0][1]; 
 
-			// Asignar el primer dato al componente lbl_instructor1
 			txt_Experiencia_1.setText(segundoDato.toString());
 		}else {
 			txt_Experiencia_1.setText("");
@@ -169,10 +172,8 @@ public class InstructorView {
 		panel_Instructor_1.add(txt_Experiencia_1);
 
 		if (instructores[0] != null) {
-			// Obtener el primer dato del primer arreglo
-			Object tercerDato = instructores[0][2]; // Suponiendo que el primer dato es el nombre del instructor
+			Object tercerDato = instructores[0][2];
 
-			// Asignar el primer dato al componente lbl_instructor1
 			txt_Formacion_1.setText(tercerDato.toString());
 		}else {
 			txt_Formacion_1.setText("");
@@ -191,10 +192,8 @@ public class InstructorView {
 		panel_Instructor_1.add(txt_Formacion_1);
 
 		if (instructores[0] != null) {
-			// Obtener el primer dato del primer arreglo
-			Object cuartoDato = instructores[0][3]; // Suponiendo que el primer dato es el nombre del instructor
+			Object cuartoDato = instructores[0][3]; 
 
-			// Asignar el primer dato al componente lbl_instructor1
 			txt_Horario_1.setText(cuartoDato.toString());
 		}else {
 			txt_Horario_1.setText("");
@@ -224,15 +223,22 @@ public class InstructorView {
 		lblImg_Instructor_2.setOpaque(true);
 		lblImg_Instructor_2.setBackground(Color.CYAN);
 		lblImg_Instructor_2.setBounds(50, 15, 100, 100);
-		ImageIcon imageIcon_Instructor_2 = new ImageIcon("img/hombrepfp.png");
-		lblImg_Instructor_2.setIcon(imageIcon_Instructor_2);
+		if (instructores[1] != null) {
+			Object sextoDato = instructores[1][5]; 
+			ImageIcon imageIcon_lblImg_Instructor_2 = new ImageIcon(sextoDato.toString());
+			Image image = imageIcon_lblImg_Instructor_2.getImage();
+			Image resizedImage = image.getScaledInstance(lblImg_Instructor_2.getWidth(), lblImg_Instructor_2.getHeight(), Image.SCALE_SMOOTH); 
+			imageIcon_lblImg_Instructor_2 = new ImageIcon(resizedImage); 
+			lblImg_Instructor_2.setIcon(imageIcon_lblImg_Instructor_2);
+		}else {
+			ImageIcon imageIcon_Instructor_2 = new ImageIcon("img/hombrepfp.png");
+			lblImg_Instructor_2.setIcon(imageIcon_Instructor_2);
+		}
 		panel_Instructor_2.add(lblImg_Instructor_2);
 
 		if (instructores[1] != null) {
-			// Obtener el primer dato del primer arreglo
-			Object primerDato = instructores[1][0]; // Suponiendo que el primer dato es el nombre del instructor
+			Object primerDato = instructores[1][0];
 
-			// Asignar el primer dato al componente lbl_instructor1
 			lbl_Instructor_2.setText(primerDato.toString());
 		}else {
 			lbl_Instructor_2.setText("");
@@ -243,10 +249,8 @@ public class InstructorView {
 		panel_Instructor_2.add(lbl_Instructor_2);
 
 		if (instructores[1] != null) {
-			// Obtener el primer dato del primer arreglo
-			Object segundoDato = instructores[1][1]; // Suponiendo que el primer dato es el nombre del instructor
+			Object segundoDato = instructores[1][1]; 
 
-			// Asignar el primer dato al componente lbl_instructor1
 			txt_Experiencia_2.setText(segundoDato.toString());
 		}else {
 			txt_Experiencia_2.setText("");
@@ -264,10 +268,8 @@ public class InstructorView {
 		doc_4.setParagraphAttributes(0, doc_4.getLength(), center_4, false);
 
 		if (instructores[1] != null) {
-			// Obtener el primer dato del primer arreglo
-			Object tercerDato = instructores[1][2]; // Suponiendo que el primer dato es el nombre del instructor
+			Object tercerDato = instructores[1][2]; 
 
-			// Asignar el primer dato al componente lbl_instructor1
 			txt_Formacion_2.setText(tercerDato.toString());
 		}else {
 			txt_Formacion_2.setText("");
@@ -285,10 +287,8 @@ public class InstructorView {
 		doc_5.setParagraphAttributes(0, doc_5.getLength(), center_5, false);
 
 		if (instructores[1] != null) {
-			// Obtener el primer dato del primer arreglo
-			Object cuartoDato = instructores[1][3]; // Suponiendo que el primer dato es el nombre del instructor
+			Object cuartoDato = instructores[1][3]; 
 
-			// Asignar el primer dato al componente lbl_instructor1
 			txt_Horario_2.setText(cuartoDato.toString());
 		}else {
 			txt_Horario_2.setText("");
@@ -316,16 +316,23 @@ public class InstructorView {
 		lblImg_Instructor_3.setOpaque(true);
 		lblImg_Instructor_3.setBackground(Color.CYAN);
 		lblImg_Instructor_3.setBounds(50, 15, 100, 100);
-		ImageIcon imageIcon_lblImg_Instructor_3 = new ImageIcon("img/hombrepfp.png");
-		lblImg_Instructor_3.setIcon(imageIcon_lblImg_Instructor_3);
+		if (instructores[2] != null) {
+			Object sextoDato = instructores[0][5];
+			ImageIcon imageIcon_lblImg_Instructor_3 = new ImageIcon(sextoDato.toString());
+			Image image = imageIcon_lblImg_Instructor_3.getImage();
+			Image resizedImage = image.getScaledInstance(lblImg_Instructor_3.getWidth(), lblImg_Instructor_3.getHeight(), Image.SCALE_SMOOTH); 
+			imageIcon_lblImg_Instructor_3 = new ImageIcon(resizedImage); 
+			lblImg_Instructor_3.setIcon(imageIcon_lblImg_Instructor_3);
+		}else {
+			ImageIcon imageIcon_lblImg_Instructor_3 = new ImageIcon("img/hombrepfp.png");
+			lblImg_Instructor_3.setIcon(imageIcon_lblImg_Instructor_3);
+		}
 		panel_Instructor_3.add(lblImg_Instructor_3);
 
 
 		if (instructores[2] != null) {
-			// Obtener el primer dato del primer arreglo
-			Object primerDato = instructores[2][0]; // Suponiendo que el primer dato es el nombre del instructor
+			Object primerDato = instructores[2][0]; 
 
-			// Asignar el primer dato al componente lbl_instructor1
 			lbl_Instructor_3.setText(primerDato.toString());
 		}else {
 			lbl_Instructor_3.setText("");
@@ -338,10 +345,8 @@ public class InstructorView {
 
 
 		if (instructores[2] != null) {
-			// Obtener el primer dato del primer arreglo
-			Object cuartoDato = instructores[2][3]; // Suponiendo que el primer dato es el nombre del instructor
+			Object cuartoDato = instructores[2][3];
 
-			// Asignar el primer dato al componente lbl_instructor1
 			txt_Horario_3.setText(cuartoDato.toString());
 		}else {
 			txt_Horario_3.setText("");
@@ -360,10 +365,8 @@ public class InstructorView {
 
 
 		if (instructores[2] != null) {
-			// Obtener el primer dato del primer arreglo
-			Object tercerDato = instructores[2][2]; // Suponiendo que el primer dato es el nombre del instructor
+			Object tercerDato = instructores[2][2]; 
 
-			// Asignar el primer dato al componente lbl_instructor1
 			txt_Formacion_3.setText(tercerDato.toString());
 		}else {
 			txt_Formacion_3.setText("");
@@ -381,10 +384,8 @@ public class InstructorView {
 		doc_9.setParagraphAttributes(0, doc_9.getLength(), center_9, false);
 
 		if (instructores[2] != null) {
-			// Obtener el primer dato del primer arreglo
-			Object segundoDato = instructores[2][1]; // Suponiendo que el primer dato es el nombre del instructor
+			Object segundoDato = instructores[2][1]; 
 
-			// Asignar el primer dato al componente lbl_instructor1
 			txt_Experiencia_3.setText(segundoDato.toString());
 		}else {
 			txt_Experiencia_3.setText("");
@@ -414,15 +415,22 @@ public class InstructorView {
 		lblImg_Instructor_4.setOpaque(true);
 		lblImg_Instructor_4.setBackground(Color.CYAN);
 		lblImg_Instructor_4.setBounds(49, 15, 100, 100);
-		ImageIcon imageIcon_Instructor_4 = new ImageIcon("img/mujerpfp.png");
-		lblImg_Instructor_4.setIcon(imageIcon_Instructor_4);
+		if (instructores[3] != null) {
+			Object sextoDato = instructores[3][5]; 
+			ImageIcon imageIcon_lblImg_Instructor_4 = new ImageIcon(sextoDato.toString());
+			Image image = imageIcon_lblImg_Instructor_4.getImage();
+			Image resizedImage = image.getScaledInstance(lblImg_Instructor_4.getWidth(), lblImg_Instructor_4.getHeight(), Image.SCALE_SMOOTH); 
+			imageIcon_lblImg_Instructor_4 = new ImageIcon(resizedImage); 
+			lblImg_Instructor_4.setIcon(imageIcon_lblImg_Instructor_4);
+		}else {
+			ImageIcon imageIcon_Instructor_4 = new ImageIcon("img/mujerpfp.png");
+			lblImg_Instructor_4.setIcon(imageIcon_Instructor_4);
+		}
 		panel_Instructor_4.add(lblImg_Instructor_4);
 
 		if (instructores[3] != null) {
-			// Obtener el primer dato del primer arreglo
-			Object primerDato = instructores[3][0]; // Suponiendo que el primer dato es el nombre del instructor
+			Object primerDato = instructores[3][0]; 
 
-			// Asignar el primer dato al componente lbl_instructor1
 			lbl_Instructor_4.setText(primerDato.toString());
 		}else {
 			lbl_Instructor_4.setText("");
@@ -433,10 +441,8 @@ public class InstructorView {
 		panel_Instructor_4.add(lbl_Instructor_4);
 
 		if (instructores[3] != null) {
-			// Obtener el primer dato del primer arreglo
-			Object cuartoDato = instructores[3][3]; // Suponiendo que el primer dato es el nombre del instructor
+			Object cuartoDato = instructores[3][3]; 
 
-			// Asignar el primer dato al componente lbl_instructor1
 			txt_Horario_4.setText(cuartoDato.toString());
 		}else {
 			txt_Horario_4.setText("");
@@ -517,7 +523,7 @@ public class InstructorView {
 				public void actionPerformed(ActionEvent e) {
 					InstructorController controller= new InstructorController();
 					frame.dispose();
-					controller.CrearInstructor();
+					controller.AvatarInstructor();
 				}
 			});
 		} else {
@@ -562,6 +568,10 @@ public class InstructorView {
 			btnEditarInstructor1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					System.out.println("Editar instructor 1");
+					Object quintoDato = instructores[0][4]; // Suponiendo que el primer dato es el nombre del instructor
+					InstructorController controller = new InstructorController();
+					frame.dispose();
+					controller.editarInstructor(quintoDato.toString());
 				}
 			});
 
@@ -584,11 +594,16 @@ public class InstructorView {
 
 			btnEliminarInstructor1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					int confirmResult = JOptionPane.showConfirmDialog(frame, "¿Está seguro de que desea eliminar el instructor?","Confirmar eliminación",JOptionPane.YES_NO_OPTION);
+
+
+					if (confirmResult == JOptionPane.YES_OPTION) {
 					Object quintoDato = instructores[0][4]; // Suponiendo que el primer dato es el nombre del instructor
 					instructorModel.eliminarInstructor(Integer.parseInt(quintoDato.toString()));
 					InstructorController controller= new InstructorController();
 					frame.dispose();
 					controller.instructor();
+					}
 				}
 			});
 		}
@@ -614,7 +629,7 @@ public class InstructorView {
 				public void actionPerformed(ActionEvent e) {
 					InstructorController controller= new InstructorController();
 					frame.dispose();
-					controller.CrearInstructor();
+					controller.AvatarInstructor();
 				}
 			});
 		} else {
@@ -660,6 +675,10 @@ public class InstructorView {
 			btnEditarInstructor2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					System.out.println("Editar instructor 2");
+					Object quintoDato = instructores[1][4]; // Suponiendo que el primer dato es el nombre del instructor
+					InstructorController controller = new InstructorController();
+					frame.dispose();
+					controller.editarInstructor(quintoDato.toString());
 				}
 			});
 
@@ -681,11 +700,16 @@ public class InstructorView {
 
 			btnEliminarInstructor2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					int confirmResult = JOptionPane.showConfirmDialog(frame, "¿Está seguro de que desea eliminar el instructor?","Confirmar eliminación",JOptionPane.YES_NO_OPTION);
+
+
+					if (confirmResult == JOptionPane.YES_OPTION) {
 					Object quintoDato = instructores[1][4]; // Suponiendo que el primer dato es el nombre del instructor
 					instructorModel.eliminarInstructor(Integer.parseInt(quintoDato.toString()));
 					InstructorController controller= new InstructorController();
 					frame.dispose();
 					controller.instructor();
+					}
 				}
 			});
 		}
@@ -711,7 +735,7 @@ public class InstructorView {
 				public void actionPerformed(ActionEvent e) {
 					InstructorController controller= new InstructorController();
 					frame.dispose();
-					controller.CrearInstructor();
+					controller.AvatarInstructor();
 				}
 			});
 		} else {
@@ -756,7 +780,11 @@ public class InstructorView {
 
 			btnEditarInstructor3.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					System.out.println("Editar instructor 3");
+					System.out.println("Editar instructor 2");
+					Object quintoDato = instructores[1][4]; // Suponiendo que el primer dato es el nombre del instructor
+					InstructorController controller = new InstructorController();
+					frame.dispose();
+					controller.editarInstructor(quintoDato.toString());
 				}
 			});
 
@@ -778,11 +806,16 @@ public class InstructorView {
 
 			btnEliminarInstructor.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					int confirmResult = JOptionPane.showConfirmDialog(frame, "¿Está seguro de que desea eliminar el instructor?","Confirmar eliminación",JOptionPane.YES_NO_OPTION);
+
+
+					if (confirmResult == JOptionPane.YES_OPTION) {
 					Object quintoDato = instructores[1][4]; // Suponiendo que el primer dato es el nombre del instructor
 					instructorModel.eliminarInstructor(Integer.parseInt(quintoDato.toString()));
 					InstructorController controller= new InstructorController();
 					frame.dispose();
 					controller.instructor();
+					}
 				}
 			});
 		}
@@ -808,7 +841,7 @@ public class InstructorView {
 				public void actionPerformed(ActionEvent e) {
 					InstructorController controller= new InstructorController();
 					frame.dispose();
-					controller.CrearInstructor();
+					controller.AvatarInstructor();
 				}
 			});
 		} else {
@@ -854,6 +887,10 @@ public class InstructorView {
 			btnEditarInstructor4.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					System.out.println("Editar instructor 4");
+					Object quintoDato = instructores[1][4]; // Suponiendo que el primer dato es el nom
+					InstructorController controller = new InstructorController();
+					frame.dispose();
+					controller.editarInstructor(quintoDato.toString());
 				}
 			});
 
@@ -875,11 +912,16 @@ public class InstructorView {
 
 			btnEliminarInstructor4.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					int confirmResult = JOptionPane.showConfirmDialog(frame, "¿Está seguro de que desea eliminar el instructor?","Confirmar eliminación",JOptionPane.YES_NO_OPTION);
+
+
+					if (confirmResult == JOptionPane.YES_OPTION) {
 					Object quintoDato = instructores[1][4]; // Suponiendo que el primer dato es el nombre del instructor
 					instructorModel.eliminarInstructor(Integer.parseInt(quintoDato.toString()));
 					InstructorController controller= new InstructorController();
 					frame.dispose();
 					controller.instructor();
+					}
 				}
 			});
 		}
@@ -888,7 +930,7 @@ public class InstructorView {
 	}
 
 	//Para crear los instructores
-	public void crearInstructor() {
+	public void crearInstructor(String imgInstructor) {
 		panel = new JPanel();
 		panel.setBounds(0, 0, 1092, 660);
 		panel.setBackground(Color.decode("#F2F2F2"));
@@ -976,7 +1018,7 @@ public class InstructorView {
 		panelcontenedor.add(panel_1);
 		panel_1.setBackground(Color.decode("#214177"));
 		panel_1.setLayout(null);
-		
+
 		//registrar el instructor
 		JButton btnRegistrarInstructor = new JButton("Registrar instructor");
 		btnRegistrarInstructor.setBounds(0, 0, 502, 38);
@@ -998,7 +1040,7 @@ public class InstructorView {
 				if (nombre.isEmpty() || experiencia.isEmpty() || formacion.isEmpty() || horario.isEmpty()) {
 					JOptionPane.showMessageDialog(frame, "Todos los campos deben estar llenos.", "Error", JOptionPane.ERROR_MESSAGE);
 				} else {
-					if(instructorModel.agregarInstructor(nombre, experiencia, formacion, horario) == true) {
+					if(instructorModel.agregarInstructor(nombre, experiencia, formacion, horario, imgInstructor) == true) {
 						JOptionPane.showMessageDialog(frame, "El instructor ya se encuentra registrado.", "Registro erroneo", JOptionPane.ERROR_MESSAGE);
 					}else {
 						JOptionPane.showMessageDialog(frame, "Instructor registrado exitosamente.", "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
@@ -1013,86 +1055,179 @@ public class InstructorView {
 		});
 
 		vistaComun();
-
-
 	}
-	//Avatar del instructor
-//	public void crearInstructorAvatar() {
-//		panel = new JPanel();
-//		panel.setBounds(0, 0, 1092, 660);
-//		panel.setBackground(Color.decode("#F2F2F2"));
-//		frame.getContentPane().add(panel);
-//		panel.setLayout(null);
-//
-//		//Contenido
-//		JPanel panelcontenedor =new JPanel();
-//		panelcontenedor.setBackground(Color.decode("#FFFFFF"));
-//		panelcontenedor.setBounds(200, 75, 882, 573);
-//		panel.add(panelcontenedor);
-//		panelcontenedor.setLayout(null);
-//
-//		JPanel panelCabeceraContenido = new JPanel();
-//		panelCabeceraContenido.setLayout(null);
-//		panelCabeceraContenido.setBackground(new Color(188, 218, 242));
-//		panelCabeceraContenido.setBounds(0, 0, 882, 40);
-//		panelcontenedor.add(panelCabeceraContenido);
-//
-//		JLabel lblTituloContenido = new JLabel("Crear instructor");
-//		lblTituloContenido.setFont(new Font("Calibri", Font.PLAIN, 26));
-//		lblTituloContenido.setBounds(10, 11, 438, 29);
-//		panelCabeceraContenido.add(lblTituloContenido);
-//
-//		JLabel lblIngreseLosDatos = new JLabel("Selecciona un avatar");
-//		lblIngreseLosDatos.setHorizontalAlignment(SwingConstants.CENTER);
-//		lblIngreseLosDatos.setFont(new Font("Calibri", Font.PLAIN, 26));
-//		lblIngreseLosDatos.setBounds(237, 73, 414, 29);
-//		panelcontenedor.add(lblIngreseLosDatos);
-//
-//		JLabel lblAvatar1 = new JLabel("");
-//		lblAvatar1.setOpaque(true);
-//		lblAvatar1.setBackground(new Color(0, 64, 128));
-//		lblAvatar1.setFont(new Font("Calibri", Font.PLAIN, 16));
-//		lblAvatar1.setBounds(235, 140, 160, 160);
-//		ImageIcon imageIcon_lblAvatar1 = new ImageIcon("img/hombreCrearpfp.png");
-//		lblAvatar1.setIcon(imageIcon_lblAvatar1);
-//		lblAvatar1.addMouseListener(new MouseAdapter() {
-//
-//
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//				// Acción al hacer clic en el label
-//				InstructorController controller= new InstructorController();
-//				frame.dispose();
-//				controller.instructor();
-//
-//			}
-//		});
-//		panelcontenedor.add(lblAvatar1);
-//
-//		JLabel lblAvatar2 = new JLabel("");
-//		lblAvatar2.setOpaque(true);
-//		lblAvatar2.setFont(new Font("Calibri", Font.PLAIN, 16));
-//		lblAvatar2.setBackground(new Color(0, 64, 128));
-//		lblAvatar2.setBounds(510, 140, 160, 160);
-//		ImageIcon imageIcon_lblAvatar2 = new ImageIcon("img/imgEntrenador1.png");
-//		lblAvatar2.setIcon(imageIcon_lblAvatar2);
-//		lblAvatar2.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//				ImageIcon nuevaImagen = new ImageIcon("img/imgEntrenador1.png");
-//				lblImg_Instructor_1.setIcon(nuevaImagen);
-//				InstructorController controller= new InstructorController();
-//				frame.dispose();
-//				controller.instructor();
-//			}
-//		});
-//		panelcontenedor.add(lblAvatar2);
-//		vistaComun();
-//	}
-	//editar instructor
-	public void editarInstructor() {
 
+	public void crearInstructorAvatar() {
+	    panel = new JPanel();
+	    panel.setBounds(0, 0, 1092, 660);
+	    panel.setBackground(Color.decode("#F2F2F2"));
+	    frame.getContentPane().add(panel);
+	    panel.setLayout(null);
 
+	    // Contenido
+	    JPanel panelcontenedor = new JPanel();
+	    panelcontenedor.setBackground(Color.decode("#FFFFFF"));
+	    panelcontenedor.setBounds(200, 75, 882, 573);
+	    panel.add(panelcontenedor);
+	    panelcontenedor.setLayout(null);
+
+	    JPanel panelCabeceraContenido = new JPanel();
+	    panelCabeceraContenido.setLayout(null);
+	    panelCabeceraContenido.setBackground(new Color(188, 218, 242));
+	    panelCabeceraContenido.setBounds(0, 0, 882, 40);
+	    panelcontenedor.add(panelCabeceraContenido);
+
+	    JLabel lblTituloContenido = new JLabel("Crear instructor");
+	    lblTituloContenido.setFont(new Font("Calibri", Font.PLAIN, 26));
+	    lblTituloContenido.setBounds(10, 11, 438, 29);
+	    panelCabeceraContenido.add(lblTituloContenido);
+
+	    JLabel lblIngreseLosDatos = new JLabel("Selecciona un avatar");
+	    lblIngreseLosDatos.setHorizontalAlignment(SwingConstants.CENTER);
+	    lblIngreseLosDatos.setFont(new Font("Calibri", Font.PLAIN, 26));
+	    lblIngreseLosDatos.setBounds(237, 73, 414, 29);
+	    panelcontenedor.add(lblIngreseLosDatos);
+
+	    JLabel lblAvatar1 = new JLabel("");
+	    lblAvatar1.setOpaque(true);
+	    lblAvatar1.setBackground(new Color(0, 64, 128));
+	    lblAvatar1.setFont(new Font("Calibri", Font.PLAIN, 16));
+	    lblAvatar1.setBounds(100, 150, 160, 160);
+	    ImageIcon imageIcon_lblAvatar1 = new ImageIcon("img/pfp1.png");
+	    lblAvatar1.setIcon(imageIcon_lblAvatar1);
+	    lblAvatar1.addMouseListener(new MouseAdapter() {
+	        @Override
+	        public void mouseClicked(MouseEvent e) {
+	            InstructorController controller = new InstructorController();
+	            frame.dispose();
+	            controller.CrearInstructor("img/pfp1.png");
+	        }
+	    });
+	    panelcontenedor.add(lblAvatar1);
+
+	    JLabel lblAvatar2 = new JLabel("");
+	    lblAvatar2.setOpaque(true);
+	    lblAvatar2.setFont(new Font("Calibri", Font.PLAIN, 16));
+	    lblAvatar2.setBackground(new Color(0, 64, 128));
+	    lblAvatar2.setBounds(300, 150, 160, 160);
+	    ImageIcon imageIcon_lblAvatar2 = new ImageIcon("img/pfp2.png");
+	    lblAvatar2.setIcon(imageIcon_lblAvatar2);
+	    lblAvatar2.addMouseListener(new MouseAdapter() {
+	        @Override
+	        public void mouseClicked(MouseEvent e) {
+	            InstructorController controller = new InstructorController();
+	            frame.dispose();
+	            controller.CrearInstructor("img/pfp2.png");
+	        }
+	    });
+	    panelcontenedor.add(lblAvatar2);
+
+	    JLabel lblAvatar3 = new JLabel("");
+	    lblAvatar3.setOpaque(true);
+	    lblAvatar3.setFont(new Font("Calibri", Font.PLAIN, 16));
+	    lblAvatar3.setBackground(new Color(0, 64, 128));
+	    lblAvatar3.setBounds(500, 150, 160, 160);
+	    ImageIcon imageIcon_lblAvatar3 = new ImageIcon("img/pfp3.png");
+	    lblAvatar3.setIcon(imageIcon_lblAvatar3);
+	    lblAvatar3.addMouseListener(new MouseAdapter() {
+	        @Override
+	        public void mouseClicked(MouseEvent e) {
+	            InstructorController controller = new InstructorController();
+	            frame.dispose();
+	            controller.CrearInstructor("img/pfp3.png");
+	        }
+	    });
+	    panelcontenedor.add(lblAvatar3);
+
+	    JLabel lblAvatar4 = new JLabel("");
+	    lblAvatar4.setOpaque(true);
+	    lblAvatar4.setFont(new Font("Calibri", Font.PLAIN, 16));
+	    lblAvatar4.setBackground(new Color(0, 64, 128));
+	    lblAvatar4.setBounds(700, 150, 160, 160);
+	    ImageIcon imageIcon_lblAvatar4 = new ImageIcon("img/pfp4.png");
+	    lblAvatar4.setIcon(imageIcon_lblAvatar4);
+	    lblAvatar4.addMouseListener(new MouseAdapter() {
+	        @Override
+	        public void mouseClicked(MouseEvent e) {
+	            InstructorController controller = new InstructorController();
+	            frame.dispose();
+	            controller.CrearInstructor("img/pfp4.png");
+	        }
+	    });
+	    panelcontenedor.add(lblAvatar4);
+
+	    JLabel lblAvatar5 = new JLabel("");
+	    lblAvatar5.setOpaque(true);
+	    lblAvatar5.setFont(new Font("Calibri", Font.PLAIN, 16));
+	    lblAvatar5.setBackground(new Color(0, 64, 128));
+	    lblAvatar5.setBounds(100, 350, 160, 160);
+	    ImageIcon imageIcon_lblAvatar5 = new ImageIcon("img/pfp5.png");
+	    lblAvatar5.setIcon(imageIcon_lblAvatar5);
+	    lblAvatar5.addMouseListener(new MouseAdapter() {
+	        @Override
+	        public void mouseClicked(MouseEvent e) {
+	            InstructorController controller = new InstructorController();
+	            frame.dispose();
+	            controller.CrearInstructor("img/pfp5.png");
+	        }
+	    });
+	    panelcontenedor.add(lblAvatar5);
+
+	    JLabel lblAvatar6 = new JLabel("");
+	    lblAvatar6.setOpaque(true);
+	    lblAvatar6.setFont(new Font("Calibri", Font.PLAIN, 16));
+	    lblAvatar6.setBackground(new Color(0, 64, 128));
+	    lblAvatar6.setBounds(300, 350, 160, 160);
+	    ImageIcon imageIcon_lblAvatar6 = new ImageIcon("img/pfp6.png");
+	    lblAvatar6.setIcon(imageIcon_lblAvatar6);
+	    lblAvatar6.addMouseListener(new MouseAdapter() {
+	        @Override
+	        public void mouseClicked(MouseEvent e) {
+	            InstructorController controller = new InstructorController();
+	            frame.dispose();
+	            controller.CrearInstructor("img/pfp6.png");
+	        }
+	    });
+	    panelcontenedor.add(lblAvatar6);
+
+	    JLabel lblAvatar7 = new JLabel("");
+	    lblAvatar7.setOpaque(true);
+	    lblAvatar7.setFont(new Font("Calibri", Font.PLAIN, 16));
+	    lblAvatar7.setBackground(new Color(0, 64, 128));
+	    lblAvatar7.setBounds(500, 350, 160, 160);
+	    ImageIcon imageIcon_lblAvatar7 = new ImageIcon("img/pfp7.png");
+	    lblAvatar7.setIcon(imageIcon_lblAvatar7);
+	    lblAvatar7.addMouseListener(new MouseAdapter() {
+	        @Override
+	        public void mouseClicked(MouseEvent e) {
+	            InstructorController controller = new InstructorController();
+	            frame.dispose();
+	            controller.CrearInstructor("img/pfp7.png");
+	        }
+	    });
+	    panelcontenedor.add(lblAvatar7);
+
+	    JLabel lblAvatar8 = new JLabel("");
+	    lblAvatar8.setOpaque(true);
+	    lblAvatar8.setFont(new Font("Calibri", Font.PLAIN, 16));
+	    lblAvatar8.setBackground(new Color(0, 64, 128));
+	    lblAvatar8.setBounds(700, 350, 160, 160);
+	    ImageIcon imageIcon_lblAvatar8 = new ImageIcon("img/pfp8.png");
+	    lblAvatar8.setIcon(imageIcon_lblAvatar8);
+	    lblAvatar8.addMouseListener(new MouseAdapter() {
+	        @Override
+	        public void mouseClicked(MouseEvent e) {
+	            InstructorController controller = new InstructorController();
+	            frame.dispose();
+	            controller.CrearInstructor("img/pfp8.png");
+	        }
+	    });
+	    panelcontenedor.add(lblAvatar8);
+	    vistaComun();
+	}
+	
+	
+	public void editarInstructor(String idInstructor) {
 		panel = new JPanel();
 		panel.setBounds(0, 0, 1092, 660);
 		panel.setBackground(Color.decode("#F2F2F2"));
@@ -1183,15 +1318,36 @@ public class InstructorView {
 		panel_1.setBackground(Color.decode("#214177"));
 		panel_1.setLayout(null);
 
-		JButton btnRegistrarInstructor = new JButton("Guardar cambios ");
-		btnRegistrarInstructor.setBounds(0, 0, 502, 35);
-		panel_1.add(btnRegistrarInstructor);
-		btnRegistrarInstructor.setForeground(Color.WHITE);
-		btnRegistrarInstructor.setFont(new Font("Calibri", Font.BOLD, 20));
-		btnRegistrarInstructor.setFocusPainted(false);
-		btnRegistrarInstructor.setBorderPainted(false);
-		btnRegistrarInstructor.setContentAreaFilled(false);
-		btnRegistrarInstructor.setBackground(Color.decode("#214177"));
+		JButton btnGuardarCambios = new JButton("Guardar cambios ");
+		btnGuardarCambios.setBounds(0, 0, 502, 35);
+		panel_1.add(btnGuardarCambios);
+		btnGuardarCambios.setForeground(Color.WHITE);
+		btnGuardarCambios.setFont(new Font("Calibri", Font.BOLD, 20));
+		btnGuardarCambios.setFocusPainted(false);
+		btnGuardarCambios.setBorderPainted(false);
+		btnGuardarCambios.setContentAreaFilled(false);
+		btnGuardarCambios.setBackground(Color.decode("#214177"));
+		
+		btnGuardarCambios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String nombre = textClasenombre.getText().trim();
+				String experiencia = textExperiencia.getText().trim();
+				String formacion = textFormacion.getText().trim();
+				String horario = textHorario.getText().trim();
+
+				if (nombre.isEmpty() || experiencia.isEmpty() || formacion.isEmpty() || horario.isEmpty()) {
+					JOptionPane.showMessageDialog(frame, "Todos los campos deben estar llenos.", "Error", JOptionPane.ERROR_MESSAGE);
+				} else {
+					InstructorModel modelo = new InstructorModel();
+					modelo.editarInstructor(Integer.parseInt(idInstructor), nombre, experiencia, formacion, horario);
+					JOptionPane.showMessageDialog(frame, "Cambios realizados exitosamente.", "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
+					
+					InstructorController controller = new InstructorController();
+					frame.dispose();
+					controller.instructor();	
+				}
+			}
+		});
 
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setLayout(null);
@@ -1202,6 +1358,9 @@ public class InstructorView {
 		JButton btnCancelar = new JButton("Cancelar cambios");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				InstructorController controller = new InstructorController();
+				frame.dispose();
+				controller.instructor();
 			}
 		});
 		btnCancelar.setForeground(Color.WHITE);
@@ -1213,23 +1372,8 @@ public class InstructorView {
 		btnCancelar.setBounds(0, 0, 502, 35);
 		panel_1_1.add(btnCancelar);
 
-		btnRegistrarInstructor.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String nombre = textClasenombre.getText().trim();
-				String experiencia = textExperiencia.getText().trim();
-				String formacion = textFormacion.getText().trim();
-				String horario = textHorario.getText().trim();
-
-				if (nombre.isEmpty() || experiencia.isEmpty() || formacion.isEmpty() || horario.isEmpty()) {
-					JOptionPane.showMessageDialog(frame, "Todos los campos deben estar llenos.", "Error", JOptionPane.ERROR_MESSAGE);
-				} else {
-					JOptionPane.showMessageDialog(frame, "Instructor registrado exitosamente.", "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
-				}
-			}
-		});
-
+		
 		vistaComun();
-
 	}
 
 	//Parte de botones ventanas principales y cabecera

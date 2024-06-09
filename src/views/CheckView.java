@@ -5,7 +5,9 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -24,6 +26,8 @@ import controllers.ClientController;
 import controllers.FeeController;
 import controllers.HomeController;
 import controllers.InstructorController;
+import models.CheckModel;
+import models.ClientModel;
 
 
 
@@ -117,12 +121,23 @@ public class CheckView {
 		panelBtnChecador.setBackground(new Color(55, 104, 167));
 
 		//Boton para checar
+		CheckModel modelo = new CheckModel();
 		JButton btnChecar = new JButton("Checar");
 		btnChecar.setBounds(0, 0, 307, 40);
 		panelBtnChecador.add(btnChecar);
 		btnChecar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Se ha checado", "Información", JOptionPane.INFORMATION_MESSAGE);
+				String userID = JOptionPane.showInputDialog(null, "Ingrese el ID del usuario:", "Solicitud de ID", JOptionPane.QUESTION_MESSAGE);
+				// Mostrar el ID ingresado (para confirmar que se ha capturado correctamente)
+				if (userID != null && !userID.trim().isEmpty()) {
+					int asistencias = modelo.verificarVisitas(Integer.parseInt(userID));
+					
+					modelo.ContarVisita((Integer.parseInt(userID)), (asistencias + 1));
+					JOptionPane.showMessageDialog(null, "Se ha checado", "Información", JOptionPane.INFORMATION_MESSAGE);
+				}
+				String[] datosClientes = modelo.obtenerNombreCliente(userID);
+				JOptionPane.showMessageDialog(null, "El usuario " + datosClientes[0] + " ha asistido " + modelo.verificarVisitas(Integer.parseInt(userID)) + " veces al gimnasio", "Reporte", JOptionPane.INFORMATION_MESSAGE);
+				
 			}
 		});
 		btnChecar.setForeground(Color.WHITE);

@@ -70,7 +70,7 @@ public class CloseSessionView {
 		panelBtnCerrarSesion.setLayout(null);
 
 		//Boton cerrar sesion
-		JButton btnCerrar = new JButton("Añadir instructor");
+		JButton btnCerrar = new JButton("Cerrar");
 		btnCerrar.setBounds(0, 0, 243, 40);
 		panelBtnCerrarSesion.add(btnCerrar);
 		btnCerrar.setForeground(Color.WHITE);
@@ -82,12 +82,15 @@ public class CloseSessionView {
 
 		btnCerrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int confirmResult = JOptionPane.showConfirmDialog(frame, "¿Está seguro de que desea cerrar sesión?","Confirmar cerrar",JOptionPane.YES_NO_OPTION);
+
+				if (confirmResult == JOptionPane.YES_OPTION) {
 				JOptionPane.showMessageDialog(frame, "Su sesión ha sido cerrada con éxito", "Cerrar sesión", JOptionPane.INFORMATION_MESSAGE);
 					
 					Auth controller = new Auth();
 					frame.dispose();
 					controller.login();
-				 
+				}	 
 			}
 		});
 

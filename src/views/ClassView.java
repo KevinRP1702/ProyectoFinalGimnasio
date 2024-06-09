@@ -33,7 +33,6 @@ import controllers.FeeController;
 import controllers.HomeController;
 import controllers.InstructorController;
 import models.ClassModel;
-import models.ClientModel;
 
 
 
@@ -115,8 +114,6 @@ public class ClassView {
 		});
 
 		panelCabeceraContenido.add(comboBox);
-
-
 
 		JPanel panelBotoncontenido_1 = new JPanel();
 		panelBotoncontenido_1.setBackground(new Color(55, 104, 167));
@@ -216,9 +213,6 @@ public class ClassView {
 		panelcontenedor.add(scrollPane);
 
 		vistaComun();
-
-
-
 	}
 
 	//Vista para crear clase
@@ -334,15 +328,11 @@ public class ClassView {
 		panel.add(panelcontenedor);
 		panelcontenedor.setLayout(null);
 
-
-
 		JPanel panelCabeceraContenido = new JPanel();
 		panelCabeceraContenido.setLayout(null);
 		panelCabeceraContenido.setBackground(new Color(188, 218, 242));
 		panelCabeceraContenido.setBounds(0, 0, 882, 40);
 		panelcontenedor.add(panelCabeceraContenido);
-
-
 
 		//Boton agregar cliente
 		JPanel panelBotoncontenido_1 = new JPanel();
@@ -351,6 +341,35 @@ public class ClassView {
 		panelCabeceraContenido.add(panelBotoncontenido_1);
 		panelBotoncontenido_1.setLayout(null);
 
+		JPanel panelBotonEditarClase = new JPanel();
+	    panelBotonEditarClase.setBackground(new Color(55, 104, 167));
+	    panelBotonEditarClase.setBounds(265, 5, 190, 30);  // Ajusta la posición para alinearlo a la izquierda del botón "Agregar cliente"
+	    panelCabeceraContenido.add(panelBotonEditarClase);
+	    panelBotonEditarClase.setLayout(null);
+
+	    JButton btnEditarClase = new JButton("    Editar clase");
+	    btnEditarClase.setBounds(0, 0, 190, 30);
+	    panelBotonEditarClase.add(btnEditarClase);
+	    btnEditarClase.setContentAreaFilled(false);
+	    btnEditarClase.setForeground(Color.WHITE);
+	    btnEditarClase.setFont(new Font("Calibri", Font.BOLD, 20));
+	    btnEditarClase.setFocusPainted(false);
+	    btnEditarClase.setBorderPainted(false);
+	    btnEditarClase.setBackground(new Color(55, 104, 167));
+	    btnEditarClase.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            ClassController controller = new ClassController();
+	            frame.dispose();
+	            controller.editarClase(claseSeleccionada);
+	        }
+	    });
+	    
+	    JLabel lblBotonEditarClase = new JLabel();
+	    lblBotonEditarClase.setBounds(10, 0, 26, 26);
+	    ImageIcon imageIcon_lblBotonEditarClase = new ImageIcon("img/cliente_lupa.png"); // Cambia esto al icono que desees
+	    lblBotonEditarClase.setIcon(imageIcon_lblBotonEditarClase);
+	    panelBotonEditarClase.add(lblBotonEditarClase);
+	    
 		JLabel lblBotoncontenido_1 = new JLabel();
 		lblBotoncontenido_1.setBounds(10, 0, 26, 26);
 		ImageIcon imageIcon_lblBotoncontenido_1 = new ImageIcon("img/clase_crear.png");
@@ -516,7 +535,8 @@ public class ClassView {
 	}
 
 	//clase para editar
-	public void claseEditar() {
+	public void claseEditar(String claseSeleccionada) {
+		System.out.println(claseSeleccionada);
 		panel = new JPanel();
 		panel.setBounds(0, 0, 1092, 660);
 		panel.setBackground(Color.decode("#F2F2F2"));
@@ -547,7 +567,8 @@ public class ClassView {
 		lblIngreseLosDatos.setBounds(279, 99, 328, 29);
 		panelcontenedor.add(lblIngreseLosDatos);
 
-
+		
+		
 		//Ingreso de datos
 		JTextArea  textClasenombre = new JTextArea();
 		textClasenombre.setFont(new Font("Calibri", Font.PLAIN, 18));
@@ -575,7 +596,7 @@ public class ClassView {
 		textClaseinstructor.setBounds(191, 255, 502, 40);
 		textClaseinstructor.setBorder(BorderFactory.createCompoundBorder(
 				new LineBorder(Color.decode("#D4D4D4"), 1),
-				new EmptyBorder(10, 10, 10, 10)  // Agregar padding
+				new EmptyBorder(10, 10, 10, 10)  
 				));
 		panelcontenedor.add(textClaseinstructor);
 
@@ -585,7 +606,7 @@ public class ClassView {
 		panelcontenedor.add(panelGuardarCambios);
 		panelGuardarCambios.setLayout(null);
 
-		//Boton para guardar cambios
+		
 		JButton btnGuardarCambios = new JButton("Guardar cambios");
 		btnGuardarCambios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -595,10 +616,16 @@ public class ClassView {
 				if (className.isEmpty() || instructorName.isEmpty()) {
 					JOptionPane.showMessageDialog(frame, "Por favor, complete todos los campos.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
 				} else {
+					ClassModel modelo = new ClassModel();
+					modelo.editarClase(claseSeleccionada, textClasenombre.getText() ,textClaseinstructor.getText());
 					JOptionPane.showMessageDialog(frame, "Los cambios se han guardado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+					ClassController controller = new ClassController();
+					frame.dispose();
+					controller.clase();
 				}
 			}
 		});
+		
 		btnGuardarCambios.setBounds(0, 0, 500, 40);
 		panelGuardarCambios.add(btnGuardarCambios);
 		btnGuardarCambios.setForeground(Color.WHITE);
@@ -618,9 +645,12 @@ public class ClassView {
 		JButton btnCancelarCambios = new JButton("Cancelar cambios");
 		btnCancelarCambios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				ClassController controller = new ClassController();
+				frame.dispose();
+				controller.clase();
 			}
 		});
+		
 		btnCancelarCambios.setForeground(Color.WHITE);
 		btnCancelarCambios.setFont(new Font("Calibri", Font.BOLD, 20));
 		btnCancelarCambios.setFocusPainted(false);

@@ -34,4 +34,8 @@ public class ClassController {
 		vista.consultarClase(claseSeleccionada);
 		
 	}
+	
+	public void editarClase(String claseSeleccionada) {
+		vista.claseEditar(claseSeleccionada);
+	}
 }
