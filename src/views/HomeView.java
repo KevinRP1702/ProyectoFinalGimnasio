@@ -124,8 +124,8 @@ public class HomeView {
 
       		JLabel lblLogo = new JLabel("");
       		lblLogo.setBounds(0, 0, 192, 67);
-      		ImageIcon imageIcon = new ImageIcon("img/logo.png"); 
-      		lblLogo.setIcon(imageIcon);
+      		lblLogo.setIcon(new ImageIcon(getClass().getResource("/imgs/logo.png")));
+      		
 
       		panelCabecera.add(lblLogo);
 
@@ -172,8 +172,8 @@ public class HomeView {
       		});
       		JLabel lblInicio = new JLabel();
       		lblInicio.setBounds(10, 30, 40, 40);
-      		ImageIcon imageIcon_Inicio = new ImageIcon("img/menu_inicio.png");
-      		lblInicio.setIcon(imageIcon_Inicio);
+      		lblInicio.setIcon(new ImageIcon(getClass().getResource("/imgs/menu_inicio.png")));
+      		
       		panel_1.add(lblInicio);
 
 
@@ -210,8 +210,8 @@ public class HomeView {
 
       		JLabel lblClientes = new JLabel();
       		lblClientes.setBounds(10, 10, 40, 40);
-      		ImageIcon imageIcon_Clientes = new ImageIcon("img/menu_cliente.png");
-      		lblClientes.setIcon(imageIcon_Clientes);
+      		lblClientes.setIcon(new ImageIcon(getClass().getResource("/imgs/menu_cliente.png")));
+      		
       		panel_2.add(lblClientes);
 
       		//Tarifas
@@ -244,9 +244,8 @@ public class HomeView {
 
       		JLabel lblTarifas = new JLabel();
       		lblTarifas.setBounds(10, 10, 40, 40);
-      		ImageIcon imageIcon_Tarifas = new ImageIcon("img/menu_tarifa.png");
-      		lblTarifas.setIcon(imageIcon_Tarifas);
-      		panel_3.add(lblTarifas);
+      		lblTarifas.setIcon(new ImageIcon(getClass().getResource("/imgs/menu_tarifa.png")));
+      	      		panel_3.add(lblTarifas);
 
       		//Instructores
       		JPanel panel_4 = new JPanel();
@@ -277,8 +276,9 @@ public class HomeView {
 
       		JLabel lblInstructores = new JLabel();
       		lblInstructores.setBounds(10, 10, 40, 40);
-      		ImageIcon imageIcon_Intructores = new ImageIcon("img/menu_instructor.png");
-      		lblInstructores.setIcon(imageIcon_Intructores);
+      		
+      		lblInstructores.setIcon(new ImageIcon(getClass().getResource("/imgs/menu_instructor.png")));
+      		
       		panel_4.add(lblInstructores);
 
       		//Clases
@@ -302,8 +302,7 @@ public class HomeView {
 
       		JLabel lblClases = new JLabel();
       		lblClases.setBounds(10, 10, 40, 40);
-      		ImageIcon imageIcon_Clases = new ImageIcon("img/menu_rutina.png");
-      		lblClases.setIcon(imageIcon_Clases);
+      		lblClases.setIcon(new ImageIcon(getClass().getResource("/imgs/menu_rutina.png")));
       		panel_5.add(lblClases);
 
       		btnClases.addActionListener(new ActionListener() {
@@ -344,8 +343,9 @@ public class HomeView {
 
       		JLabel lblChecador = new JLabel();
       		lblChecador.setBounds(10, 10, 40, 40);
-      		ImageIcon imageIcon_Checador = new ImageIcon("img/menu_Checador.png");
-      		lblChecador.setIcon(imageIcon_Checador);
+      		
+      		lblChecador.setIcon(new ImageIcon(getClass().getResource("/imgs/menu_checador.png")));
+      	
       		panel_6.add(lblChecador);
 
       		//Cerrrar sesion
@@ -377,13 +377,11 @@ public class HomeView {
 
       		JLabel lblCerrarSesion = new JLabel();
       		lblCerrarSesion.setBounds(10, 10, 40, 40);
-      		ImageIcon imageIcon_CerrarSesion = new ImageIcon("img/menu_cerrar_sesion.png");
-      		lblCerrarSesion.setIcon(imageIcon_CerrarSesion);
+      		lblCerrarSesion.setIcon(new ImageIcon(getClass().getResource("/imgs/menu_cerrar_sesion.png")));
+      		
       		panel_7.add(lblCerrarSesion);
 
       		frame.getContentPane().add(panel);
-      		
-      		
       		frame.setVisible(true);
       		frame.repaint();
       		frame.revalidate();
