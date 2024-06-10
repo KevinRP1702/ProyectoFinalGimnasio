@@ -623,12 +623,20 @@ public class ClientView {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(191, 476, 500, 40);
 		panelcontenedor.add(panel_1);
-		panelcontenedor.setBackground(Color.decode("#214177"));
 		panel_1.setLayout(null);
 
+		
+		
+		JPanel panelCrearClase = new JPanel();
+		panelCrearClase.setBounds(0, 0, 502, 40);
+		panelCrearClase.setBackground(Color.decode("#214177"));
+		panelCrearClase.setLayout(null);
+		panel_1.add(panelCrearClase);
+		
+		
 		JButton btnCrearClases = new JButton("Registrar cliente");
 		btnCrearClases.setBounds(0, 0, 502, 40);
-		panel_1.add(btnCrearClases);
+		panelCrearClase.add(btnCrearClases);
 		btnCrearClases.setForeground(Color.WHITE);
 		btnCrearClases.setFont(new Font("Calibri", Font.BOLD, 20));
 		btnCrearClases.setFocusPainted(false);
