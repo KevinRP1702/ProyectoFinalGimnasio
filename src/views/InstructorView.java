@@ -542,18 +542,9 @@ public class InstructorView {
 			});
 		} else {
 			
-			
-			
-			
-			JPanel panelBtnInstructor1 = new JPanel();
-			panelBtnInstructor1.setBounds(15, 480, 200, 20);
-			panelBtnInstructor1.setBackground(Color.decode("#3768A7"));
-			panelcontenedor.add(panelBtnInstructor1);
-			panelBtnInstructor1.setLayout(null);
-			
 			JButton btnDescargarCredencial1 = new JButton("Descargar credencial");
 			btnDescargarCredencial1.setBounds(15, 481, 200, 20);
-			panelBtnInstructor1.add(btnDescargarCredencial1);
+			panelcontenedor.add(btnDescargarCredencial1);
 			btnDescargarCredencial1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					Object quintoDato = instructores[0][4]; // Suponiendo que el primer dato es el nombre del instructor
@@ -567,6 +558,11 @@ public class InstructorView {
 			btnDescargarCredencial1.setContentAreaFilled(false);
 			btnDescargarCredencial1.setBackground(Color.decode("#3768A7"));
 
+			JPanel panelBtnInstructor1 = new JPanel();
+			panelBtnInstructor1.setBounds(15, 480, 200, 20);
+			panelBtnInstructor1.setBackground(Color.decode("#3768A7"));
+			panelcontenedor.add(panelBtnInstructor1);
+			panelBtnInstructor1.setLayout(null);
 		
 
 			JPanel panelBtnInstructor2 = new JPanel();

@@ -253,49 +253,6 @@ public class ClientView {
 
 		panelcontenedor.setLayout(null);
 		panelcontenedor.add(scrollPane);
-
-		/*
-		 * //Contenido inferior ClassModel datas = new ClassModel(); List<List<Object>>
-		 * datos = datas.get(); String[] columnNames = {"Clase", "Instructor",
-		 * "Integrantes"}; Object[][] data = new Object[clases.size()][3];
-		 * 
-		 * for(int i = 0; i < datos.size(); i++) { String clase =
-		 * datos.get(i).get(0).toString().replaceAll("[\\[\\]]", ""); String instructor
-		 * = datos.get(i).get(1).toString().replaceAll("[\\[\\]]", ""); String
-		 * integrantes = datos.get(i).get(2).toString().replaceAll("[\\[\\]]", "");
-		 * data[i][0] = clase; data[i][1] = instructor; data[i][2] = integrantes; }
-		 * 
-		 * 
-		 * DefaultTableModel model = new DefaultTableModel(data, columnNames) {
-		 * 
-		 * @Override public boolean isCellEditable(int row, int column) { return false;
-		 * // Hacer todas las celdas no editables } };
-		 * 
-		 * JTable table = new JTable(model) {
-		 * 
-		 * @Override public boolean getScrollableTracksViewportWidth() { return
-		 * getPreferredSize().width < getParent().getWidth(); } };
-		 * DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-		 * centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-		 * table.setDefaultRenderer(Object.class, centerRenderer);
-		 * 
-		 * // Personalizar encabezado de la tabla JTableHeader header =
-		 * table.getTableHeader(); header.setFont(new Font("Calibri", Font.PLAIN, 18));
-		 * header.setBackground(Color.decode("#214177"));
-		 * header.setForeground(Color.WHITE);
-		 * 
-		 * // Personalizar celdas table.setFont(new Font("Calibri", Font.PLAIN, 16));
-		 * table.setRowHeight(30); table.getTableHeader().setReorderingAllowed(false);
-		 * 
-		 * 
-		 * // Configurar que la tabla no sea editable
-		 * table.setDefaultEditor(Object.class, null);
-		 * 
-		 * // Mostrar la tabla en un JScrollPane JScrollPane scrollPane = new
-		 * JScrollPane(table); scrollPane.setBounds(10, 50, 862, 513);
-		 * 
-		 * panelcontenedor.setLayout(null); panelcontenedor.add(scrollPane);
-		 */
 		vistaComun();
 
 	}
@@ -879,20 +836,17 @@ public class ClientView {
 		panelEliminarCuenta.add(btnEliminarCuenta);
 		btnEliminarCuenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (modelo.eliminarCliente(idUsuario) == false) {
-					JOptionPane.showMessageDialog(null, "El cliente no se encuentra en la base", "Error",
-							JOptionPane.ERROR_MESSAGE);
-				} else {
+				
 					int confirmResult = JOptionPane.showConfirmDialog(frame,"¿Está seguro de que desea eliminar el cliente?","Confirmar eliminación",JOptionPane.YES_NO_OPTION);
 
 					if (confirmResult == JOptionPane.YES_OPTION) {
-					JOptionPane.showMessageDialog(null, "El cliente ha sido eliminado con éxito", "Eliminado con éxito",
-							JOptionPane.INFORMATION_MESSAGE);
+					modelo.eliminarCliente(idUsuario);
+					JOptionPane.showMessageDialog(null, "El cliente ha sido eliminado con éxito", "Eliminado con éxito",JOptionPane.INFORMATION_MESSAGE);
 					ClientController controller = new ClientController();
 					frame.dispose();
 					controller.cliente();
 					}
-				}
+				
 			}
 		});
 		btnEliminarCuenta.setForeground(Color.WHITE);
