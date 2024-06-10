@@ -1,5 +1,6 @@
 package models;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.sql.Connection;
@@ -201,59 +202,64 @@ public class ClassModel {
     }
 	
 	public void pdf(String clase) {
-		List<String[]> clientes = clientesClases(clase);
+	    List<String[]> clientes = clientesClases(clase);
 
-        Document document = new Document(PageSize.A4.rotate());
-        JFileChooser chooser = new JFileChooser();
-        chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        chooser.setAcceptAllFileFilterUsed(false);
-        FileNameExtensionFilter pdfs = new FileNameExtensionFilter("Documentos PDF", "pdf");
-        chooser.addChoosableFileFilter(pdfs);
-        chooser.setFileFilter(pdfs);
+	    Document document = new Document(PageSize.A4.rotate());
+	    JFileChooser chooser = new JFileChooser();
+	    chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+	    chooser.setAcceptAllFileFilterUsed(false);
+	    FileNameExtensionFilter pdfs = new FileNameExtensionFilter("Documentos PDF", "pdf");
+	    chooser.addChoosableFileFilter(pdfs);
+	    chooser.setFileFilter(pdfs);
 
-        if (JFileChooser.CANCEL_OPTION == chooser.showDialog(null, "Generar PDF")) {
-            JOptionPane.showMessageDialog(null, "No se genero el PDF.");
-            return;
-        }else {
-        	 JOptionPane.showMessageDialog(null, "Se generó el PDF correctamente.");
-        }
-        try {
-            PdfWriter.getInstance(document, new FileOutputStream(chooser.getSelectedFile()));
-            document.open();
+	    if (JFileChooser.CANCEL_OPTION == chooser.showDialog(null, "Generar PDF")) {
+	        JOptionPane.showMessageDialog(null, "No se generó el PDF.");
+	        return;
+	    }
 
-            // Agrega contenido al documento
-            document.add(new Paragraph("Tabla de clientes de la clase de: " + clase));
+	    File selectedFile = chooser.getSelectedFile();
+	    if (!selectedFile.getName().toLowerCase().endsWith(".pdf")) {
+	        selectedFile = new File(selectedFile.getAbsolutePath() + ".pdf");
+	    }
 
-            // Crea la tabla
-            PdfPTable table = new PdfPTable(new float[]{1, 1, 1});
-            table.setWidthPercentage(100);
+	    try {
+	        PdfWriter.getInstance(document, new FileOutputStream(selectedFile));
+	        document.open();
 
-            PdfPCell nombresHeader = new PdfPCell(new Phrase("Nombre(s)"));
-            nombresHeader.setHorizontalAlignment(Element.ALIGN_CENTER);
-            PdfPCell apellidosHeader = new PdfPCell(new Phrase("Apellido(s)"));
-            apellidosHeader.setHorizontalAlignment(Element.ALIGN_CENTER);
-            PdfPCell idHeader = new PdfPCell(new Phrase("ID cliente"));
-            idHeader.setHorizontalAlignment(Element.ALIGN_CENTER);
-            table.addCell(nombresHeader);
-            table.addCell(apellidosHeader);
-            table.addCell(idHeader);
+	        // Agrega contenido al documento
+	        document.add(new Paragraph("Tabla de clientes de la clase de: " + clase));
 
-            // Agrega filas y columnas a la tabla utilizando los datos obtenidos de clientesClases
-            for (String[] cliente : clientes) {
-                table.addCell(cliente[1]); // Nombre
-                table.addCell(cliente[2]); // Apellido
-                table.addCell(cliente[0]); // ID cliente
-            }
+	        // Crea la tabla
+	        PdfPTable table = new PdfPTable(new float[]{1, 1, 1});
+	        table.setWidthPercentage(100);
 
-            // Agrega la tabla al documento
-            document.add(table);
+	        PdfPCell nombresHeader = new PdfPCell(new Phrase("Nombre(s)"));
+	        nombresHeader.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        PdfPCell apellidosHeader = new PdfPCell(new Phrase("Apellido(s)"));
+	        apellidosHeader.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        PdfPCell idHeader = new PdfPCell(new Phrase("ID cliente"));
+	        idHeader.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        table.addCell(nombresHeader);
+	        table.addCell(apellidosHeader);
+	        table.addCell(idHeader);
 
-            // Cierra el documento
-            document.close();
+	        // Agrega filas y columnas a la tabla utilizando los datos obtenidos de clientesClases
+	        for (String[] cliente : clientes) {
+	            table.addCell(cliente[1]); // Nombre
+	            table.addCell(cliente[2]); // Apellido
+	            table.addCell(cliente[0]); // ID cliente
+	        }
 
-        } catch (FileNotFoundException | DocumentException e) {
-            e.printStackTrace();
-        }
+	        // Agrega la tabla al documento
+	        document.add(table);
+
+	        // Cierra el documento
+	        document.close();
+
+	        JOptionPane.showMessageDialog(null, "Se generó el PDF correctamente.");
+	    } catch (FileNotFoundException | DocumentException e) {
+	        e.printStackTrace();
+	    }
 	}
 	
 	public String nombreEntrenador(String clase) {
@@ -339,6 +345,7 @@ public class ClassModel {
 		        if (filasActualizadas > 0) {
 		            actualizado = true;
 		        }
+		        
 		        con.close();
 		    } catch (ClassNotFoundException | SQLException e) {
 		        e.printStackTrace();

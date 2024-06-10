@@ -113,7 +113,7 @@ public class AuthView {
 				panelCrearCuenta.setBackground(Color.decode("#214177"));
 				panelLogincontenedor.add(panelCrearCuenta);
 				panelCrearCuenta.setLayout(null);
-				JButton btnCrearCuenta = new JButton("Añadir instructor");
+				JButton btnCrearCuenta = new JButton("Crear cuenta");
 				btnCrearCuenta.setBounds(0, 0, 350, 40);
 				panelCrearCuenta.add(btnCrearCuenta);
 				btnCrearCuenta.setForeground(Color.WHITE);

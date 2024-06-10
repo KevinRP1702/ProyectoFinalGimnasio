@@ -1091,7 +1091,7 @@ public class ClientView {
 					ClientController controller = new ClientController();
 
 					model.editarCliente(idCliente, textNombreCliente.getText(), textApellidosCliente.getText(), fecha,
-							textCorreoCliente.getText(), textNumeroCliente.getText(), rutaImagen.toString());
+							textCorreoCliente.getText(), telefono, rutaImagen.toString());
 					JOptionPane.showMessageDialog(frame, "Cambios confirmados.", "Éxito",
 							JOptionPane.INFORMATION_MESSAGE);
 					frame.dispose();

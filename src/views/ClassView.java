@@ -224,6 +224,7 @@ public class ClassView {
 
 	//Vista para crear clase
 	public void clasesCrear() {
+
 		panel = new JPanel();
 		panel.setBounds(0, 0, 1092, 660);
 		panel.setBackground(Color.decode("#F2F2F2"));
@@ -406,7 +407,7 @@ public class ClassView {
 					JOptionPane.showMessageDialog(frame, "El cliente ha sido registrado con éxito", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
 					ClassController controller = new ClassController();
 					frame.dispose();
-					controller.clase();
+					controller.consultarClase(claseSeleccionada);
 				}
 			}
 		});
