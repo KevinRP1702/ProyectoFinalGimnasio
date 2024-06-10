@@ -64,7 +64,7 @@ public class ClientModel {
         return datosClientes;
     }
 	
-	public boolean registrarCliente(String nombres, String apellidos, String fechaNacimiento, int telefono, String correo, String rutaImagen, int asistencias) {
+	public boolean registrarCliente(String nombres, String apellidos, String fechaNacimiento, long telefono, String correo, String rutaImagen, int asistencias) {
         boolean clienteExiste = false;
 
         try {
@@ -95,7 +95,7 @@ public class ClientModel {
                     pstmtInsertar.setString(1, nombres);
                     pstmtInsertar.setString(2, apellidos);
                     pstmtInsertar.setDate(3, sqlDate);
-                    pstmtInsertar.setInt(4, telefono);
+                    pstmtInsertar.setLong(4, telefono);
                     pstmtInsertar.setString(5, correo);
                     pstmtInsertar.setString(6, rutaImagen);
                     pstmtInsertar.setInt(7, asistencias);
@@ -152,7 +152,7 @@ public class ClientModel {
         return datosCliente;
     }
 	
-	public boolean editarCliente(int idCliente, String nuevosNombres, String nuevosApellidos, String nuevaFechaNacimiento, String nuevoCorreo, String nuevoTelefono,String nuevaImagen) {
+	public boolean editarCliente(int idCliente, String nuevosNombres, String nuevosApellidos, String nuevaFechaNacimiento, String nuevoCorreo, long nuevoTelefono,String nuevaImagen) {
         boolean actualizado = false;
 
         try {
@@ -165,7 +165,7 @@ public class ClientModel {
             pstmt.setString(2, nuevosApellidos);
             pstmt.setString(3, nuevaFechaNacimiento);
             pstmt.setString(4, nuevoCorreo);
-            pstmt.setString(5, nuevoTelefono);
+            pstmt.setLong(5, nuevoTelefono);
             pstmt.setString(6, nuevaImagen);
             pstmt.setInt(7, idCliente);
 

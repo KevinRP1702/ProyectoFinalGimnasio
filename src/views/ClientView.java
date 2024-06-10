@@ -688,7 +688,7 @@ public class ClientView {
 			        } else if (!correo.contains("@")) {
 			            JOptionPane.showMessageDialog(null,"El correo electrónico debe contener una @","Correo inválido", JOptionPane.WARNING_MESSAGE);
 			        } 
-			    else if (modelo.registrarCliente(textClienteNombre.getText(), textClienteApellidos.getText(), fecha,Integer.parseInt(textNumeroCliente.getText()), textCorreoCliente.getText(),rutaImagen, 0) == false) {
+			    else if (modelo.registrarCliente(textClienteNombre.getText(), textClienteApellidos.getText(), fecha,Long.parseLong(telefono), textCorreoCliente.getText(),rutaImagen, 0) == false) {
 					JOptionPane.showMessageDialog(null, "El cliente ya se encuentra en la base", "Error",
 							JOptionPane.ERROR_MESSAGE);
 				} else {
@@ -1090,8 +1090,7 @@ public class ClientView {
 					ClientModel model = new ClientModel();
 					ClientController controller = new ClientController();
 
-					model.editarCliente(idCliente, textNombreCliente.getText(), textApellidosCliente.getText(), fecha,
-							textCorreoCliente.getText(), telefono, rutaImagen.toString());
+					model.editarCliente(idCliente, textNombreCliente.getText(), textApellidosCliente.getText(), fecha, textCorreoCliente.getText(), Long.parseLong(telefono), rutaImagen.toString());
 					JOptionPane.showMessageDialog(frame, "Cambios confirmados.", "Éxito",
 							JOptionPane.INFORMATION_MESSAGE);
 					frame.dispose();
