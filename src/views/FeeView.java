@@ -99,8 +99,7 @@ public class FeeView {
 
 		JLabel lblBotoncontenido_2 = new JLabel();
 		lblBotoncontenido_2.setBounds(0, 3, 26, 26);
-		ImageIcon imageIcon_lblBotoncontenido_2 = new ImageIcon("img/tarifa_pagar.png");
-		lblBotoncontenido_2.setIcon(imageIcon_lblBotoncontenido_2);
+		lblBotoncontenido_2.setIcon(new ImageIcon(getClass().getResource("/imgs/tarifa_pagar.png")));
 		panelBotoncontenido_2.add(lblBotoncontenido_2);
 
 		//Boton para agregar cliente
@@ -303,6 +302,7 @@ public class FeeView {
 		lblEstadoMembresia.setBounds(10, 340, 189, 23);
 		panelcontenedor1.add(lblEstadoMembresia);
 
+		//Los que cambian dependiendo el cliente
 		JLabel lblNombreClienteCambia = new JLabel(datosCliente.get(0));
 		lblNombreClienteCambia.setFont(new Font("Calibri", Font.PLAIN, 18));
 		lblNombreClienteCambia.setBounds(110, 70, 335, 23);
@@ -326,12 +326,12 @@ public class FeeView {
 		if(modelo.estadoMembresia(idUsuario) == false) {
 			JLabel lblEstadoMembresiaCambio = new JLabel("Inactiva");
 			lblEstadoMembresiaCambio.setFont(new Font("Calibri", Font.PLAIN, 18));
-			lblEstadoMembresiaCambio.setBounds(196, 460, 233, 23);
+			lblEstadoMembresiaCambio.setBounds(196, 340, 233, 23);
 			panelcontenedor1.add(lblEstadoMembresiaCambio);
 		}else {
 			JLabel lblEstadoMembresiaCambio = new JLabel("Activa");
 			lblEstadoMembresiaCambio.setFont(new Font("Calibri", Font.PLAIN, 18));
-			lblEstadoMembresiaCambio.setBounds(196, 460, 233, 23);
+			lblEstadoMembresiaCambio.setBounds(196, 340, 233, 23);
 			panelcontenedor1.add(lblEstadoMembresiaCambio);
 		}
 		
@@ -423,7 +423,7 @@ public class FeeView {
 		btnBtnPagar.setBorderPainted(false);
 		btnBtnPagar.setBackground(new Color(55, 104, 167));
 		
-		JLabel lblMesePago = new JLabel("Costo :        		$");
+		JLabel lblMesePago = new JLabel("Costo :");
 		lblMesePago.setFont(new Font("Calibri", Font.PLAIN, 18));
 		lblMesePago.setBounds(20, 126, 173, 29);
 		panelcontenedor2.add(lblMesePago);
@@ -514,6 +514,7 @@ public class FeeView {
 
   		JLabel lblLogo = new JLabel("");
   		lblLogo.setBounds(0, 0, 192, 67);
+  		
   		lblLogo.setIcon(new ImageIcon(getClass().getResource("/imgs/logo.png")));
   		
 

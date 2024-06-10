@@ -95,8 +95,8 @@ public class ClientView {
 		
 		JLabel lblBotoncontenido_2_1 = new JLabel();
 		lblBotoncontenido_2_1.setBounds(5, 3, 26, 26);
-		ImageIcon icon2 = new ImageIcon("img/clase_descarga.png"); 
-		lblBotoncontenido_2_1.setIcon(icon2);
+		lblBotoncontenido_2_1.setIcon(new ImageIcon(getClass().getResource("/imgs/clase_descarga.png")));
+		
 		panelBotoncontenido_2_1.add(lblBotoncontenido_2_1);
 		
 		JButton btnDescargarCliente = new JButton("Descargar");
@@ -136,8 +136,7 @@ public class ClientView {
 
 		JLabel lblBotoncontenido_2 = new JLabel();
 		lblBotoncontenido_2.setBounds(22, 3, 26, 26);
-		ImageIcon imageIcon_lblBotoncontenido_2 = new ImageIcon("img/cliente_lupa.png");
-		lblBotoncontenido_2.setIcon(imageIcon_lblBotoncontenido_2);
+		lblBotoncontenido_2.setIcon(new ImageIcon(getClass().getResource("/imgs/cliente_lupa.png")));
 		panelBotoncontenido_2.add(lblBotoncontenido_2);
 
 		JButton btnConsultar = new JButton("Consultar");
@@ -182,8 +181,7 @@ public class ClientView {
 
 		JLabel lblBotoncontenido_1 = new JLabel();
 		lblBotoncontenido_1.setBounds(33, 3, 26, 26);
-		ImageIcon icon = new ImageIcon("img/cliente_Usar.png");
-		lblBotoncontenido_1.setIcon(icon);
+		lblBotoncontenido_1.setIcon(new ImageIcon(getClass().getResource("/imgs/cliente_usar.png")));
 		panelBotoncontenido_1.add(lblBotoncontenido_1);
 
 		JButton btnCrearCliente = new JButton("Crear");
@@ -341,19 +339,19 @@ public class ClientView {
 		lblAvatar1.setBackground(new Color(0, 64, 128));
 		lblAvatar1.setFont(new Font("Calibri", Font.PLAIN, 16));
 		lblAvatar1.setBounds(70, 150, 160, 160);
-		ImageIcon imageIcon_lblAvatar1 = new ImageIcon("img/pfp1.png");
-		lblAvatar1.setIcon(imageIcon_lblAvatar1);
+		lblAvatar1.setIcon(new ImageIcon(getClass().getResource("/imgs/pfp1.png")));
+		
 		lblAvatar1.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseClicked(MouseEvent e) {
 		        if (opcion == 1) {
 		            ClientController controller = new ClientController();
 		            frame.dispose();
-		            controller.editar(idUsuario, "img/pfp1.png");
+		            controller.editar(idUsuario, "/imgs/pfp1.png");
 		        } else {
 		            ClientController controller = new ClientController();
 		            frame.dispose();
-		            controller.crearCliente("img/pfp1.png");
+		            controller.crearCliente("/imgs/pfp1.png");
 		        }
 		    }
 		});
@@ -364,19 +362,19 @@ public class ClientView {
 		lblAvatar2.setFont(new Font("Calibri", Font.PLAIN, 16));
 		lblAvatar2.setBackground(new Color(0, 64, 128));
 		lblAvatar2.setBounds(270, 150, 160, 160); 
-		ImageIcon imageIcon_lblAvatar2 = new ImageIcon("img/pfp2.png");
-		lblAvatar2.setIcon(imageIcon_lblAvatar2);
+		lblAvatar2.setIcon(new ImageIcon(getClass().getResource("/imgs/pfp2.png")));
+		
 		lblAvatar2.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseClicked(MouseEvent e) {
 		        if (opcion == 1) {
 		            ClientController controller = new ClientController();
 		            frame.dispose();
-		            controller.editar(idUsuario, "img/pfp2.png");
+		            controller.editar(idUsuario, "/imgs/pfp2.png");
 		        } else {
 		            ClientController controller = new ClientController();
 		            frame.dispose();
-		            controller.crearCliente("img/pfp2.png");
+		            controller.crearCliente("/imgs/pfp2.png");
 		        }
 		    }
 		});
@@ -387,19 +385,19 @@ public class ClientView {
 		lblAvatar3.setFont(new Font("Calibri", Font.PLAIN, 16));
 		lblAvatar3.setBackground(new Color(0, 64, 128));
 		lblAvatar3.setBounds(470, 150, 160, 160);  
-		ImageIcon imageIcon_lblAvatar3 = new ImageIcon("img/pfp3.png");
-		lblAvatar3.setIcon(imageIcon_lblAvatar3);
+		lblAvatar3.setIcon(new ImageIcon(getClass().getResource("/imgs/pfp3.png")));
+		
 		lblAvatar3.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseClicked(MouseEvent e) {
 		        if (opcion == 1) {
 		            ClientController controller = new ClientController();
 		            frame.dispose();
-		            controller.editar(idUsuario, "img/pfp3.png");
+		            controller.editar(idUsuario, "/imgs/pfp3.png");
 		        } else {
 		            ClientController controller = new ClientController();
 		            frame.dispose();
-		            controller.crearCliente("img/pfp3.png");
+		            controller.crearCliente("/imgs/pfp3.png");
 		        }
 		    }
 		});
@@ -410,19 +408,18 @@ public class ClientView {
 		lblAvatar4.setFont(new Font("Calibri", Font.PLAIN, 16));
 		lblAvatar4.setBackground(new Color(0, 64, 128));
 		lblAvatar4.setBounds(670, 150, 160, 160);  
-		ImageIcon imageIcon_lblAvatar4 = new ImageIcon("img/pfp4.png");
-		lblAvatar4.setIcon(imageIcon_lblAvatar4);
+		lblAvatar4.setIcon(new ImageIcon(getClass().getResource("/imgs/pfp4.png")));
 		lblAvatar4.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseClicked(MouseEvent e) {
 		        if (opcion == 1) {
 		            ClientController controller = new ClientController();
 		            frame.dispose();
-		            controller.editar(idUsuario, "img/pfp4.png");
+		            controller.editar(idUsuario, "/imgs/pfp4.png");
 		        } else {
 		            ClientController controller = new ClientController();
 		            frame.dispose();
-		            controller.crearCliente("img/pfp4.png");
+		            controller.crearCliente("/imgs/pfp4.png");
 		        }
 		    }
 		});
@@ -432,20 +429,20 @@ public class ClientView {
 		lblAvatar5.setOpaque(true);
 		lblAvatar5.setFont(new Font("Calibri", Font.PLAIN, 16));
 		lblAvatar5.setBackground(new Color(0, 64, 128));
-		lblAvatar5.setBounds(70, 350, 160, 160);  
-		ImageIcon imageIcon_lblAvatar5 = new ImageIcon("img/pfp5.png");
-		lblAvatar5.setIcon(imageIcon_lblAvatar5);
+		lblAvatar5.setBounds(70, 350, 160, 160);
+		lblAvatar5.setIcon(new ImageIcon(getClass().getResource("/imgs/pfp5.png")));
+		
 		lblAvatar5.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseClicked(MouseEvent e) {
 		        if (opcion == 1) {
 		            ClientController controller = new ClientController();
 		            frame.dispose();
-		            controller.editar(idUsuario, "img/pfp5.png");
+		            controller.editar(idUsuario, "/imgs/pfp5.png");
 		        } else {
 		            ClientController controller = new ClientController();
 		            frame.dispose();
-		            controller.crearCliente("img/pfp5.png");
+		            controller.crearCliente("/imgs/pfp5.png");
 		        }
 		    }
 		});
@@ -455,20 +452,24 @@ public class ClientView {
 		lblAvatar6.setOpaque(true);
 		lblAvatar6.setFont(new Font("Calibri", Font.PLAIN, 16));
 		lblAvatar6.setBackground(new Color(0, 64, 128));
-		lblAvatar6.setBounds(270, 350, 160, 160);  
+		lblAvatar6.setBounds(270, 350, 160, 160); 
+		
+		lblAvatar6.setIcon(new ImageIcon(getClass().getResource("/imgs/pfp6.png")));
+		/*
 		ImageIcon imageIcon_lblAvatar6 = new ImageIcon("img/pfp6.png");
 		lblAvatar6.setIcon(imageIcon_lblAvatar6);
+		*/
 		lblAvatar6.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseClicked(MouseEvent e) {
 		        if (opcion == 6) {
 		            ClientController controller = new ClientController();
 		            frame.dispose();
-		            controller.editar(idUsuario, "img/pfp5.png");
+		            controller.editar(idUsuario, "/imgs/pfp5.png");
 		        } else {
 		            ClientController controller = new ClientController();
 		            frame.dispose();
-		            controller.crearCliente("img/pfp6.png");
+		            controller.crearCliente("/imgs/pfp6.png");
 		        }
 		    }
 		});
@@ -479,19 +480,22 @@ public class ClientView {
 		lblAvatar7.setFont(new Font("Calibri", Font.PLAIN, 16));
 		lblAvatar7.setBackground(new Color(0, 64, 128));
 		lblAvatar7.setBounds(470, 350, 160, 160); 
+		lblAvatar7.setIcon(new ImageIcon(getClass().getResource("/imgs/pfp7.png")));
+		/*
 		ImageIcon imageIcon_lblAvatar7 = new ImageIcon("img/pfp7.png");
-		lblAvatar7.setIcon(imageIcon_lblAvatar7);
+				lblAvatar7.setIcon(imageIcon_lblAvatar7);
+		*/
 		lblAvatar7.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseClicked(MouseEvent e) {
 		        if (opcion == 1) {
 		            ClientController controller = new ClientController();
 		            frame.dispose();
-		            controller.editar(idUsuario, "img/pfp7.png");
+		            controller.editar(idUsuario, "/imgs/pfp7.png");
 		        } else {
 		            ClientController controller = new ClientController();
 		            frame.dispose();
-		            controller.crearCliente("img/pfp7.png");
+		            controller.crearCliente("/imgs/pfp7.png");
 		        }
 		    }
 		});
@@ -502,19 +506,22 @@ public class ClientView {
 		lblAvatar8.setFont(new Font("Calibri", Font.PLAIN, 16));
 		lblAvatar8.setBackground(new Color(0, 64, 128));
 		lblAvatar8.setBounds(670, 350, 160, 160);  
+		lblAvatar8.setIcon(new ImageIcon(getClass().getResource("/imgs/pfp8.png")));
+		/*
 		ImageIcon imageIcon_lblAvatar8 = new ImageIcon("img/pfp8.png");
 		lblAvatar8.setIcon(imageIcon_lblAvatar8);
+		*/
 		lblAvatar8.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseClicked(MouseEvent e) {
 		        if (opcion == 1) {
 		            ClientController controller = new ClientController();
 		            frame.dispose();
-		            controller.editar(idUsuario, "img/pfp5.png");
+		            controller.editar(idUsuario, "/imgs/pfp8.png");
 		        } else {
 		            ClientController controller = new ClientController();
 		            frame.dispose();
-		            controller.crearCliente("img/pfp8.png");
+		            controller.crearCliente("/imgs/pfp8.png");
 		        }
 		    }
 		});
@@ -758,22 +765,22 @@ public class ClientView {
 
 		JLabel lblNombreCliente = new JLabel("Nombre(s):");
 		lblNombreCliente.setFont(new Font("Calibri", Font.BOLD, 18));
-		lblNombreCliente.setBounds(10, 70, 114, 23);
+		lblNombreCliente.setBounds(10, 70, 250, 23);
 		panelcontenedor1.add(lblNombreCliente);
 
 		JLabel lblApellidosCliente = new JLabel("Apellido(s)");
 		lblApellidosCliente.setFont(new Font("Calibri", Font.BOLD, 18));
-		lblApellidosCliente.setBounds(10, 135, 114, 23);
+		lblApellidosCliente.setBounds(10, 135, 250, 23);
 		panelcontenedor1.add(lblApellidosCliente);
 
 		JLabel lblCorreoCliente = new JLabel("Correo electrónico:");
 		lblCorreoCliente.setFont(new Font("Calibri", Font.BOLD, 18));
-		lblCorreoCliente.setBounds(10, 330, 212, 23);
+		lblCorreoCliente.setBounds(10, 330, 250, 23);
 		panelcontenedor1.add(lblCorreoCliente);
 
 		JLabel lblClienteId = new JLabel("Cliente id:");
 		lblClienteId.setFont(new Font("Calibri", Font.BOLD, 18));
-		lblClienteId.setBounds(10, 395, 120, 23);
+		lblClienteId.setBounds(10, 395, 250, 23);
 		panelcontenedor1.add(lblClienteId);
 
 		JLabel lblFinalizacinMembresia = new JLabel("Fecha de nacimiento");
@@ -783,27 +790,27 @@ public class ClientView {
 
 		JLabel lbltelefono = new JLabel("Número de teléfono:");
 		lbltelefono.setFont(new Font("Calibri", Font.BOLD, 18));
-		lbltelefono.setBounds(10, 265, 189, 23);
+		lbltelefono.setBounds(10, 265, 250, 23);
 		panelcontenedor1.add(lbltelefono);
 
 		JLabel lblNombreClienteCambia = new JLabel(datosCliente.get(0));
 		lblNombreClienteCambia.setFont(new Font("Calibri", Font.PLAIN, 18));
-		lblNombreClienteCambia.setBounds(218, 70, 114, 23);
+		lblNombreClienteCambia.setBounds(218, 70, 250, 23);
 		panelcontenedor1.add(lblNombreClienteCambia);
 
 		JLabel lblApellidosClienteCambia = new JLabel(datosCliente.get(1));
 		lblApellidosClienteCambia.setFont(new Font("Calibri", Font.PLAIN, 18));
-		lblApellidosClienteCambia.setBounds(218, 135, 114, 23);
+		lblApellidosClienteCambia.setBounds(218, 135, 250, 23);
 		panelcontenedor1.add(lblApellidosClienteCambia);
 
 		JLabel lblClienteIdCambia = new JLabel(datosCliente.get(4));
 		lblClienteIdCambia.setFont(new Font("Calibri", Font.PLAIN, 18));
-		lblClienteIdCambia.setBounds(218, 395, 120, 23);
+		lblClienteIdCambia.setBounds(218, 395, 250, 23);
 		panelcontenedor1.add(lblClienteIdCambia);
 
 		JLabel lblcorreoCambia = new JLabel(datosCliente.get(3));
 		lblcorreoCambia.setFont(new Font("Calibri", Font.PLAIN, 18));
-		lblcorreoCambia.setBounds(218, 330, 212, 23);
+		lblcorreoCambia.setBounds(218, 330, 250, 23);
 		panelcontenedor1.add(lblcorreoCambia);
 
 		JLabel lblFecha_nacimiento = new JLabel(datosCliente.get(2));
@@ -813,16 +820,22 @@ public class ClientView {
 
 		JLabel lbltelefonoCambio = new JLabel(datosCliente.get(6));
 		lbltelefonoCambio.setFont(new Font("Calibri", Font.PLAIN, 18));
-		lbltelefonoCambio.setBounds(217, 265, 189, 23);
+		lbltelefonoCambio.setBounds(217, 265, 250, 23);
 		panelcontenedor1.add(lbltelefonoCambio);
 
+		
+		
+		
 		JLabel lblAvatarCliente = new JLabel("");
 		lblAvatarCliente.setOpaque(true);
 		lblAvatarCliente.setBackground(new Color(0, 0, 64));
 		lblAvatarCliente.setBounds(614, 138, 160, 160);
+		lblAvatarCliente.setIcon(new ImageIcon(getClass().getResource(datosCliente.get(5))));
+		/*
 		ImageIcon imageIcon = new ImageIcon(datosCliente.get(5));
 		lblAvatarCliente.setIcon(imageIcon);
-
+		
+		*/
 		panelcontenedor1.add(lblAvatarCliente);
 
 		JPanel panelDescargarCredencial = new JPanel();
@@ -939,7 +952,7 @@ public class ClientView {
 			public void actionPerformed(ActionEvent e) {
 				ClientController controller = new ClientController();
 				frame.dispose();
-				controller.cliente();
+				controller.consultar(idCliente);
 			}
 		});
 
@@ -1094,7 +1107,7 @@ public class ClientView {
 					JOptionPane.showMessageDialog(frame, "Cambios confirmados.", "Éxito",
 							JOptionPane.INFORMATION_MESSAGE);
 					frame.dispose();
-					controller.cliente();
+					controller.consultar(idCliente);
 
 				}
 			}

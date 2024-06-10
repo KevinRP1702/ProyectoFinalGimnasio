@@ -129,9 +129,8 @@ public class ClassView {
 		panelBotoncontenido_1.setLayout(null);
 		JLabel lblBotoncontenido = new JLabel();
 		lblBotoncontenido.setBounds(10, 0, 26, 26);
-		ImageIcon imageIcon_lblBotoncontenido = new ImageIcon("img/clase_crear.png");
-		lblBotoncontenido.setIcon(imageIcon_lblBotoncontenido);
-		panelBotoncontenido_1.add(lblBotoncontenido);
+		lblBotoncontenido.setIcon(new ImageIcon(getClass().getResource("/imgs/clase_crear.png")));
+				panelBotoncontenido_1.add(lblBotoncontenido);
 
 
 		JButton btnAgregarCliente = new JButton("    Agregar clase");
@@ -160,8 +159,8 @@ public class ClassView {
 
 		JLabel lblBotoncontenido_2 = new JLabel();
 		lblBotoncontenido_2.setBounds(5, 3, 26, 26);
-		ImageIcon imageIcon_lblBotoncontenido_2 = new ImageIcon("img/clase_descarga.png");
-		lblBotoncontenido_2.setIcon(imageIcon_lblBotoncontenido_2);
+		lblBotoncontenido_2.setIcon(new ImageIcon(getClass().getResource("/imgs/clase_descarga.png")));
+		
 		panelBotoncontenido_2.add(lblBotoncontenido_2);
 
 
@@ -375,14 +374,13 @@ public class ClassView {
 	    
 	    JLabel lblBotonEditarClase = new JLabel();
 	    lblBotonEditarClase.setBounds(10, 0, 26, 26);
-	    ImageIcon imageIcon_lblBotonEditarClase = new ImageIcon("img/cliente_lupa.png"); // Cambia esto al icono que desees
-	    lblBotonEditarClase.setIcon(imageIcon_lblBotonEditarClase);
+	    
+	    lblBotonEditarClase.setIcon(new ImageIcon(getClass().getResource("/imgs/cliente_lupa.png")));
 	    panelBotonEditarClase.add(lblBotonEditarClase);
 	    
 		JLabel lblBotoncontenido_1 = new JLabel();
 		lblBotoncontenido_1.setBounds(10, 0, 26, 26);
-		ImageIcon imageIcon_lblBotoncontenido_1 = new ImageIcon("img/clase_crear.png");
-		lblBotoncontenido_1.setIcon(imageIcon_lblBotoncontenido_1);
+		lblBotoncontenido_1.setIcon(new ImageIcon(getClass().getResource("/imgs/clase_crear.png")));
 		panelBotoncontenido_1.add(lblBotoncontenido_1);
 
 		JButton btnAgregarCliente = new JButton("    Agregar cliente");
@@ -423,8 +421,8 @@ public class ClassView {
 
 		JLabel lblBotoncontenido_2 = new JLabel();
 		lblBotoncontenido_2.setBounds(5, 3, 26, 26);
-		ImageIcon imageIcon_lblBotoncontenido_2 = new ImageIcon("img/clase_descarga.png");
-		lblBotoncontenido_2.setIcon(imageIcon_lblBotoncontenido_2);
+		lblBotoncontenido_2.setIcon(new ImageIcon(getClass().getResource("/imgs/clase_descarga.png")));
+		
 		panelBotoncontenido_2.add(lblBotoncontenido_2);
 
 		//Boton descargar cliente
@@ -657,7 +655,7 @@ public class ClassView {
 			public void actionPerformed(ActionEvent e) {
 				ClassController controller = new ClassController();
 				frame.dispose();
-				controller.clase();
+				controller.consultarClase(claseSeleccionada);
 			}
 		});
 		

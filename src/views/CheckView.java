@@ -98,8 +98,8 @@ public class CheckView {
 
 		lblHoraImg.setFont(new Font("Calibri", Font.PLAIN, 16));
 		lblHoraImg.setBounds(148, 114, 160, 160);
-		ImageIcon imageIcon_lblHora = new ImageIcon("img/checador_reloj.png"); 
-		lblHoraImg.setIcon(imageIcon_lblHora);
+		lblHoraImg.setIcon(new ImageIcon(getClass().getResource("/imgs/checador_reloj.png")));
+		
 		panelcontenedor.add(lblHoraImg);
 		
 
@@ -133,7 +133,7 @@ public class CheckView {
 					int asistencias = modelo.verificarVisitas(Integer.parseInt(userID));
 					
 					modelo.ContarVisita((Integer.parseInt(userID)), (asistencias + 1));
-					JOptionPane.showMessageDialog(null, "Se ha checado", "Información", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "       Se ha checado", "Información", JOptionPane.INFORMATION_MESSAGE);
 				}
 				String[] datosClientes = modelo.obtenerNombreCliente(userID);
 				JOptionPane.showMessageDialog(null, "El usuario " + datosClientes[0] + " ha asistido " + modelo.verificarVisitas(Integer.parseInt(userID)) + " veces al gimnasio", "Reporte", JOptionPane.INFORMATION_MESSAGE);

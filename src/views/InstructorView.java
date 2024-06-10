@@ -127,14 +127,18 @@ public class InstructorView {
 		lblImg_Instructor_1.setBounds(50, 15, 100, 100);
 		if (instructores[0] != null) {
 			Object sextoDato = instructores[0][5];
-			ImageIcon imageIcon_lblImg_Instructor_1 = new ImageIcon(sextoDato.toString());
+			
+			
+			
+			ImageIcon imageIcon_lblImg_Instructor_1 = new ImageIcon(getClass().getResource(sextoDato.toString()));
 			Image image = imageIcon_lblImg_Instructor_1.getImage();
 			Image resizedImage = image.getScaledInstance(lblImg_Instructor_1.getWidth(), lblImg_Instructor_1.getHeight(), Image.SCALE_SMOOTH); 
 			imageIcon_lblImg_Instructor_1 = new ImageIcon(resizedImage); 
 			lblImg_Instructor_1.setIcon(imageIcon_lblImg_Instructor_1);
 		}else {
-			ImageIcon imageIcon_lblImg_Instructor_1 = new ImageIcon("img/mujerpfp.png");
-			lblImg_Instructor_1.setIcon(imageIcon_lblImg_Instructor_1);
+						
+			lblImg_Instructor_1.setIcon(new ImageIcon(getClass().getResource("/imgs/mujerpfp.png")));
+			
 		}
 		
 		panel_Instructor_1.add(lblImg_Instructor_1);
@@ -225,14 +229,15 @@ public class InstructorView {
 		lblImg_Instructor_2.setBounds(50, 15, 100, 100);
 		if (instructores[1] != null) {
 			Object sextoDato = instructores[1][5]; 
-			ImageIcon imageIcon_lblImg_Instructor_2 = new ImageIcon(sextoDato.toString());
+			
+			ImageIcon imageIcon_lblImg_Instructor_2 = new ImageIcon(getClass().getResource(sextoDato.toString()));
 			Image image = imageIcon_lblImg_Instructor_2.getImage();
 			Image resizedImage = image.getScaledInstance(lblImg_Instructor_2.getWidth(), lblImg_Instructor_2.getHeight(), Image.SCALE_SMOOTH); 
 			imageIcon_lblImg_Instructor_2 = new ImageIcon(resizedImage); 
 			lblImg_Instructor_2.setIcon(imageIcon_lblImg_Instructor_2);
 		}else {
-			ImageIcon imageIcon_Instructor_2 = new ImageIcon("img/hombrepfp.png");
-			lblImg_Instructor_2.setIcon(imageIcon_Instructor_2);
+			lblImg_Instructor_2.setIcon(new ImageIcon(getClass().getResource("/imgs/hombrepfp.png")));
+			
 		}
 		panel_Instructor_2.add(lblImg_Instructor_2);
 
@@ -320,14 +325,16 @@ public class InstructorView {
 		lblImg_Instructor_3.setBounds(50, 15, 100, 100);
 		if (instructores[2] != null) {
 			Object sextoDato = instructores[0][5];
-			ImageIcon imageIcon_lblImg_Instructor_3 = new ImageIcon(sextoDato.toString());
+			
+			
+			ImageIcon imageIcon_lblImg_Instructor_3 = new ImageIcon(getClass().getResource(sextoDato.toString()));
 			Image image = imageIcon_lblImg_Instructor_3.getImage();
 			Image resizedImage = image.getScaledInstance(lblImg_Instructor_3.getWidth(), lblImg_Instructor_3.getHeight(), Image.SCALE_SMOOTH); 
 			imageIcon_lblImg_Instructor_3 = new ImageIcon(resizedImage); 
 			lblImg_Instructor_3.setIcon(imageIcon_lblImg_Instructor_3);
 		}else {
-			ImageIcon imageIcon_lblImg_Instructor_3 = new ImageIcon("img/hombrepfp.png");
-			lblImg_Instructor_3.setIcon(imageIcon_lblImg_Instructor_3);
+			lblImg_Instructor_3.setIcon(new ImageIcon(getClass().getResource("/imgs/hombrepfp.png")));
+			
 		}
 		panel_Instructor_3.add(lblImg_Instructor_3);
 
@@ -419,14 +426,17 @@ public class InstructorView {
 			lblImg_Instructor_4.setBounds(49, 15, 100, 100);
 			if (instructores[3] != null) {
 				Object sextoDato = instructores[3][5]; 
-				ImageIcon imageIcon_lblImg_Instructor_4 = new ImageIcon(sextoDato.toString());
+				
+				
+				ImageIcon imageIcon_lblImg_Instructor_4 = new ImageIcon(getClass().getResource(sextoDato.toString()));
 				Image image = imageIcon_lblImg_Instructor_4.getImage();
 				Image resizedImage = image.getScaledInstance(lblImg_Instructor_4.getWidth(), lblImg_Instructor_4.getHeight(), Image.SCALE_SMOOTH); 
 				imageIcon_lblImg_Instructor_4 = new ImageIcon(resizedImage); 
 				lblImg_Instructor_4.setIcon(imageIcon_lblImg_Instructor_4);
 			}else {
-				ImageIcon imageIcon_Instructor_4 = new ImageIcon("img/mujerpfp.png");
-				lblImg_Instructor_4.setIcon(imageIcon_Instructor_4);
+				
+				lblImg_Instructor_4.setIcon(new ImageIcon(getClass().getResource("/imgs/mujerpfp.png")));
+				
 			}
 			panel_Instructor_4.add(lblImg_Instructor_4);
 	
@@ -499,6 +509,11 @@ public class InstructorView {
 		txt_Experiencia_4.setBackground(Color.WHITE);
 		txt_Experiencia_4.setBounds(10, 176, 180, 64);
 		panel_Instructor_4.add(txt_Experiencia_4);
+		
+		StyledDocument doc_10 = txt_Experiencia_4.getStyledDocument();
+		SimpleAttributeSet center_10 = new SimpleAttributeSet();
+		StyleConstants.setAlignment(center_10, StyleConstants.ALIGN_CENTER);
+		doc_10.setParagraphAttributes(0, doc_10.getLength(), center_10, false);
 
 
 
@@ -977,9 +992,10 @@ public class InstructorView {
 		textClasenombre.setBorder(new LineBorder(Color.decode("#D4D4D4"), 1));
 		textClasenombre.setBounds(191, 168, 500, 35);
 		
-		((PlainDocument) textClasenombre.getDocument()).setDocumentFilter(new FixedLengthDocumentFilter(20));
-		((PlainDocument) textClasenombre.getDocument()).setDocumentFilter(new LetterFilter());
-		panelcontenedor.add(textClasenombre);
+		((PlainDocument) textClasenombre.getDocument()).setDocumentFilter(new LetterFilter()); 
+	    ((PlainDocument) textClasenombre.getDocument()).setDocumentFilter(new FixedLengthDocumentFilter(20)); 
+	        panelcontenedor.add(textClasenombre);
+		
 
 		JLabel lblExperiencia = new JLabel("Experiencia");
 		lblExperiencia.setFont(new Font("Calibri", Font.PLAIN, 16));
@@ -991,7 +1007,7 @@ public class InstructorView {
 		textExperiencia.setBorder(new LineBorder(Color.decode("#D4D4D4"), 1));
 		textExperiencia.setBackground(new Color(245, 245, 245));
 		textExperiencia.setBounds(191, 240, 500, 62);
-		((PlainDocument) textExperiencia.getDocument()).setDocumentFilter(new FixedLengthDocumentFilter(80));
+		((PlainDocument) textExperiencia.getDocument()).setDocumentFilter(new FixedLengthDocumentFilter(60));
 		panelcontenedor.add(textExperiencia);
 
 		JLabel lblFormacion = new JLabel("Formación");
@@ -1004,7 +1020,7 @@ public class InstructorView {
 		textFormacion.setBorder(new LineBorder(Color.decode("#D4D4D4"), 1));
 		textFormacion.setBackground(new Color(245, 245, 245));
 		textFormacion.setBounds(191, 332, 500, 62);
-		((PlainDocument) textFormacion.getDocument()).setDocumentFilter(new FixedLengthDocumentFilter(80));
+		((PlainDocument) textFormacion.getDocument()).setDocumentFilter(new FixedLengthDocumentFilter(60));
 		panelcontenedor.add(textFormacion);
 
 		JLabel lblHorario = new JLabel("Horario");
@@ -1017,7 +1033,7 @@ public class InstructorView {
 		textHorario.setBorder(new LineBorder(Color.decode("#D4D4D4"), 1));
 		textHorario.setBackground(new Color(245, 245, 245));
 		textHorario.setBounds(191, 427, 500, 40);
-		((PlainDocument) textHorario.getDocument()).setDocumentFilter(new FixedLengthDocumentFilter(80));
+		((PlainDocument) textHorario.getDocument()).setDocumentFilter(new FixedLengthDocumentFilter(60));
 		panelcontenedor.add(textHorario);
 
 		JPanel panel_1 = new JPanel();
@@ -1100,15 +1116,16 @@ public class InstructorView {
 	    lblAvatar1.setOpaque(true);
 	    lblAvatar1.setBackground(new Color(0, 64, 128));
 	    lblAvatar1.setFont(new Font("Calibri", Font.PLAIN, 16));
-	    lblAvatar1.setBounds(100, 150, 160, 160);
-	    ImageIcon imageIcon_lblAvatar1 = new ImageIcon("img/pfp1.png");
-	    lblAvatar1.setIcon(imageIcon_lblAvatar1);
+	    lblAvatar1.setBounds(70, 150, 160, 160);
+	    
+	    lblAvatar1.setIcon(new ImageIcon(getClass().getResource("/imgs/pfp1.png")));
+	   
 	    lblAvatar1.addMouseListener(new MouseAdapter() {
 	        @Override
 	        public void mouseClicked(MouseEvent e) {
 	            InstructorController controller = new InstructorController();
 	            frame.dispose();
-	            controller.CrearInstructor("img/pfp1.png");
+	            controller.CrearInstructor("/imgs/pfp1.png");
 	        }
 	    });
 	    panelcontenedor.add(lblAvatar1);
@@ -1117,15 +1134,15 @@ public class InstructorView {
 	    lblAvatar2.setOpaque(true);
 	    lblAvatar2.setFont(new Font("Calibri", Font.PLAIN, 16));
 	    lblAvatar2.setBackground(new Color(0, 64, 128));
-	    lblAvatar2.setBounds(300, 150, 160, 160);
-	    ImageIcon imageIcon_lblAvatar2 = new ImageIcon("img/pfp2.png");
-	    lblAvatar2.setIcon(imageIcon_lblAvatar2);
+	    lblAvatar2.setBounds(270, 150, 160, 160);
+	    lblAvatar2.setIcon(new ImageIcon(getClass().getResource("/imgs/pfp2.png")));
+	   
 	    lblAvatar2.addMouseListener(new MouseAdapter() {
 	        @Override
 	        public void mouseClicked(MouseEvent e) {
 	            InstructorController controller = new InstructorController();
 	            frame.dispose();
-	            controller.CrearInstructor("img/pfp2.png");
+	            controller.CrearInstructor("/imgs/pfp2.png");
 	        }
 	    });
 	    panelcontenedor.add(lblAvatar2);
@@ -1134,15 +1151,15 @@ public class InstructorView {
 	    lblAvatar3.setOpaque(true);
 	    lblAvatar3.setFont(new Font("Calibri", Font.PLAIN, 16));
 	    lblAvatar3.setBackground(new Color(0, 64, 128));
-	    lblAvatar3.setBounds(500, 150, 160, 160);
-	    ImageIcon imageIcon_lblAvatar3 = new ImageIcon("img/pfp3.png");
-	    lblAvatar3.setIcon(imageIcon_lblAvatar3);
+	    lblAvatar3.setBounds(470, 150, 160, 160);
+	    lblAvatar3.setIcon(new ImageIcon(getClass().getResource("/imgs/pfp3.png")));
+	   
 	    lblAvatar3.addMouseListener(new MouseAdapter() {
 	        @Override
 	        public void mouseClicked(MouseEvent e) {
 	            InstructorController controller = new InstructorController();
 	            frame.dispose();
-	            controller.CrearInstructor("img/pfp3.png");
+	            controller.CrearInstructor("/imgs/pfp3.png");
 	        }
 	    });
 	    panelcontenedor.add(lblAvatar3);
@@ -1151,15 +1168,15 @@ public class InstructorView {
 	    lblAvatar4.setOpaque(true);
 	    lblAvatar4.setFont(new Font("Calibri", Font.PLAIN, 16));
 	    lblAvatar4.setBackground(new Color(0, 64, 128));
-	    lblAvatar4.setBounds(700, 150, 160, 160);
-	    ImageIcon imageIcon_lblAvatar4 = new ImageIcon("img/pfp4.png");
-	    lblAvatar4.setIcon(imageIcon_lblAvatar4);
+	    lblAvatar4.setBounds(670, 150, 160, 160);
+	    lblAvatar4.setIcon(new ImageIcon(getClass().getResource("/imgs/pfp4.png")));
+	   
 	    lblAvatar4.addMouseListener(new MouseAdapter() {
 	        @Override
 	        public void mouseClicked(MouseEvent e) {
 	            InstructorController controller = new InstructorController();
 	            frame.dispose();
-	            controller.CrearInstructor("img/pfp4.png");
+	            controller.CrearInstructor("/imgs/pfp4.png");
 	        }
 	    });
 	    panelcontenedor.add(lblAvatar4);
@@ -1168,15 +1185,16 @@ public class InstructorView {
 	    lblAvatar5.setOpaque(true);
 	    lblAvatar5.setFont(new Font("Calibri", Font.PLAIN, 16));
 	    lblAvatar5.setBackground(new Color(0, 64, 128));
-	    lblAvatar5.setBounds(100, 350, 160, 160);
-	    ImageIcon imageIcon_lblAvatar5 = new ImageIcon("img/pfp5.png");
-	    lblAvatar5.setIcon(imageIcon_lblAvatar5);
+	    lblAvatar5.setBounds(70, 350, 160, 160);
+	    
+	    lblAvatar5.setIcon(new ImageIcon(getClass().getResource("/imgs/pfp5.png")));
+	   
 	    lblAvatar5.addMouseListener(new MouseAdapter() {
 	        @Override
 	        public void mouseClicked(MouseEvent e) {
 	            InstructorController controller = new InstructorController();
 	            frame.dispose();
-	            controller.CrearInstructor("img/pfp5.png");
+	            controller.CrearInstructor("/imgs/pfp5.png");
 	        }
 	    });
 	    panelcontenedor.add(lblAvatar5);
@@ -1185,15 +1203,14 @@ public class InstructorView {
 	    lblAvatar6.setOpaque(true);
 	    lblAvatar6.setFont(new Font("Calibri", Font.PLAIN, 16));
 	    lblAvatar6.setBackground(new Color(0, 64, 128));
-	    lblAvatar6.setBounds(300, 350, 160, 160);
-	    ImageIcon imageIcon_lblAvatar6 = new ImageIcon("img/pfp6.png");
-	    lblAvatar6.setIcon(imageIcon_lblAvatar6);
+	    lblAvatar6.setBounds(270, 350, 160, 160);
+	    lblAvatar6.setIcon(new ImageIcon(getClass().getResource("/imgs/pfp6.png")));
 	    lblAvatar6.addMouseListener(new MouseAdapter() {
 	        @Override
 	        public void mouseClicked(MouseEvent e) {
 	            InstructorController controller = new InstructorController();
 	            frame.dispose();
-	            controller.CrearInstructor("img/pfp6.png");
+	            controller.CrearInstructor("/imgs/pfp6.png");
 	        }
 	    });
 	    panelcontenedor.add(lblAvatar6);
@@ -1202,15 +1219,15 @@ public class InstructorView {
 	    lblAvatar7.setOpaque(true);
 	    lblAvatar7.setFont(new Font("Calibri", Font.PLAIN, 16));
 	    lblAvatar7.setBackground(new Color(0, 64, 128));
-	    lblAvatar7.setBounds(500, 350, 160, 160);
-	    ImageIcon imageIcon_lblAvatar7 = new ImageIcon("img/pfp7.png");
-	    lblAvatar7.setIcon(imageIcon_lblAvatar7);
+	    lblAvatar7.setBounds(470, 350, 160, 160);
+	    lblAvatar7.setIcon(new ImageIcon(getClass().getResource("/imgs/pfp7.png")));
+	  
 	    lblAvatar7.addMouseListener(new MouseAdapter() {
 	        @Override
 	        public void mouseClicked(MouseEvent e) {
 	            InstructorController controller = new InstructorController();
 	            frame.dispose();
-	            controller.CrearInstructor("img/pfp7.png");
+	            controller.CrearInstructor("/imgs/pfp7.png");
 	        }
 	    });
 	    panelcontenedor.add(lblAvatar7);
@@ -1219,15 +1236,15 @@ public class InstructorView {
 	    lblAvatar8.setOpaque(true);
 	    lblAvatar8.setFont(new Font("Calibri", Font.PLAIN, 16));
 	    lblAvatar8.setBackground(new Color(0, 64, 128));
-	    lblAvatar8.setBounds(700, 350, 160, 160);
-	    ImageIcon imageIcon_lblAvatar8 = new ImageIcon("img/pfp8.png");
-	    lblAvatar8.setIcon(imageIcon_lblAvatar8);
+	    lblAvatar8.setBounds(670, 350, 160, 160);
+	    lblAvatar8.setIcon(new ImageIcon(getClass().getResource("/imgs/pfp8.png")));
+	   
 	    lblAvatar8.addMouseListener(new MouseAdapter() {
 	        @Override
 	        public void mouseClicked(MouseEvent e) {
 	            InstructorController controller = new InstructorController();
 	            frame.dispose();
-	            controller.CrearInstructor("img/pfp8.png");
+	            controller.CrearInstructor("/imgs/pfp8.png");
 	        }
 	    });
 	    panelcontenedor.add(lblAvatar8);
@@ -1275,8 +1292,8 @@ public class InstructorView {
         textClasenombre.setBackground(Color.decode("#F5F5F5"));
         textClasenombre.setBorder(new LineBorder(Color.decode("#D4D4D4"), 1));
         textClasenombre.setBounds(191, 168, 500, 35);
-        ((PlainDocument) textClasenombre.getDocument()).setDocumentFilter(new LetterFilter()); // Permitir solo letras
-        ((PlainDocument) textClasenombre.getDocument()).setDocumentFilter(new FixedLengthDocumentFilter(20)); // Limite de 20 caracteres
+        ((PlainDocument) textClasenombre.getDocument()).setDocumentFilter(new LetterFilter()); 
+        ((PlainDocument) textClasenombre.getDocument()).setDocumentFilter(new FixedLengthDocumentFilter(20)); 
         panelcontenedor.add(textClasenombre);
 
         JLabel lblExperiencia = new JLabel("Experiencia");
@@ -1289,7 +1306,7 @@ public class InstructorView {
         textExperiencia.setBorder(new LineBorder(Color.decode("#D4D4D4"), 1));
         textExperiencia.setBackground(new Color(245, 245, 245));
         textExperiencia.setBounds(191, 240, 500, 62);
-        ((PlainDocument) textExperiencia.getDocument()).setDocumentFilter(new FixedLengthDocumentFilter(80)); // Limite de 80 caracteres
+        ((PlainDocument) textExperiencia.getDocument()).setDocumentFilter(new FixedLengthDocumentFilter(60)); 
         panelcontenedor.add(textExperiencia);
 
         JLabel lblFormacion = new JLabel("Formación");
@@ -1302,7 +1319,7 @@ public class InstructorView {
         textFormacion.setBorder(new LineBorder(Color.decode("#D4D4D4"), 1));
         textFormacion.setBackground(new Color(245, 245, 245));
         textFormacion.setBounds(191, 332, 500, 62);
-        ((PlainDocument) textFormacion.getDocument()).setDocumentFilter(new FixedLengthDocumentFilter(80)); // Limite de 80 caracteres
+        ((PlainDocument) textFormacion.getDocument()).setDocumentFilter(new FixedLengthDocumentFilter(60));
         panelcontenedor.add(textFormacion);
 
         JLabel lblHorario = new JLabel("Horario");
@@ -1315,7 +1332,7 @@ public class InstructorView {
         textHorario.setBorder(new LineBorder(Color.decode("#D4D4D4"), 1));
         textHorario.setBackground(new Color(245, 245, 245));
         textHorario.setBounds(191, 427, 500, 40);
-        ((PlainDocument) textHorario.getDocument()).setDocumentFilter(new FixedLengthDocumentFilter(80)); // Limite de 80 caracteres
+        ((PlainDocument) textHorario.getDocument()).setDocumentFilter(new FixedLengthDocumentFilter(60)); 
         panelcontenedor.add(textHorario);
 
         JPanel panel_1 = new JPanel();
