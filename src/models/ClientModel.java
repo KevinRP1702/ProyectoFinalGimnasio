@@ -13,6 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -276,18 +277,25 @@ public class ClientModel {
 	            dataTable.addCell(createCell("Cliente id:", PdfPCell.ALIGN_LEFT, FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12)));
 	            dataTable.addCell(createCell(datosCliente.get(4), PdfPCell.ALIGN_LEFT, FontFactory.getFont(FontFactory.HELVETICA, 12)));
 
-	            // Añadir la tabla de datos al documento
 	            mainTable.addCell(dataTable);
 
-	            // Celda para la imagen
 	            PdfPCell imageCell = new PdfPCell();
 	            imageCell.setBorder(PdfPCell.NO_BORDER);
 	            try {
-	                Image image = Image.getInstance(datosCliente.get(5));
-	                image.scaleToFit(150, 150); // Ajusta el tamaño de la imagen
-	                image.setAlignment(Element.ALIGN_CENTER); // Alineación horizontal en el centro
+	                ImageIcon originalIcon = new ImageIcon(getClass().getResource(datosCliente.get(5)));
+
+	                java.awt.Image originalImage = originalIcon.getImage();
+	                java.awt.Image scaledImage = originalImage.getScaledInstance(150, 150, 0);
+	                ImageIcon scaledIcon = new ImageIcon(scaledImage);
+
+	                Image image = Image.getInstance(scaledIcon.getImage(), null);
+	                
+	                image.scaleToFit(150, 150); 
+
+	                image.setAlignment(Element.ALIGN_CENTER);
+
 	                imageCell.addElement(image);
-	            } catch (BadElementException | IOException e) {
+	            } catch (IOException e) {
 	                e.printStackTrace();
 	                JOptionPane.showMessageDialog(null, "Error al cargar la imagen.");
 	            }

@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -256,10 +257,18 @@ public class InstructorModel {
 
 	        // Imagen del entrenador
 	        try {
-	            Image image = Image.getInstance(datosEntrenador[4].toString());
-	            image.scaleToFit(100, 100); // Ajusta el tamaño de la imagen
-	            image.setAlignment(Element.ALIGN_CENTER); // Alineación horizontal en el centro
-	            credentialCell.addElement(image);
+	        	ImageIcon originalIcon = new ImageIcon(getClass().getResource(datosEntrenador[4].toString()));
+	        	
+	        	java.awt.Image originalImage = originalIcon.getImage();
+                java.awt.Image scaledImage = originalImage.getScaledInstance(100, 100, 0);
+                ImageIcon scaledIcon = new ImageIcon(scaledImage);
+                
+                Image image = Image.getInstance(scaledIcon.getImage(), null);
+                
+                image.scaleToFit(100, 100); 
+                image.setAlignment(Element.ALIGN_CENTER);
+
+                credentialCell.addElement(image);
 	        } catch (BadElementException | IOException e) {
 	            e.printStackTrace();
 	            JOptionPane.showMessageDialog(null, "Error al cargar la imagen.");

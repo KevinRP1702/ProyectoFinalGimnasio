@@ -128,8 +128,6 @@ public class InstructorView {
 		if (instructores[0] != null) {
 			Object sextoDato = instructores[0][5];
 			
-			
-			
 			ImageIcon imageIcon_lblImg_Instructor_1 = new ImageIcon(getClass().getResource(sextoDato.toString()));
 			Image image = imageIcon_lblImg_Instructor_1.getImage();
 			Image resizedImage = image.getScaledInstance(lblImg_Instructor_1.getWidth(), lblImg_Instructor_1.getHeight(), Image.SCALE_SMOOTH); 
@@ -324,8 +322,7 @@ public class InstructorView {
 		lblImg_Instructor_3.setBackground(Color.CYAN);
 		lblImg_Instructor_3.setBounds(50, 15, 100, 100);
 		if (instructores[2] != null) {
-			Object sextoDato = instructores[0][5];
-			
+			Object sextoDato = instructores[2][5];
 			
 			ImageIcon imageIcon_lblImg_Instructor_3 = new ImageIcon(getClass().getResource(sextoDato.toString()));
 			Image image = imageIcon_lblImg_Instructor_3.getImage();

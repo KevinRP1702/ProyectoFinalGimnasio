@@ -465,7 +465,7 @@ public class ClientView {
 		        if (opcion == 6) {
 		            ClientController controller = new ClientController();
 		            frame.dispose();
-		            controller.editar(idUsuario, "/imgs/pfp5.png");
+		            controller.editar(idUsuario, "/imgs/pfp6.png");
 		        } else {
 		            ClientController controller = new ClientController();
 		            frame.dispose();
