@@ -38,6 +38,12 @@ import models.ClassModel;
 import models.ClientModel;
 import models.FeeModel;
 
+
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
+
 public class ClientView {
 
 	private JFrame frame;
@@ -89,7 +95,7 @@ public class ClientView {
 		
 		JLabel lblBotoncontenido_2_1 = new JLabel();
 		lblBotoncontenido_2_1.setBounds(5, 3, 26, 26);
-		ImageIcon icon2 = new ImageIcon("clase_descarga.png"); 
+		ImageIcon icon2 = new ImageIcon("img/clase_descarga.png"); 
 		lblBotoncontenido_2_1.setIcon(icon2);
 		panelBotoncontenido_2_1.add(lblBotoncontenido_2_1);
 		
@@ -99,6 +105,7 @@ public class ClientView {
 		btnDescargarCliente.setFocusPainted(false);
 		btnDescargarCliente.setContentAreaFilled(false);
 		btnDescargarCliente.setBorderPainted(false);
+		
 		btnDescargarCliente.setBackground(new Color(55, 104, 167));
 		btnDescargarCliente.setBounds(0, 0, 190, 30);
 		panelBotoncontenido_2_1.add(btnDescargarCliente);
@@ -120,8 +127,7 @@ public class ClientView {
 
 		String[] opciones = opcionesClases.toArray(new String[0]);
 		;
-		ImageIcon imageIcon_lblBotoncontenido = new ImageIcon("img/clase_crear.png");
-
+		
 		JPanel panelBotoncontenido_2 = new JPanel();
 		panelBotoncontenido_2.setLayout(null);
 		panelBotoncontenido_2.setBackground(new Color(55, 104, 167));
@@ -326,27 +332,30 @@ public class ClientView {
 		lblIngreseLosDatos.setFont(new Font("Calibri", Font.PLAIN, 26));
 		lblIngreseLosDatos.setBounds(237, 73, 414, 29);
 		panelcontenedor.add(lblIngreseLosDatos);
+		
+		
+		//Avatares
 
 		JLabel lblAvatar1 = new JLabel("");
 		lblAvatar1.setOpaque(true);
 		lblAvatar1.setBackground(new Color(0, 64, 128));
 		lblAvatar1.setFont(new Font("Calibri", Font.PLAIN, 16));
-		lblAvatar1.setBounds(100, 150, 160, 160);
+		lblAvatar1.setBounds(70, 150, 160, 160);
 		ImageIcon imageIcon_lblAvatar1 = new ImageIcon("img/pfp1.png");
 		lblAvatar1.setIcon(imageIcon_lblAvatar1);
 		lblAvatar1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (opcion == 1) {
-					ClientController controller = new ClientController();
-					frame.dispose();
-					controller.editar(idUsuario, "img/pfp1.png");
-				} else {
-					ClientController controller = new ClientController();
-					frame.dispose();
-					controller.crearCliente("img/pfp1.png");
-				}
-			}
+		    @Override
+		    public void mouseClicked(MouseEvent e) {
+		        if (opcion == 1) {
+		            ClientController controller = new ClientController();
+		            frame.dispose();
+		            controller.editar(idUsuario, "img/pfp1.png");
+		        } else {
+		            ClientController controller = new ClientController();
+		            frame.dispose();
+		            controller.crearCliente("img/pfp1.png");
+		        }
+		    }
 		});
 		panelcontenedor.add(lblAvatar1);
 
@@ -354,22 +363,22 @@ public class ClientView {
 		lblAvatar2.setOpaque(true);
 		lblAvatar2.setFont(new Font("Calibri", Font.PLAIN, 16));
 		lblAvatar2.setBackground(new Color(0, 64, 128));
-		lblAvatar2.setBounds(300, 150, 160, 160);
+		lblAvatar2.setBounds(270, 150, 160, 160); 
 		ImageIcon imageIcon_lblAvatar2 = new ImageIcon("img/pfp2.png");
 		lblAvatar2.setIcon(imageIcon_lblAvatar2);
 		lblAvatar2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (opcion == 1) {
-					ClientController controller = new ClientController();
-					frame.dispose();
-					controller.editar(idUsuario, "img/pfp2.png");
-				} else {
-					ClientController controller = new ClientController();
-					frame.dispose();
-					controller.crearCliente("img/pfp2.png");
-				}
-			}
+		    @Override
+		    public void mouseClicked(MouseEvent e) {
+		        if (opcion == 1) {
+		            ClientController controller = new ClientController();
+		            frame.dispose();
+		            controller.editar(idUsuario, "img/pfp2.png");
+		        } else {
+		            ClientController controller = new ClientController();
+		            frame.dispose();
+		            controller.crearCliente("img/pfp2.png");
+		        }
+		    }
 		});
 		panelcontenedor.add(lblAvatar2);
 
@@ -377,22 +386,22 @@ public class ClientView {
 		lblAvatar3.setOpaque(true);
 		lblAvatar3.setFont(new Font("Calibri", Font.PLAIN, 16));
 		lblAvatar3.setBackground(new Color(0, 64, 128));
-		lblAvatar3.setBounds(500, 150, 160, 160);
+		lblAvatar3.setBounds(470, 150, 160, 160);  
 		ImageIcon imageIcon_lblAvatar3 = new ImageIcon("img/pfp3.png");
 		lblAvatar3.setIcon(imageIcon_lblAvatar3);
 		lblAvatar3.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (opcion == 1) {
-					ClientController controller = new ClientController();
-					frame.dispose();
-					controller.editar(idUsuario, "img/pfp3.png");
-				} else {
-					ClientController controller = new ClientController();
-					frame.dispose();
-					controller.crearCliente("img/pfp3.png");
-				}
-			}
+		    @Override
+		    public void mouseClicked(MouseEvent e) {
+		        if (opcion == 1) {
+		            ClientController controller = new ClientController();
+		            frame.dispose();
+		            controller.editar(idUsuario, "img/pfp3.png");
+		        } else {
+		            ClientController controller = new ClientController();
+		            frame.dispose();
+		            controller.crearCliente("img/pfp3.png");
+		        }
+		    }
 		});
 		panelcontenedor.add(lblAvatar3);
 
@@ -400,22 +409,22 @@ public class ClientView {
 		lblAvatar4.setOpaque(true);
 		lblAvatar4.setFont(new Font("Calibri", Font.PLAIN, 16));
 		lblAvatar4.setBackground(new Color(0, 64, 128));
-		lblAvatar4.setBounds(700, 150, 160, 160);
+		lblAvatar4.setBounds(670, 150, 160, 160);  
 		ImageIcon imageIcon_lblAvatar4 = new ImageIcon("img/pfp4.png");
 		lblAvatar4.setIcon(imageIcon_lblAvatar4);
 		lblAvatar4.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (opcion == 1) {
-					ClientController controller = new ClientController();
-					frame.dispose();
-					controller.editar(idUsuario, "img/pfp4.png");
-				} else {
-					ClientController controller = new ClientController();
-					frame.dispose();
-					controller.crearCliente("img/pfp4.png");
-				}
-			}
+		    @Override
+		    public void mouseClicked(MouseEvent e) {
+		        if (opcion == 1) {
+		            ClientController controller = new ClientController();
+		            frame.dispose();
+		            controller.editar(idUsuario, "img/pfp4.png");
+		        } else {
+		            ClientController controller = new ClientController();
+		            frame.dispose();
+		            controller.crearCliente("img/pfp4.png");
+		        }
+		    }
 		});
 		panelcontenedor.add(lblAvatar4);
 
@@ -423,22 +432,22 @@ public class ClientView {
 		lblAvatar5.setOpaque(true);
 		lblAvatar5.setFont(new Font("Calibri", Font.PLAIN, 16));
 		lblAvatar5.setBackground(new Color(0, 64, 128));
-		lblAvatar5.setBounds(100, 350, 160, 160);
+		lblAvatar5.setBounds(70, 350, 160, 160);  
 		ImageIcon imageIcon_lblAvatar5 = new ImageIcon("img/pfp5.png");
 		lblAvatar5.setIcon(imageIcon_lblAvatar5);
 		lblAvatar5.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (opcion == 1) {
-					ClientController controller = new ClientController();
-					frame.dispose();
-					controller.editar(idUsuario, "img/pfp5.png");
-				} else {
-					ClientController controller = new ClientController();
-					frame.dispose();
-					controller.crearCliente("img/pfp5.png");
-				}
-			}
+		    @Override
+		    public void mouseClicked(MouseEvent e) {
+		        if (opcion == 1) {
+		            ClientController controller = new ClientController();
+		            frame.dispose();
+		            controller.editar(idUsuario, "img/pfp5.png");
+		        } else {
+		            ClientController controller = new ClientController();
+		            frame.dispose();
+		            controller.crearCliente("img/pfp5.png");
+		        }
+		    }
 		});
 		panelcontenedor.add(lblAvatar5);
 
@@ -446,23 +455,22 @@ public class ClientView {
 		lblAvatar6.setOpaque(true);
 		lblAvatar6.setFont(new Font("Calibri", Font.PLAIN, 16));
 		lblAvatar6.setBackground(new Color(0, 64, 128));
-		lblAvatar6.setBounds(300, 350, 160, 160);
+		lblAvatar6.setBounds(270, 350, 160, 160);  
 		ImageIcon imageIcon_lblAvatar6 = new ImageIcon("img/pfp6.png");
 		lblAvatar6.setIcon(imageIcon_lblAvatar6);
 		lblAvatar6.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (opcion == 6) {
-					ClientController controller = new ClientController();
-					frame.dispose();
-					controller.editar(idUsuario, "img/pfp5.png");
-				} else {
-					ClientController controller = new ClientController();
-					frame.dispose();
-					controller.crearCliente("img/pfp6.png");
-				}
-
-			}
+		    @Override
+		    public void mouseClicked(MouseEvent e) {
+		        if (opcion == 6) {
+		            ClientController controller = new ClientController();
+		            frame.dispose();
+		            controller.editar(idUsuario, "img/pfp5.png");
+		        } else {
+		            ClientController controller = new ClientController();
+		            frame.dispose();
+		            controller.crearCliente("img/pfp6.png");
+		        }
+		    }
 		});
 		panelcontenedor.add(lblAvatar6);
 
@@ -470,23 +478,22 @@ public class ClientView {
 		lblAvatar7.setOpaque(true);
 		lblAvatar7.setFont(new Font("Calibri", Font.PLAIN, 16));
 		lblAvatar7.setBackground(new Color(0, 64, 128));
-		lblAvatar7.setBounds(500, 350, 160, 160);
+		lblAvatar7.setBounds(470, 350, 160, 160); 
 		ImageIcon imageIcon_lblAvatar7 = new ImageIcon("img/pfp7.png");
 		lblAvatar7.setIcon(imageIcon_lblAvatar7);
 		lblAvatar7.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (opcion == 1) {
-					ClientController controller = new ClientController();
-					frame.dispose();
-					controller.editar(idUsuario, "img/pfp7.png");
-				} else {
-					ClientController controller = new ClientController();
-					frame.dispose();
-					controller.crearCliente("img/pfp7.png");
-				}
-
-			}
+		    @Override
+		    public void mouseClicked(MouseEvent e) {
+		        if (opcion == 1) {
+		            ClientController controller = new ClientController();
+		            frame.dispose();
+		            controller.editar(idUsuario, "img/pfp7.png");
+		        } else {
+		            ClientController controller = new ClientController();
+		            frame.dispose();
+		            controller.crearCliente("img/pfp7.png");
+		        }
+		    }
 		});
 		panelcontenedor.add(lblAvatar7);
 
@@ -494,23 +501,22 @@ public class ClientView {
 		lblAvatar8.setOpaque(true);
 		lblAvatar8.setFont(new Font("Calibri", Font.PLAIN, 16));
 		lblAvatar8.setBackground(new Color(0, 64, 128));
-		lblAvatar8.setBounds(700, 350, 160, 160);
+		lblAvatar8.setBounds(670, 350, 160, 160);  
 		ImageIcon imageIcon_lblAvatar8 = new ImageIcon("img/pfp8.png");
 		lblAvatar8.setIcon(imageIcon_lblAvatar8);
 		lblAvatar8.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (opcion == 1) {
-					ClientController controller = new ClientController();
-					frame.dispose();
-					controller.editar(idUsuario, "img/pfp5.png");
-				} else {
-					ClientController controller = new ClientController();
-					frame.dispose();
-					controller.crearCliente("img/pfp8.png");
-				}
-
-			}
+		    @Override
+		    public void mouseClicked(MouseEvent e) {
+		        if (opcion == 1) {
+		            ClientController controller = new ClientController();
+		            frame.dispose();
+		            controller.editar(idUsuario, "img/pfp5.png");
+		        } else {
+		            ClientController controller = new ClientController();
+		            frame.dispose();
+		            controller.crearCliente("img/pfp8.png");
+		        }
+		    }
 		});
 		panelcontenedor.add(lblAvatar8);
 		vistaComun();
@@ -546,11 +552,13 @@ public class ClientView {
 		textClienteNombre.setBackground(Color.decode("#F5F5F5"));
 		textClienteNombre.setBorder(new LineBorder(Color.decode("#D4D4D4"), 1));
 		TextPrompt prompt1 = new TextPrompt("Nombre(s)", textClienteNombre);
+		((AbstractDocument) textClienteNombre.getDocument()).setDocumentFilter(new LetterFilter());
+
 		prompt1.setFont(new Font("Calibri", Font.PLAIN, 18));
 		prompt1.setForeground(new Color(192, 192, 192));
 		textClienteNombre.setBounds(191, 116, 500, 40);
 		textClienteNombre.setBorder(BorderFactory.createCompoundBorder(new LineBorder(Color.decode("#D4D4D4"), 1),
-				new EmptyBorder(10, 10, 10, 10) // Agregar padding
+				new EmptyBorder(10, 10, 10, 10) 
 		));
 		panelcontenedor.add(textClienteNombre);
 
@@ -564,12 +572,14 @@ public class ClientView {
 		textClienteApellidos.setBorder(new LineBorder(Color.decode("#D4D4D4"), 1));
 		textClienteApellidos.setBackground(new Color(245, 245, 245));
 		textClienteApellidos.setBounds(191, 175, 500, 40);
+		((AbstractDocument) textClienteApellidos.getDocument()).setDocumentFilter(new LetterFilter());
+
 		TextPrompt prompt2 = new TextPrompt("Apellidos(s)", textClienteApellidos);
 		prompt2.setFont(new Font("Calibri", Font.PLAIN, 18));
 		prompt2.setForeground(new Color(192, 192, 192));
 		textClienteApellidos.setBounds(191, 175, 500, 40);
 		textClienteApellidos.setBorder(BorderFactory.createCompoundBorder(new LineBorder(Color.decode("#D4D4D4"), 1),
-				new EmptyBorder(10, 10, 10, 10) // Agregar padding
+				new EmptyBorder(10, 10, 10, 10)
 		));
 
 		panelcontenedor.add(textClienteApellidos);
@@ -585,11 +595,12 @@ public class ClientView {
 
 		String[] meses = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" };
 
-		String[] años = { "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974",
-				"1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987",
-				"1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000",
-				"2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013",
-				"2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024" };
+		String[] años = { "2024", "2023", "2022", "2021", "2020", "2019", "2018", "2017", "2016", "2015", "2014", 
+				"2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", 
+				"2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", 
+				"1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", 
+				"1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", 
+				"1969", "1968", "1967", "1966", "1965", "1964" };
 
 		// Crear y configurar los ComboBox para día, mes y año
 
@@ -619,6 +630,8 @@ public class ClientView {
 		textNumeroCliente.setBorder(new LineBorder(Color.decode("#D4D4D4"), 1));
 		textNumeroCliente.setBackground(new Color(245, 245, 245));
 		textNumeroCliente.setBounds(191, 350, 500, 40);
+		((AbstractDocument) textNumeroCliente.getDocument()).setDocumentFilter(new NumberFilter(10));
+
 		TextPrompt prompt4 = new TextPrompt("Número de teléfono", textNumeroCliente);
 		prompt4.setFont(new Font("Calibri", Font.PLAIN, 18));
 		prompt4.setForeground(new Color(192, 192, 192));
@@ -658,11 +671,24 @@ public class ClientView {
 		btnCrearClases.setBackground(Color.decode("#214177"));
 		btnCrearClases.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ClientModel modelo = new ClientModel();
+				
+				String nombre = textClienteNombre.getText();
+			    String apellidos = textClienteApellidos.getText();
+			    String telefono = textNumeroCliente.getText();
+			    String correo = textCorreoCliente.getText();
+			    ClientModel modelo = new ClientModel();
 				String fecha = (String) añoComboBox.getSelectedItem() + "-" + (String) mesComboBox.getSelectedItem()
 						+ "-" + (String) diaComboBox.getSelectedItem();
-
-				if (modelo.registrarCliente(textClienteNombre.getText(), textClienteApellidos.getText(), fecha,Integer.parseInt(textNumeroCliente.getText()), textCorreoCliente.getText(),rutaImagen, 0) == false) {
+				
+				
+				 if (nombre.isEmpty() || apellidos.isEmpty() || telefono.isEmpty() || correo.isEmpty()) {
+			            JOptionPane.showMessageDialog(null,"Debe llenar todos los campos","Campos vacíos", JOptionPane.WARNING_MESSAGE);
+			        } else if (telefono.length() != 10) {
+			            JOptionPane.showMessageDialog(null,"Necesita pomer su número completo","Número de teléfono inválido", JOptionPane.WARNING_MESSAGE);
+			        } else if (!correo.contains("@")) {
+			            JOptionPane.showMessageDialog(null,"El correo electrónico debe contener una @","Correo inválido", JOptionPane.WARNING_MESSAGE);
+			        } 
+			    else if (modelo.registrarCliente(textClienteNombre.getText(), textClienteApellidos.getText(), fecha,Integer.parseInt(textNumeroCliente.getText()), textCorreoCliente.getText(),rutaImagen, 0) == false) {
 					JOptionPane.showMessageDialog(null, "El cliente ya se encuentra en la base", "Error",
 							JOptionPane.ERROR_MESSAGE);
 				} else {
@@ -923,6 +949,7 @@ public class ClientView {
 
 		JLabel lblNombreCliente = new JLabel("Nombre(s):");
 		lblNombreCliente.setFont(new Font("Calibri", Font.BOLD, 18));
+		
 		lblNombreCliente.setBounds(10, 70, 114, 23);
 		panelcontenedor1.add(lblNombreCliente);
 
@@ -951,27 +978,24 @@ public class ClientView {
 		lblNumeroCliente.setBounds(10, 265, 189, 23);
 		panelcontenedor1.add(lblNumeroCliente);
 
-		JLabel lblAvatarCliente = new JLabel("");
-		lblAvatarCliente.setOpaque(true);
-		lblAvatarCliente.setBackground(new Color(0, 0, 64));
-		lblAvatarCliente.setBounds(614, 138, 160, 160);
-		ImageIcon imageIcon = new ImageIcon(datosCliente.get(5).toString());
-		lblAvatarCliente.setIcon(imageIcon);
-		panelcontenedor1.add(lblAvatarCliente);
+		
+		
+		
+		//Ingresar datos
 
 		JTextArea textNombreCliente = new JTextArea();
 		textNombreCliente.setFont(new Font("Calibri", Font.PLAIN, 18));
 		textNombreCliente.setBackground(Color.decode("#F5F5F5"));
 		textNombreCliente.setBorder(new LineBorder(Color.decode("#D4D4D4"), 1));
+		((AbstractDocument) textNombreCliente.getDocument()).setDocumentFilter(new LetterFilter());
 		textNombreCliente.setBounds(192, 70, 320, 25);
-		textNombreCliente.setBorder(BorderFactory.createCompoundBorder(new LineBorder(Color.decode("#D4D4D4"), 1),
-				new EmptyBorder(10, 10, 10, 10)));
 		panelcontenedor1.add(textNombreCliente);
 
 		JTextArea textApellidosCliente = new JTextArea();
 		textApellidosCliente.setFont(new Font("Calibri", Font.PLAIN, 18));
 		textApellidosCliente.setBorder(new LineBorder(Color.decode("#D4D4D4"), 1));
 		textApellidosCliente.setBackground(new Color(245, 245, 245));
+		((AbstractDocument) textApellidosCliente.getDocument()).setDocumentFilter(new LetterFilter());
 		textApellidosCliente.setBounds(192, 133, 320, 25);
 		panelcontenedor1.add(textApellidosCliente);
 
@@ -981,11 +1005,12 @@ public class ClientView {
 
 		String[] meses = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" };
 
-		String[] años = { "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974",
-				"1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987",
-				"1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000",
-				"2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013",
-				"2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024" };
+		String[] años = {"2024", "2023", "2022", "2021", "2020", "2019", "2018", "2017", "2016", "2015", "2014", 
+				"2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", 
+				"2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", 
+				"1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", 
+				"1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", 
+				"1969", "1968", "1967", "1966", "1965", "1964" };
 
 		// Crear y configurar los ComboBox para día, mes y año
 
@@ -1017,6 +1042,8 @@ public class ClientView {
 		textNumeroCliente.setFont(new Font("Calibri", Font.PLAIN, 18));
 		textNumeroCliente.setBorder(new LineBorder(Color.decode("#D4D4D4"), 1));
 		textNumeroCliente.setBackground(new Color(245, 245, 245));
+		((AbstractDocument) textNumeroCliente.getDocument()).setDocumentFilter(new NumberFilter(10));
+
 		textNumeroCliente.setBounds(192, 263, 320, 25);
 		panelcontenedor1.add(textNumeroCliente);
 
@@ -1044,13 +1071,22 @@ public class ClientView {
 		panelBtnGuardar.add(btnGuardar);
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
+			 	String nombre = textNombreCliente.getText();
+		        String apellidos = textApellidosCliente.getText();
+		        String telefono = textNumeroCliente.getText();
+		        String correo = textCorreoCliente.getText();
+		      
 
-				if (textNombreCliente.getText().isEmpty() || textApellidosCliente.getText().isEmpty()
-						|| textNumeroCliente.getText().isEmpty() || textCorreoCliente.getText().isEmpty()) {
-
-					JOptionPane.showMessageDialog(frame, "Todos los campos deben estar llenos.", "Error",
-							JOptionPane.ERROR_MESSAGE);
-				} else {
+		        if (nombre.isEmpty() || apellidos.isEmpty() || telefono.isEmpty() || correo.isEmpty()) {
+		            JOptionPane.showMessageDialog(null,"Debe llenar todos los campos","Campos vacíos", JOptionPane.WARNING_MESSAGE);
+		        } else if (telefono.length() != 10) {
+		            JOptionPane.showMessageDialog(null,"Necesita pomer su número completo","Número de teléfono inválido", JOptionPane.WARNING_MESSAGE);
+		        } else if (!correo.contains("@")) {
+		            JOptionPane.showMessageDialog(null,"El correo electrónico debe contener una @","Correo inválido", JOptionPane.WARNING_MESSAGE);
+		        }
+		        else {
 					ClientModel model = new ClientModel();
 					ClientController controller = new ClientController();
 
@@ -1075,273 +1111,331 @@ public class ClientView {
 	}
 
 	public void vistaComun() {
-		// Cabecera
 
-		JPanel panelCabecera = new JPanel();
-		panelCabecera.setBackground(Color.decode("#BCDAF2"));
-		panelCabecera.setBounds(0, 0, 1092, 65);
-		panel.add(panelCabecera);
-		panelCabecera.setLayout(null);
+		//Cabecera
 
-		JLabel lblTitulo = new JLabel("La disciplina es la madre del éxito");
-		lblTitulo.setFont(new Font("Calibri", Font.BOLD, 24));
-		lblTitulo.setBounds(420, 22, 452, 45);
-		panelCabecera.add(lblTitulo);
+				JPanel panelCabecera = new JPanel();
+				panelCabecera.setBackground(Color.decode("#BCDAF2"));
+				panelCabecera.setBounds(0, 0, 1092, 65);
+				panel.add(panelCabecera);
+				panelCabecera.setLayout(null);
 
-		JLabel lblLogo = new JLabel("");
-		lblLogo.setBounds(0, 0, 192, 67);
-		ImageIcon imageIcon = new ImageIcon("src/logo.png");
-		lblLogo.setIcon(imageIcon);
+				JLabel lblTitulo = new JLabel("La disciplina es la madre del éxito");
+				lblTitulo.setFont(new Font("Calibri", Font.BOLD, 24));
+				lblTitulo.setBounds(420, 22, 452, 45);
+				panelCabecera.add(lblTitulo);
 
-		panelCabecera.add(lblLogo);
 
-		// Opciones
-		JPanel panelOpciones = new JPanel();
-		panelOpciones.setBackground(Color.decode("#214177"));
-		panelOpciones.setBounds(0, 64, 190, 596);
-		panel.add(panelOpciones);
-		panelOpciones.setLayout(null);
+				JLabel lblLogo = new JLabel("");
+				lblLogo.setBounds(0, 0, 192, 67);
+				ImageIcon imageIcon = new ImageIcon("img/logo.png"); 
+				lblLogo.setIcon(imageIcon);
 
-		JLabel lblMarca = new JLabel("Gym-World");
-		lblMarca.setBounds(2, 514, 188, 45);
-		lblMarca.setForeground(Color.WHITE);
-		lblMarca.setFont(new Font("Calibri", Font.BOLD, 38));
-		panelOpciones.add(lblMarca);
+				panelCabecera.add(lblLogo);
 
-		// Inicio
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.decode("#214177"));
-		panel_1.setBounds(0, 0, 190, 95);
-		panel_1.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(207, 207, 207)));
-		panelOpciones.add(panel_1);
-		panel_1.setLayout(null);
+				//Opciones
+				JPanel panelOpciones = new JPanel();
+				panelOpciones.setBackground(Color.decode("#214177"));
+				panelOpciones.setBounds(0, 64, 190, 596);
+				panel.add(panelOpciones);
+				panelOpciones.setLayout(null);
 
-		JButton btnInicio = new JButton("           Inicio");
-		btnInicio.setHorizontalAlignment(SwingConstants.LEFT);
-		btnInicio.setBounds(0, 27, 190, 58);
-		panel_1.add(btnInicio);
-		btnInicio.setFont(new Font("Calibri", Font.BOLD, 20));
-		btnInicio.setForeground(new Color(255, 255, 255));
-		btnInicio.setBackground(Color.decode("#214177"));
-		btnInicio.setFocusPainted(false);
-		btnInicio.setBorderPainted(false);
-		btnInicio.setContentAreaFilled(false);
-		btnInicio.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				HomeController controller = new HomeController();
-				frame.dispose();
-				controller.inicio();
-			}
-		});
-		JLabel lblInicio = new JLabel();
-		lblInicio.setBounds(10, 30, 40, 40);
-		ImageIcon imageIcon_Inicio = new ImageIcon("img/menu_inicio.png");
-		lblInicio.setIcon(imageIcon_Inicio);
-		panel_1.add(lblInicio);
+				JLabel lblMarca = new JLabel("Gym-World");
+				lblMarca.setHorizontalAlignment(SwingConstants.CENTER);
+				lblMarca.setBounds(2, 514, 188, 45);
+				lblMarca.setForeground(Color.WHITE);
+				lblMarca.setFont(new Font("Calibri", Font.BOLD, 29));
+				panelOpciones.add(lblMarca);
 
-		// Clintes
 
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(33, 65, 119));
-		panel_2.setBounds(0, 95, 190, 61);
-		panel_2.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(207, 207, 207)));
-		panelOpciones.add(panel_2);
-		panel_2.setBackground(Color.decode("#3768A7"));
-		panel_2.setLayout(null);
 
-		JButton btnClientes = new JButton(" Clientes");
-		btnClientes.setBounds(0, 11, 190, 44);
-		panel_2.add(btnClientes);
-		btnClientes.setForeground(Color.WHITE);
-		btnClientes.setFont(new Font("Calibri", Font.BOLD, 20));
-		btnClientes.setFocusPainted(false);
-		btnClientes.setBorderPainted(false);
-		btnClientes.setBackground(new Color(33, 65, 119));
-		btnClientes.setContentAreaFilled(false);
-		btnClientes.addActionListener(new ActionListener() {
+				//Inicio
+				JPanel panel_1 = new JPanel();
+				panel_1.setBackground(Color.decode("#214177"));
+				panel_1.setBounds(0, 0, 190, 95);
+				panel_1.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(207, 207, 207)));
+				panelOpciones.add(panel_1);
+				panel_1.setLayout(null);
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				ClientController controller = new ClientController();
-				frame.dispose();
-				controller.cliente();
-			}
-		});
+				JButton btnInicio = new JButton("         Inicio");
+				btnInicio.setHorizontalAlignment(SwingConstants.LEFT);
+				btnInicio.setBounds(0, 27, 190, 58);
+				panel_1.add(btnInicio);
+				btnInicio.setFont(new Font("Calibri", Font.BOLD, 20));
+				btnInicio.setForeground(new Color(255, 255, 255));
+				btnInicio.setBackground(Color.decode("#214177"));
+				btnInicio.setFocusPainted(false);
+				btnInicio.setBorderPainted(false);
+				btnInicio.setContentAreaFilled(false);
+				btnInicio.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						HomeController controller = new HomeController();
+						frame.dispose();
+						controller.inicio();
+					}
+				});
+				JLabel lblInicio = new JLabel();
+				lblInicio.setBounds(10, 30, 40, 40);
+				ImageIcon imageIcon_Inicio = new ImageIcon("img/menu_inicio.png");
+				lblInicio.setIcon(imageIcon_Inicio);
+				panel_1.add(lblInicio);
 
-		JLabel lblClientes = new JLabel();
-		lblClientes.setBounds(10, 10, 40, 40);
-		ImageIcon imageIcon_Clientes = new ImageIcon("img/menu_cliente.png");
-		lblClientes.setIcon(imageIcon_Clientes);
-		panel_2.add(lblClientes);
 
-		// Tarifas
-		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(new Color(33, 65, 119));
-		panel_3.setBounds(0, 156, 190, 61);
-		panel_3.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(207, 207, 207)));
-		panelOpciones.add(panel_3);
-		panel_3.setLayout(null);
+				//Clintes
 
-		JButton btnTarifas = new JButton("Tarifas");
-		btnTarifas.setBounds(0, 11, 190, 44);
-		panel_3.add(btnTarifas);
-		btnTarifas.setForeground(Color.WHITE);
-		btnTarifas.setFont(new Font("Calibri", Font.BOLD, 20));
-		btnTarifas.setFocusPainted(false);
-		btnTarifas.setBorderPainted(false);
-		btnTarifas.setContentAreaFilled(false);
-		btnTarifas.setBackground(new Color(33, 65, 119));
-		btnTarifas.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// Acción al hacer clic en el botón
-				FeeController controller = new FeeController();
-				frame.dispose();
-				controller.tarifa();
-			}
-		});
+				JPanel panel_2 = new JPanel();
+				panel_2.setBackground(Color.decode("#3768A7"));
+				panel_2.setBounds(0, 95, 190, 61);
+				panel_2.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(207, 207, 207)));
+				panelOpciones.add(panel_2);
+				panel_2.setLayout(null);
 
-		JLabel lblTarifas = new JLabel();
-		lblTarifas.setBounds(10, 10, 40, 40);
-		ImageIcon imageIcon_Tarifas = new ImageIcon("img/menu_tarifa.png");
-		lblTarifas.setIcon(imageIcon_Tarifas);
-		panel_3.add(lblTarifas);
 
-		// Instructores
-		JPanel panel_4 = new JPanel();
-		panel_4.setBackground(new Color(33, 65, 119));
-		panel_4.setBounds(0, 217, 190, 58);
-		panel_4.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(207, 207, 207)));
-		panelOpciones.add(panel_4);
-		panel_4.setLayout(null);
+				JButton btnClientes = new JButton("       Clientes");
+				btnClientes.setHorizontalAlignment(SwingConstants.LEFT);
+				btnClientes.setBounds(0, 11, 190, 44);
+				panel_2.add(btnClientes);
+				btnClientes.setForeground(Color.WHITE);
+				btnClientes.setFont(new Font("Calibri", Font.BOLD, 20));
+				btnClientes.setFocusPainted(false);
+				btnClientes.setBorderPainted(false);
+				btnClientes.setBackground(new Color(33, 65, 119));
+				btnClientes.setContentAreaFilled(false);
+				btnClientes.addActionListener(new ActionListener() {
 
-		JButton btnInstructores = new JButton("          Instructores");
-		btnInstructores.setHorizontalAlignment(SwingConstants.LEFT);
-		btnInstructores.setBounds(0, 11, 190, 44);
-		panel_4.add(btnInstructores);
-		btnInstructores.setForeground(Color.WHITE);
-		btnInstructores.setFont(new Font("Calibri", Font.BOLD, 20));
-		btnInstructores.setFocusPainted(false);
-		btnInstructores.setBorderPainted(false);
-		btnInstructores.setContentAreaFilled(false);
-		btnInstructores.setBackground(new Color(33, 65, 119));
-		btnInstructores.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// Acción al hacer clic en el botón
-				InstructorController controller = new InstructorController();
-				frame.dispose();
-				controller.instructor();
-			}
-		});
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						// TODO Auto-generated method stub
+						ClientController controller = new ClientController();
+						frame.dispose();
+						controller.cliente();
+					}
+				});
 
-		JLabel lblInstructores = new JLabel();
-		lblInstructores.setBounds(10, 10, 40, 40);
-		ImageIcon imageIcon_Intructores = new ImageIcon("img/menu_instructor.png");
-		lblInstructores.setIcon(imageIcon_Intructores);
-		panel_4.add(lblInstructores);
+				JLabel lblClientes = new JLabel();
+				lblClientes.setBounds(10, 10, 40, 40);
+				ImageIcon imageIcon_Clientes = new ImageIcon("img/menu_cliente.png");
+				lblClientes.setIcon(imageIcon_Clientes);
+				panel_2.add(lblClientes);
 
-		// Clases
-		JPanel panel_5 = new JPanel();
-		panel_5.setBackground(new Color(33, 65, 119));
-		panel_5.setBounds(0, 276, 190, 58);
-		panel_5.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(207, 207, 207)));
-		panelOpciones.add(panel_5);
-		panel_5.setLayout(null);
+				//Tarifas
+				JPanel panel_3 = new JPanel();
+				panel_3.setBackground(new Color(33, 65, 119));
+				panel_3.setBounds(0, 156, 190, 61);
+				panel_3.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(207, 207, 207)));
+				panelOpciones.add(panel_3);
+				panel_3.setBackground(Color.decode("#214177"));
+				panel_3.setLayout(null);
 
-		JButton btnClases = new JButton("Clases");
-		btnClases.setBounds(0, 11, 190, 44);
-		panel_5.add(btnClases);
-		btnClases.setForeground(Color.WHITE);
-		btnClases.setFont(new Font("Calibri", Font.BOLD, 20));
-		btnClases.setFocusPainted(false);
-		btnClases.setBorderPainted(false);
-		btnClases.setContentAreaFilled(false);
-		btnClases.setBackground(new Color(33, 65, 119));
+				JButton btnTarifas = new JButton("       Tarifas");
+				btnTarifas.setHorizontalAlignment(SwingConstants.LEFT);
+				btnTarifas.setBounds(0, 11, 190, 44);
+				panel_3.add(btnTarifas);
+				btnTarifas.setForeground(Color.WHITE);
+				btnTarifas.setFont(new Font("Calibri", Font.BOLD, 20));
+				btnTarifas.setFocusPainted(false);
+				btnTarifas.setBorderPainted(false);
+				btnTarifas.setContentAreaFilled(false);
+				btnTarifas.setBackground(new Color(33, 65, 119));
+				btnTarifas.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						// Acción al hacer clic en el botón
+						FeeController controller = new FeeController();
+						frame.dispose();
+						controller.tarifa();
+					}
+				});
 
-		JLabel lblClases = new JLabel();
-		lblClases.setBounds(10, 10, 40, 40);
-		ImageIcon imageIcon_Clases = new ImageIcon("img/menu_rutina.png");
-		lblClases.setIcon(imageIcon_Clases);
-		panel_5.add(lblClases);
-		btnClases.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// Acción al hacer clic en el botón
-				ClassController controller = new ClassController();
-				frame.dispose();
-				controller.clase();
-			}
-		});
+				JLabel lblTarifas = new JLabel();
+				lblTarifas.setBounds(10, 10, 40, 40);
+				ImageIcon imageIcon_Tarifas = new ImageIcon("img/menu_tarifa.png");
+				lblTarifas.setIcon(imageIcon_Tarifas);
+				panel_3.add(lblTarifas);
 
-		// Checador
-		JPanel panel_6 = new JPanel();
-		panel_6.setBackground(new Color(33, 65, 119));
-		panel_6.setBounds(0, 335, 190, 61);
-		panel_6.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(207, 207, 207)));
-		panelOpciones.add(panel_6);
-		panel_6.setLayout(null);
+				//Instructores
+				JPanel panel_4 = new JPanel();
+				panel_4.setBackground(new Color(33, 65, 119));
+				panel_4.setBounds(0, 217, 190, 58);
+				panel_4.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(207, 207, 207)));
+				panelOpciones.add(panel_4);
+				panel_4.setLayout(null);
 
-		JButton btnChecador = new JButton("          Checador");
-		btnChecador.setHorizontalAlignment(SwingConstants.LEFT);
-		btnChecador.setBounds(0, 11, 190, 44);
-		panel_6.add(btnChecador);
-		btnChecador.setForeground(Color.WHITE);
-		btnChecador.setFont(new Font("Calibri", Font.BOLD, 20));
-		btnChecador.setFocusPainted(false);
-		btnChecador.setBorderPainted(false);
-		btnChecador.setContentAreaFilled(false);
-		btnChecador.setBackground(new Color(33, 65, 119));
-		btnChecador.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// Acción al hacer clic en el botón
-				CheckController controller = new CheckController();
-				frame.dispose();
-				controller.checador();
-			}
-		});
+				JButton btnInstructores = new JButton("         Instructores");
+				btnInstructores.setHorizontalAlignment(SwingConstants.LEFT);
+				btnInstructores.setBounds(0, 11, 190, 44);
+				panel_4.add(btnInstructores);
+				btnInstructores.setForeground(Color.WHITE);
+				btnInstructores.setFont(new Font("Calibri", Font.BOLD, 17));
+				btnInstructores.setFocusPainted(false);
+				btnInstructores.setBorderPainted(false);
+				btnInstructores.setContentAreaFilled(false);
+				btnInstructores.setBackground(new Color(33, 65, 119));
+				btnInstructores.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						// Acción al hacer clic en el botón
+						InstructorController controller = new InstructorController();
+						frame.dispose();
+						controller.instructor();
+					}
+				});
 
-		JLabel lblChecador = new JLabel();
-		lblChecador.setBounds(10, 10, 40, 40);
-		ImageIcon imageIcon_Checador = new ImageIcon("img/menu_Checador.png");
-		lblChecador.setIcon(imageIcon_Checador);
-		panel_6.add(lblChecador);
+				JLabel lblInstructores = new JLabel();
+				lblInstructores.setBounds(10, 10, 40, 40);
+				ImageIcon imageIcon_Intructores = new ImageIcon("img/menu_instructor.png");
+				lblInstructores.setIcon(imageIcon_Intructores);
+				panel_4.add(lblInstructores);
 
-		// Cerrrar sesion
-		JPanel panel_7 = new JPanel();
-		panel_7.setBackground(new Color(33, 65, 119));
-		panel_7.setBounds(0, 396, 190, 58);
-		panel_7.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(207, 207, 207)));
-		panelOpciones.add(panel_7);
-		panel_7.setLayout(null);
+				//Clases
+				JPanel panel_5 = new JPanel();
+				panel_5.setBackground(new Color(33, 65, 119));
+				panel_5.setBounds(0, 276, 190, 58);
+				panel_5.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(207, 207, 207)));
+				panelOpciones.add(panel_5);
+				panel_5.setLayout(null);
 
-		JButton btnCerrarSesion = new JButton("         Cerrar sesion");
-		btnCerrarSesion.setHorizontalAlignment(SwingConstants.LEFT);
-		btnCerrarSesion.setBounds(0, 11, 190, 44);
-		panel_7.add(btnCerrarSesion);
-		btnCerrarSesion.setForeground(Color.WHITE);
-		btnCerrarSesion.setFont(new Font("Calibri", Font.BOLD, 20));
-		btnCerrarSesion.setFocusPainted(false);
-		btnCerrarSesion.setBorderPainted(false);
-		btnCerrarSesion.setContentAreaFilled(false);
-		btnCerrarSesion.setBackground(new Color(33, 65, 119));
-		btnCerrarSesion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Auth controller = new Auth();
-				frame.dispose();
-				controller.cerrar();
-				// Acción al hacer clic en el botón
-			}
-		});
+				JButton btnClases = new JButton("        Clases");
+				btnClases.setHorizontalAlignment(SwingConstants.LEFT);
+				btnClases.setBounds(0, 11, 190, 44);
+				panel_5.add(btnClases);
+				btnClases.setForeground(Color.WHITE);
+				btnClases.setFont(new Font("Calibri", Font.BOLD, 20));
+				btnClases.setFocusPainted(false);
+				btnClases.setBorderPainted(false);
+				btnClases.setContentAreaFilled(false);
+				btnClases.setBackground(new Color(33, 65, 119));
 
-		JLabel lblCerrarSesion = new JLabel();
-		lblCerrarSesion.setBounds(10, 10, 40, 40);
-		ImageIcon imageIcon_CerrarSesion = new ImageIcon("img/menu_cerrar_sesion.png");
-		lblCerrarSesion.setIcon(imageIcon_CerrarSesion);
-		panel_7.add(lblCerrarSesion);
+				JLabel lblClases = new JLabel();
+				lblClases.setBounds(10, 10, 40, 40);
+				ImageIcon imageIcon_Clases = new ImageIcon("img/menu_rutina.png");
+				lblClases.setIcon(imageIcon_Clases);
+				panel_5.add(lblClases);
 
-		frame.add(panel);
-		frame.setVisible(true);
-		frame.repaint();
-		frame.revalidate();
+				btnClases.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						// Acción al hacer clic en el botón
+						ClassController controller = new ClassController();
+						frame.dispose();
+						controller.clase();
+					}
+				});
+
+				//Checador
+				JPanel panel_6 = new JPanel();
+				panel_6.setBackground(new Color(33, 65, 119));
+				panel_6.setBounds(0, 335, 190, 61);
+				panel_6.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(207, 207, 207)));
+				panelOpciones.add(panel_6);
+				panel_6.setLayout(null);
+
+				JButton btnChecador = new JButton("        Checador");
+				btnChecador.setHorizontalAlignment(SwingConstants.LEFT);
+				btnChecador.setBounds(0, 11, 190, 44);
+				panel_6.add(btnChecador);
+				btnChecador.setForeground(Color.WHITE);
+				btnChecador.setFont(new Font("Calibri", Font.BOLD, 20));
+				btnChecador.setFocusPainted(false);
+				btnChecador.setBorderPainted(false);
+				btnChecador.setContentAreaFilled(false);
+				btnChecador.setBackground(new Color(33, 65, 119));
+				btnChecador.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						// Acción al hacer clic en el botón
+						CheckController controller = new CheckController();
+						frame.dispose();
+						controller.checador();
+					}
+				});
+
+				JLabel lblChecador = new JLabel();
+				lblChecador.setBounds(10, 10, 40, 40);
+				ImageIcon imageIcon_Checador = new ImageIcon("img/menu_Checador.png");
+				lblChecador.setIcon(imageIcon_Checador);
+				panel_6.add(lblChecador);
+
+				//Cerrrar sesion
+				JPanel panel_7 = new JPanel();
+				panel_7.setBackground(new Color(33, 65, 119));
+				panel_7.setBounds(0, 396, 190, 58);
+				panel_7.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(207, 207, 207)));
+				panelOpciones.add(panel_7);
+				panel_7.setLayout(null);
+
+				JButton btnCerrarSesion = new JButton("         Cerrar sesion");
+				btnCerrarSesion.setHorizontalAlignment(SwingConstants.LEFT);
+				btnCerrarSesion.setBounds(0, 11, 190, 44);
+				panel_7.add(btnCerrarSesion);
+				btnCerrarSesion.setForeground(Color.WHITE);
+				btnCerrarSesion.setFont(new Font("Calibri", Font.BOLD, 17));
+				btnCerrarSesion.setFocusPainted(false);
+				btnCerrarSesion.setBorderPainted(false);
+				btnCerrarSesion.setContentAreaFilled(false);
+				btnCerrarSesion.setBackground(new Color(33, 65, 119));
+				btnCerrarSesion.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						Auth controller = new Auth();
+						frame.dispose();
+						controller.cerrar();
+						// Acción al hacer clic en el botón
+					}
+				});
+
+				JLabel lblCerrarSesion = new JLabel();
+				lblCerrarSesion.setBounds(10, 10, 40, 40);
+				ImageIcon imageIcon_CerrarSesion = new ImageIcon("img/menu_cerrar_sesion.png");
+				lblCerrarSesion.setIcon(imageIcon_CerrarSesion);
+				panel_7.add(lblCerrarSesion);
+
+				frame.getContentPane().add(panel);
+				
+				
+				frame.setVisible(true);
+				frame.repaint();
+				frame.revalidate();
 
 	}
+	
+	
+	//Filtro para permitir solo letras
+		class LetterFilter extends DocumentFilter {
+		    @Override
+		    public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+		        if (string != null) {
+		            string = string.replaceAll("[^a-zA-Z ]", ""); 
+		            super.insertString(fb, offset, string, attr);
+		        }
+		    }
+
+		    @Override
+		    public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+		        if (text != null) {
+		            text = text.replaceAll("[^a-zA-Z ]", ""); 
+		            super.replace(fb, offset, length, text, attrs);
+		        }
+		    }
+		}
+
+		//Filtro para permitir solo números 
+		class NumberFilter extends DocumentFilter {
+		    private final int maxLength;
+
+		    public NumberFilter(int maxLength) {
+		        this.maxLength = maxLength;
+		    }
+
+		    @Override
+		    public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+		        if (string != null && (fb.getDocument().getLength() + string.length() <= maxLength)) {
+		            string = string.replaceAll("[^0-9]", "");
+		            super.insertString(fb, offset, string, attr);
+		        }
+		    }
+
+		    @Override
+		    public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+		        if (text != null && (fb.getDocument().getLength() + text.length() - length <= maxLength)) {
+		            text = text.replaceAll("[^0-9]", "");
+		            super.replace(fb, offset, length, text, attrs);
+		        }
+		    }
+		}
 }

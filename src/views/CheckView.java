@@ -86,7 +86,7 @@ public class CheckView {
 				//Obtiene la hora actual 
 				SimpleDateFormat formatter = new SimpleDateFormat("hh:mm a");
 				String currentTime = formatter.format(new Date());
-			
+
 				lblHora.setText(currentTime);
 			}
 		});
@@ -101,7 +101,7 @@ public class CheckView {
 		ImageIcon imageIcon_lblHora = new ImageIcon("img/checador_reloj.png"); 
 		lblHoraImg.setIcon(imageIcon_lblHora);
 		panelcontenedor.add(lblHoraImg);
-		
+
 
 		JLabel lblFecha = new JLabel("boton");
 		lblFecha.setForeground(new Color(0, 0, 0));
@@ -131,13 +131,13 @@ public class CheckView {
 				// Mostrar el ID ingresado (para confirmar que se ha capturado correctamente)
 				if (userID != null && !userID.trim().isEmpty()) {
 					int asistencias = modelo.verificarVisitas(Integer.parseInt(userID));
-					
+
 					modelo.ContarVisita((Integer.parseInt(userID)), (asistencias + 1));
 					JOptionPane.showMessageDialog(null, "Se ha checado", "Información", JOptionPane.INFORMATION_MESSAGE);
 				}
 				String[] datosClientes = modelo.obtenerNombreCliente(userID);
 				JOptionPane.showMessageDialog(null, "El usuario " + datosClientes[0] + " ha asistido " + modelo.verificarVisitas(Integer.parseInt(userID)) + " veces al gimnasio", "Reporte", JOptionPane.INFORMATION_MESSAGE);
-				
+
 			}
 		});
 		btnChecar.setForeground(Color.WHITE);
@@ -177,9 +177,10 @@ public class CheckView {
 		panelOpciones.setLayout(null);
 
 		JLabel lblMarca = new JLabel("Gym-World");
+		lblMarca.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMarca.setBounds(2, 514, 188, 45);
 		lblMarca.setForeground(Color.WHITE);
-		lblMarca.setFont(new Font("Calibri", Font.BOLD, 38));
+		lblMarca.setFont(new Font("Calibri", Font.BOLD, 29));
 		panelOpciones.add(lblMarca);
 
 
@@ -192,7 +193,7 @@ public class CheckView {
 		panelOpciones.add(panel_1);
 		panel_1.setLayout(null);
 
-		JButton btnInicio = new JButton("           Inicio");
+		JButton btnInicio = new JButton("         Inicio");
 		btnInicio.setHorizontalAlignment(SwingConstants.LEFT);
 		btnInicio.setBounds(0, 27, 190, 58);
 		panel_1.add(btnInicio);
@@ -226,7 +227,8 @@ public class CheckView {
 		panel_2.setLayout(null);
 
 
-		JButton btnClientes = new JButton(" Clientes");
+		JButton btnClientes = new JButton("       Clientes");
+		btnClientes.setHorizontalAlignment(SwingConstants.LEFT);
 		btnClientes.setBounds(0, 11, 190, 44);
 		panel_2.add(btnClientes);
 		btnClientes.setForeground(Color.WHITE);
@@ -258,9 +260,11 @@ public class CheckView {
 		panel_3.setBounds(0, 156, 190, 61);
 		panel_3.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(207, 207, 207)));
 		panelOpciones.add(panel_3);
+		panel_3.setBackground(Color.decode("#214177"));
 		panel_3.setLayout(null);
 
-		JButton btnTarifas = new JButton("Tarifas");
+		JButton btnTarifas = new JButton("       Tarifas");
+		btnTarifas.setHorizontalAlignment(SwingConstants.LEFT);
 		btnTarifas.setBounds(0, 11, 190, 44);
 		panel_3.add(btnTarifas);
 		btnTarifas.setForeground(Color.WHITE);
@@ -292,12 +296,12 @@ public class CheckView {
 		panelOpciones.add(panel_4);
 		panel_4.setLayout(null);
 
-		JButton btnInstructores = new JButton("          Instructores");
+		JButton btnInstructores = new JButton("         Instructores");
 		btnInstructores.setHorizontalAlignment(SwingConstants.LEFT);
 		btnInstructores.setBounds(0, 11, 190, 44);
 		panel_4.add(btnInstructores);
 		btnInstructores.setForeground(Color.WHITE);
-		btnInstructores.setFont(new Font("Calibri", Font.BOLD, 20));
+		btnInstructores.setFont(new Font("Calibri", Font.BOLD, 17));
 		btnInstructores.setFocusPainted(false);
 		btnInstructores.setBorderPainted(false);
 		btnInstructores.setContentAreaFilled(false);
@@ -325,7 +329,8 @@ public class CheckView {
 		panelOpciones.add(panel_5);
 		panel_5.setLayout(null);
 
-		JButton btnClases = new JButton("Clases");
+		JButton btnClases = new JButton("        Clases");
+		btnClases.setHorizontalAlignment(SwingConstants.LEFT);
 		btnClases.setBounds(0, 11, 190, 44);
 		panel_5.add(btnClases);
 		btnClases.setForeground(Color.WHITE);
@@ -352,14 +357,13 @@ public class CheckView {
 
 		//Checador
 		JPanel panel_6 = new JPanel();
-		panel_6.setBackground(new Color(33, 65, 119));
-		panel_6.setBounds(0, 335, 190, 61);
 		panel_6.setBackground(Color.decode("#3768A7"));
+		panel_6.setBounds(0, 335, 190, 61);
 		panel_6.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(207, 207, 207)));
 		panelOpciones.add(panel_6);
 		panel_6.setLayout(null);
 
-		JButton btnChecador = new JButton("          Checador");
+		JButton btnChecador = new JButton("        Checador");
 		btnChecador.setHorizontalAlignment(SwingConstants.LEFT);
 		btnChecador.setBounds(0, 11, 190, 44);
 		panel_6.add(btnChecador);
@@ -397,7 +401,7 @@ public class CheckView {
 		btnCerrarSesion.setBounds(0, 11, 190, 44);
 		panel_7.add(btnCerrarSesion);
 		btnCerrarSesion.setForeground(Color.WHITE);
-		btnCerrarSesion.setFont(new Font("Calibri", Font.BOLD, 20));
+		btnCerrarSesion.setFont(new Font("Calibri", Font.BOLD, 17));
 		btnCerrarSesion.setFocusPainted(false);
 		btnCerrarSesion.setBorderPainted(false);
 		btnCerrarSesion.setContentAreaFilled(false);
@@ -417,7 +421,7 @@ public class CheckView {
 		lblCerrarSesion.setIcon(imageIcon_CerrarSesion);
 		panel_7.add(lblCerrarSesion);
 
-		frame.add(panel);
+		frame.getContentPane().add(panel);
 		frame.setVisible(true);
 		frame.repaint();
 		frame.revalidate();
