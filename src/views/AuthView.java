@@ -281,7 +281,7 @@ public class AuthView {
 		panelLogincontenedor.add(panelCrearCuenta);
 		panelCrearCuenta.setLayout(null);
 		
-		JButton btnCrearCuenta = new JButton("Resgistrarte");
+		JButton btnCrearCuenta = new JButton("Registrarte");
 		btnCrearCuenta.setBounds(0, 0, 350, 40);
 		panelCrearCuenta.add(btnCrearCuenta);
 		btnCrearCuenta.setForeground(Color.WHITE);

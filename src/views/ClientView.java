@@ -666,6 +666,7 @@ public class ClientView {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(191, 476, 500, 40);
 		panelcontenedor.add(panel_1);
+		panelcontenedor.setBackground(Color.decode("#214177"));
 		panel_1.setLayout(null);
 
 		JButton btnCrearClases = new JButton("Registrar cliente");

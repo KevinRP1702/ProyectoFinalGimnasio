@@ -413,6 +413,9 @@ public class FeeView {
 		panelCabeceraContenido_1.add(lblTituloContenido3);
 
 		//El boton pagar hace que aparezca la informacion del panel de confirmar pago
+		
+		
+		
 		JButton btnBtnPagar = new JButton("Pagar");
 		btnBtnPagar.setBounds(0, 0, 220, 40);
 		panelBtnPagar.add(btnBtnPagar);

@@ -122,6 +122,8 @@ public class ClassView {
 
 		panelCabeceraContenido.add(comboBox);
 
+		
+		
 		JPanel panelBotoncontenido_1 = new JPanel();
 		panelBotoncontenido_1.setBackground(new Color(55, 104, 167));
 		panelBotoncontenido_1.setBounds(465, 5, 190, 30);
@@ -133,6 +135,8 @@ public class ClassView {
 				panelBotoncontenido_1.add(lblBotoncontenido);
 
 
+				
+				
 		JButton btnAgregarCliente = new JButton("    Agregar clase");
 		btnAgregarCliente.setBounds(0, 0, 190, 30);
 		panelBotoncontenido_1.add(btnAgregarCliente);
@@ -279,39 +283,47 @@ public class ClassView {
 				));
 		panelcontenedor.add(textClaseinstructor);
 
-		//Boton para registrar la clase
-		JButton btnCrearClases = new JButton("Registrar clase");
-		btnCrearClases.setBounds(191, 320, 502, 40);
-		panelcontenedor.add(btnCrearClases);
-		btnCrearClases.setForeground(Color.WHITE);
-		btnCrearClases.setFont(new Font("Calibri", Font.BOLD, 20));
-		btnCrearClases.setFocusPainted(false);
-		btnCrearClases.setBorderPainted(false);
-		btnCrearClases.setBackground(Color.decode("#214177"));
-		btnCrearClases.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		
+		JPanel panelCrearClases = new JPanel();
+		panelCrearClases.setBounds(191, 324, 500, 43);
+		panelCrearClases.setBackground(Color.decode("#214177"));
+		panelcontenedor.add(panelCrearClases);
+		panelCrearClases.setLayout(null);
+		
+				//Boton para registrar la clase
+				JButton btnCrearClases = new JButton("Registrar clase");
+				btnCrearClases.setBounds(0, 0, 500, 43);
+				panelCrearClases.add(btnCrearClases);
+				btnCrearClases.setForeground(Color.WHITE);
+				btnCrearClases.setFont(new Font("Calibri", Font.BOLD, 20));
+				btnCrearClases.setFocusPainted(false);
+				btnCrearClases.setBorderPainted(false);
+				btnCrearClases.setBackground(Color.decode("#214177"));
+				btnCrearClases.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
 
-				String nombreClase = textClasenombre.getText().trim();
-				String nombreInstructor = textClaseinstructor.getText().trim();
+						String nombreClase = textClasenombre.getText().trim();
+						String nombreInstructor = textClaseinstructor.getText().trim();
 
-				if (nombreClase.isEmpty() || nombreInstructor.isEmpty()) {
+						if (nombreClase.isEmpty() || nombreInstructor.isEmpty()) {
 
-					JOptionPane.showMessageDialog(frame, "Por favor, complete todos los campos.", "Campos Vacíos", JOptionPane.WARNING_MESSAGE);
-				} else {
+							JOptionPane.showMessageDialog(frame, "Por favor, complete todos los campos.", "Campos Vacíos", JOptionPane.WARNING_MESSAGE);
+						} else {
 
-					ClassModel registro = new ClassModel();
-					Boolean checar = registro.registroClase(nombreClase, nombreInstructor);
-					if(checar == false) {
-						JOptionPane.showMessageDialog(frame, "La clase se ha registrado con éxito.", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
-						ClassController controller = new ClassController();
-						frame.dispose();
-						controller.clase();
-					}else {
-						JOptionPane.showMessageDialog(frame, "La clase ya se encuentra registrada.", "Registro erroneo", JOptionPane.WARNING_MESSAGE);
+							ClassModel registro = new ClassModel();
+							Boolean checar = registro.registroClase(nombreClase, nombreInstructor);
+							if(checar == false) {
+								JOptionPane.showMessageDialog(frame, "La clase se ha registrado con éxito.", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+								ClassController controller = new ClassController();
+								frame.dispose();
+								controller.clase();
+							}else {
+								JOptionPane.showMessageDialog(frame, "La clase ya se encuentra registrada.", "Registro erroneo", JOptionPane.WARNING_MESSAGE);
+							}
+						}
 					}
-				}
-			}
-		});
+				});
+		
 
 		JLabel lblIngreseLosDatos = new JLabel("Ingrese los datos de la clase");
 		lblIngreseLosDatos.setFont(new Font("Calibri", Font.PLAIN, 26));
@@ -447,9 +459,18 @@ public class ClassView {
 
 
 		//Contenido inferior
+		//Eliminar clase
+				JPanel panelEliminarClase = new JPanel();
+				panelEliminarClase.setLayout(null);
+				panelEliminarClase.setBackground(Color.decode("#A73737"));
+				panelEliminarClase.setBounds(682, 51, 190, 41);
+				panelcontenedor.add(panelEliminarClase);
+				
 		ClassModel datos = new ClassModel();
 		JButton btnEliminarClase = new JButton("Eliminar clase");
 		btnEliminarClase.setFocusPainted(false);
+		
+		
 
 		//Boton eliminar clase
 		btnEliminarClase.setForeground(new Color(255, 255, 255));
@@ -457,7 +478,7 @@ public class ClassView {
 		btnEliminarClase.setFont(new Font("Calibri", Font.BOLD, 20));
 		btnEliminarClase.setBounds(713, 51, 138, 40);
 		btnEliminarClase.setBorder(null);
-		panelcontenedor.add(btnEliminarClase);
+		panelEliminarClase.add(btnEliminarClase);
 		btnEliminarClase.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
