@@ -1,0 +1,2 @@
+El ejecutable ProyectoFinalGimnasio(JDK 22).jar no es recomendable ya que es posible que no todas las maquinas lo puedan ejecutar
+Se recomienda ejecutar ProyectoFinalGimnasio(jdk 17).jar ya que mas maquinas no deberian de tener problemas
